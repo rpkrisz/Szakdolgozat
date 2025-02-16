@@ -1,5 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
+import daisyui from "daisyui"
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -16,7 +17,25 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
+        screens: {
+            zero: '0px',
+            xs: '320px',
+            sm: '480px',
+            md: '768px',
+            lg: '1024px',
+            xl: '1280px',
+            "2xl": '1536px',
+        },
+        container: {
+            center: true,
+            padding: "2rem",
+            screens: {
+                "2xl": "1400px",
+            },
+        }
     },
-
-    plugins: [forms],
+    daisyui: {
+        themes: ["business"],
+    },
+    plugins: [forms, daisyui],
 };
