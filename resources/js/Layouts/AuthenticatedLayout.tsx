@@ -5,7 +5,7 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import {Link, usePage} from "@inertiajs/react";
 import {PropsWithChildren, ReactNode, useState} from "react";
 
-export default function Authenticated({header, children}: PropsWithChildren<{header?: ReactNode}>) {
+export default function Authenticated({header, children}: PropsWithChildren<{header?: string}>) {
   const user = usePage().props.auth.user;
 
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(true);
@@ -25,6 +25,18 @@ export default function Authenticated({header, children}: PropsWithChildren<{hea
               <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <NavLink href={route("dashboard")} active={route().current("dashboard")}>
                   Dashboard
+                </NavLink>
+                <NavLink href={route("dashboard")} active={route().current("dashboard")}>
+                  Dashboard
+                </NavLink>
+                <NavLink href={route("dashboard")} active={route().current("dashboard")}>
+                  Dashboard
+                </NavLink>
+                <NavLink href={route("dashboard")} active={route().current("dashboard")}>
+                  Dashboard
+                </NavLink>
+                <NavLink href={route("gradecalculator")} active={route().current("gradecalculator")}>
+                  Grade calculator
                 </NavLink>
               </div>
             </div>
@@ -97,6 +109,9 @@ export default function Authenticated({header, children}: PropsWithChildren<{hea
             <ResponsiveNavLink href={route("dashboard")} active={route().current("dashboard")}>
               Dashboard
             </ResponsiveNavLink>
+            <ResponsiveNavLink href={route("gradecalculator")} active={route().current("gradecalculator")}>
+              Grade calculator
+            </ResponsiveNavLink>
           </div>
 
           <div className="border-t border-gray-200 pb-1 pt-4">
@@ -117,7 +132,9 @@ export default function Authenticated({header, children}: PropsWithChildren<{hea
 
       {header && (
         <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">{header}</div>
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h2 className="text-xl font-semibold leading-tight text-gray-800">{header}</h2>
+          </div>
         </header>
       )}
 

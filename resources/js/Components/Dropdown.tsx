@@ -21,7 +21,7 @@ const Dropdown = ({children}: PropsWithChildren) => {
 
   return (
     <DropDownContext.Provider value={{open, setOpen, toggleOpen}}>
-      <div className="relative">{children}</div>
+      <div className="relative ">{children}</div>
     </DropDownContext.Provider>
   );
 };

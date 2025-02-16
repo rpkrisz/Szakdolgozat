@@ -18,10 +18,19 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+
+Route::get('/ui', function () {
+    return Inertia::render('UiKit');
+})->name('UiKit');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/gradecalculator', function () {
+        return Inertia::render('GradeCalculator/GradeCalculator');
+    })->name('gradecalculator');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

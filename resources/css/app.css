@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#root {
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.taskTdBase {
+    @apply flex flex-row items-center gap-2 w-40 h-16 overflow-hidden text-center p-1 rounded-md
+}
+
+
+.inwork {
+    @apply bg-orange-400 text-accent-content
+}
+
+.relevant {
+    @apply bg-warning text-warning-content
+}
+
+.done {
+    @apply bg-success text-success-content
+}
+
+.missed, .faild {
+    @apply bg-error text-error-content
+}
+
+.finished,
+.graded {
+    @apply bg-success text-success-content bg-opacity-80
+}
+
+.assaigment {
+    @apply bg-secondary text-secondary-content
+}
+
+.midterm, .exam {
+    @apply bg-primary text-primary-content
+}
