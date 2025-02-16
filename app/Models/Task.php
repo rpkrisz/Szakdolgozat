@@ -22,8 +22,8 @@ class Task extends Model
         'weight',
         'type',
         'taskPage',
-        'score',
         'state',
+        'score',
         'subject_id',
         'user_id',
     ];
@@ -36,7 +36,6 @@ class Task extends Model
     protected function casts(): array
     {
         return [
-
             'weight' => 'integer',
             'score' => 'integer',
             'subject_id' => 'integer',

@@ -16,15 +16,43 @@ return new class extends Migration
             $table->string('name');
             $table->string('courseType');
             $table->integer('credit');
-            $table->integer('semester');
             $table->string('notes');
             $table->boolean('isGraded')->default(false);
             $table->integer('grade');
 
-            $table->unsignedBigInteger('score_id');
-            $table->foreign('score_id')->references('id')->on('scores')->onDelete('cascade');
-            $table->unsignedBigInteger('details_id');
-            $table->foreign('details_id')->references('id')->on('details')->onDelete('cascade');
+            // Scores
+            $table->integer('midterms');
+            $table->integer('quizes');
+            $table->integer('assignments');
+            $table->integer('exams');
+            $table->integer('homeWorks');
+            $table->integer('bonusPoints');
+            $table->integer('sumScores');
+            $table->integer('maxScore');
+
+            // Details
+            $table->string('coursePlacement');
+            $table->string('markConditions');
+            $table->string('scores');
+            $table->string('bonusExercise');
+            $table->string('mark');
+            $table->string('examType');
+            $table->string('readings');
+            $table->integer('absences');
+            $table->string('programingLanguage');
+            $table->string('coursePage');
+            $table->integer('weeklyTimeConsumption');
+            $table->integer('pointsFor2');
+            $table->integer('pointsFor3');
+            $table->integer('pointsFor4');
+            $table->integer('pointsFor5');
+            $table->boolean('isPercentage')->default(false);
+
+            // $table->unsignedBigInteger('score_id')->nullable();
+            // $table->foreign('score_id')->references('id')->on('scores')->onDelete('cascade');
+            // $table->unsignedBigInteger('details_id')->nullable();
+            // $table->foreign('details_id')->references('id')->on('details')->onDelete('cascade');
+
             $table->unsignedBigInteger('semester_id');
             $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');

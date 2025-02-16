@@ -57,8 +57,8 @@ class Subjectdetail extends Model
         ];
     }
 
-    public function subject(): BelongsTo
-    {
-        return $this->belongsTo(Subject::class);
-    }
+//     public function subject(): BelongsTo
+//     {
+//         return $this->belongsTo(Subject::class);
+//     }
 }

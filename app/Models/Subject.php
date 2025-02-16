@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Subject extends Model
 {
@@ -19,12 +21,33 @@ class Subject extends Model
         'name',
         'courseType',
         'credit',
-        'semester',
         'notes',
         'isGraded',
         'grade',
-        'score_id',
-        'details_id',
+        'midterms',
+        'quizes',
+        'assignments',
+        'exams',
+        'homeWorks',
+        'bonusPoints',
+        'sumScores',
+        'maxScore',
+        'coursePlacement',
+        'markConditions',
+        'scores',
+        'bonusExercise',
+        'mark',
+        'examType',
+        'readings',
+        'absences',
+        'programingLanguage',
+        'coursePage',
+        'weeklyTimeConsumption',
+        'pointsFor2',
+        'pointsFor3',
+        'pointsFor4',
+        'pointsFor5',
+        'isPercentage',
         'semester_id',
         'user_id',
     ];
@@ -39,11 +62,25 @@ class Subject extends Model
         return [
 
             'credit' => 'integer',
-            'semester' => 'integer',
-            'isGraded' => 'boolrean',
+            'isGraded' => 'boolean',
             'grade' => 'integer',
-            'score_id' => 'integer',
-            'details_id' => 'integer',
+
+            'midterms' => 'integer',
+            'quizes' => 'integer',
+            'assignments' => 'integer',
+            'exams' => 'integer',
+            'homeWorks' => 'integer',
+            'bonusPoints' => 'integer',
+            'sumScores' => 'integer',
+            'maxScore' => 'integer',
+
+            'weeklyTimeConsumption' => 'integer',
+            'maxPoint' => 'integer',
+            'pointsFor2' => 'integer',
+            'pointsFor3' => 'integer',
+            'pointsFor4' => 'integer',
+            'pointsFor5' => 'integer',
+            'isPercentage' => 'boolean',
             'semester_id' => 'integer',
             'user_id' => 'integer',
         ];
@@ -59,13 +96,18 @@ class Subject extends Model
         return $this->belongsTo(Semester::class);
     }
 
-    public function subjectdetail(): BelongsTo
+    public function tasks(): HasMany
     {
-        return $this->belongsTo(Subjectdetail::class);
+        return $this->hasMany(Task::class);
     }
 
-    public function subjectscore(): BelongsTo
-    {
-        return $this->belongsTo(Subjectscore::class);
-    }
+    // public function subjectdetail(): HasOne
+    // {
+    //     return $this->hasOne(Subjectdetail::class);
+    // }
+
+    // public function subjectscore(): HasOne
+    // {
+    //     return $this->hasOne(Subjectscore::class);
+    // }
 }

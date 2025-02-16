@@ -14,18 +14,18 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamp('dueDate');
+            $table->string('dueDate');
             $table->integer('weight');
             $table->string('type');
             $table->string('taskPage');
-            $table->integer('score');
             $table->string('state');
+            $table->integer('score');
+
+            $table->unsignedBigInteger('subject_id');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('subject_id');
-            $table->foreign('subject_id')->references('id')->on('subject')->onDelete('cascade');
 
             $table->timestamps();
         });
