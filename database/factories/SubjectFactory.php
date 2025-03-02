@@ -37,10 +37,10 @@ class SubjectFactory extends Factory
         $isPercentage = fake()->boolean();
         if (!$isPercentage) {
 
-            $pointsFor2 = $pointsFor2 / 100 * $maxScore;
-            $pointsFor3 = $pointsFor3 / 100 * $maxScore;
-            $pointsFor4 = $pointsFor4 / 100 * $maxScore;
-            $pointsFor5 = $pointsFor5 / 100 * $maxScore;
+            $pointsFor2 = round($pointsFor2 / 100 * $maxScore);
+            $pointsFor3 = round($pointsFor3 / 100 * $maxScore);
+            $pointsFor4 = round($pointsFor4 / 100 * $maxScore);
+            $pointsFor5 = round($pointsFor5 / 100 * $maxScore);
         }
 
         $isGraded = fake()->boolean();

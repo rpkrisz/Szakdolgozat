@@ -33,7 +33,7 @@ return new class extends Migration
             $table->boolean('isPercentage')->default(false);
 
             $table->unsignedBigInteger('subject_id');
-            $table->foreign('subject_id')->references('id')->on('subject')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
 
             $table->timestamps();
         });
