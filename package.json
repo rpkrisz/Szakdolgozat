@@ -27,6 +27,10 @@
     },
     "dependencies": {
         "@types/lodash": "^4.17.15",
-        "lodash": "^4.17.21"
+        "jotai": "^2.12.0",
+        "jotai-immer": "^0.4.1",
+        "lodash": "^4.17.21",
+        "lucide-react": "^0.475.0",
+        "react-use": "^17.6.0"
     }
 }
