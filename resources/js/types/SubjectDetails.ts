@@ -1,0 +1,42 @@
+export type SubjectDetails = {
+  id: string;
+  coursePlacement: string;
+  markConditions: string;
+  scores: string;
+  bonusExercise: string;
+  mark: string;
+  examType: string;
+  readings: string;
+  absences: number;
+  programingLanguage: string;
+  coursePage: string;
+  weeklyTimeConsumption: number;
+  pointsFor2: number;
+  pointsFor3: number;
+  pointsFor4: number;
+  pointsFor5: number;
+  maxPoint: number;
+  isPercentage: boolean;
+  subjectID: string;
+};
+
+export type SubjectDetailsForm = {
+  coursePlacement: string;
+  markConditions: string;
+  scores: string;
+  bonusExercise: string;
+  mark: string;
+  examType: string;
+  readings: string;
+  absences: number;
+  programingLanguage: string;
+  coursePage: string;
+  weeklyTimeConsumption: number;
+  pointsFor2: number;
+  pointsFor3: number;
+  pointsFor4: number;
+  pointsFor5: number;
+  maxPoint: number;
+  isPercentage: boolean;
+  subjectID: string;
+};
