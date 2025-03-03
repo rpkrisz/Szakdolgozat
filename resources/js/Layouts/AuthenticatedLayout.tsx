@@ -1,24 +1,27 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
+import Footer from "@/Components/Footer";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import {Link, usePage} from "@inertiajs/react";
+import {titleAtom} from "@/store/atoms";
+import {Head, Link, usePage} from "@inertiajs/react";
+import {useAtom, useAtomValue} from "jotai/react";
 import {PropsWithChildren, ReactNode, useState} from "react";
 
 export default function Authenticated({header, children}: PropsWithChildren<{header?: string}>) {
   const user = usePage().props.auth.user;
-
   const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(true);
+  const title = useAtomValue(titleAtom);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="border-b border-gray-100 bg-white">
+    <div className="min-h-screen bg-base-300">
+      <nav className="border-b border-gray-100 bg-neutral text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 justify-between">
             <div className="flex">
               <div className="flex shrink-0 items-center">
                 <Link href="/">
-                  <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                  <ApplicationLogo className="block h-9 w-auto fill-current" />
                 </Link>
               </div>
 
@@ -48,7 +51,7 @@ export default function Authenticated({header, children}: PropsWithChildren<{hea
                     <span className="inline-flex rounded-md">
                       <button
                         type="button"
-                        className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                        className="inline-flex items-center rounded-md border border-transparent  px-3 py-2 text-sm font-medium leading-4 transition duration-150 ease-in-out focus:outline-none"
                       >
                         {user.name}
 
@@ -81,7 +84,7 @@ export default function Authenticated({header, children}: PropsWithChildren<{hea
             <div className="-me-2 flex items-center sm:hidden">
               <button
                 onClick={() => setShowingNavigationDropdown(previousState => !previousState)}
-                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
+                className="inline-flex items-center justify-center rounded-md p-2 transition duration-150 ease-in-out hover:bg-gray-100  focus:bg-gray-100  focus:outline-none"
               >
                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path
@@ -116,8 +119,8 @@ export default function Authenticated({header, children}: PropsWithChildren<{hea
 
           <div className="border-t border-gray-200 pb-1 pt-4">
             <div className="px-4">
-              <div className="text-base font-medium text-gray-800">{user.name}</div>
-              <div className="text-sm font-medium text-gray-500">{user.email}</div>
+              <div className="text-base font-medium ">{user.name}</div>
+              <div className="text-sm font-medium ">{user.email}</div>
             </div>
 
             <div className="mt-3 space-y-1">
@@ -130,15 +133,21 @@ export default function Authenticated({header, children}: PropsWithChildren<{hea
         </div>
       </nav>
 
-      {header && (
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-semibold leading-tight text-gray-800">{header}</h2>
-          </div>
-        </header>
-      )}
+      <header className="bg-neutral shadow">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+          {header ? (
+            <h2 className="text-xl font-semibold leading-tight ">{header}</h2>
+          ) : (
+            <h2 className="text-xl font-semibold leading-tight ">{title}</h2>
+          )}
+        </div>
+      </header>
 
-      <main>{children}</main>
+      <main className="felx justify-start flex-grow m-2 px-8 relativ min-h-[74dvh] md:px-40 overflow-clip">
+        {children}
+      </main>
+
+      <Footer />
     </div>
   );
 }

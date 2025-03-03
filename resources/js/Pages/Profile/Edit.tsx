@@ -7,7 +7,7 @@ import UpdateProfileInformationForm from "./Partials/UpdateProfileInformationFor
 
 export default function Edit({mustVerifyEmail, status}: PageProps<{mustVerifyEmail: boolean; status?: string}>) {
   return (
-    <AuthenticatedLayout header="Profile">
+    <>
       <Head title="Profile" />
 
       <div className="py-12">
@@ -15,7 +15,6 @@ export default function Edit({mustVerifyEmail, status}: PageProps<{mustVerifyEma
           <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
             <UpdateProfileInformationForm mustVerifyEmail={mustVerifyEmail} status={status} className="max-w-xl" />
           </div>
-
           <div className="bg-white p-4 shadow sm:rounded-lg sm:p-8">
             <UpdatePasswordForm className="max-w-xl" />
           </div>
@@ -25,6 +24,6 @@ export default function Edit({mustVerifyEmail, status}: PageProps<{mustVerifyEma
           </div>
         </div>
       </div>
-    </AuthenticatedLayout>
+    </>
   );
 }

@@ -5,7 +5,7 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import {Head, useForm} from "@inertiajs/react";
 import {FormEventHandler} from "react";
 
-export default function ForgotPassword({status}: {status?: string}) {
+function ForgotPassword({status}: {status?: string}) {
   const {data, setData, post, processing, errors} = useForm({
     email: "",
   });
@@ -17,7 +17,7 @@ export default function ForgotPassword({status}: {status?: string}) {
   };
 
   return (
-    <GuestLayout>
+    <>
       <Head title="Forgot Password" />
 
       <div className="mb-4 text-sm text-gray-600">
@@ -46,6 +46,9 @@ export default function ForgotPassword({status}: {status?: string}) {
           </PrimaryButton>
         </div>
       </form>
-    </GuestLayout>
+    </>
   );
 }
+
+ForgotPassword.layout = (page: JSX.Element) => <GuestLayout children={page} />;
+export default ForgotPassword;

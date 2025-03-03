@@ -1,12 +1,9 @@
 import ApplicationLogo from "@/Components/ApplicationLogo";
+import GuestLayout from "@/Layouts/GuestLayout";
 import {PageProps} from "@/types";
 import {Head, Link} from "@inertiajs/react";
 
-export default function Welcome({
-  auth,
-  laravelVersion,
-  phpVersion,
-}: PageProps<{laravelVersion: string; phpVersion: string}>) {
+function Welcome({auth, laravelVersion, phpVersion}: PageProps<{laravelVersion: string; phpVersion: string}>) {
   const handleImageError = () => {
     document.getElementById("screenshot-container")?.classList.add("!hidden");
     document.getElementById("docs-card")?.classList.add("!row-span-1");
@@ -17,7 +14,7 @@ export default function Welcome({
   return (
     <>
       <Head title="Welcome" />
-      <div className="bg-base-200 text-black/50  dark:text-white/50">
+      <div className="bg-neutral text-black/50  dark:text-white/50">
         <div className="relative flex flex-col items-center justify-center selection:text-white">
           <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl  min-h-screen">
             <header className="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
@@ -52,9 +49,9 @@ export default function Welcome({
             </header>
 
             <main className="felx justify-start flex-grow overflow-clip ">
-              <div className="hero bg-base-200">
+              <div className="hero bg-neutral shadow-sm sm:rounded-lg">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                  <img src="/assets/vertical-logo.png" className="max-w-sm rounded-lg shadow-2xl" />
+                  <img src="/assets/vertical-logo.png" className="max-w-sm p-5 rounded-lg shadow-2xl" />
                   <div>
                     <h1 className="text-3xl font-bold">Stay on top of your university workload!</h1>
                     <div className=" flex flex-col gap-0 py-6 max-w-lg">
@@ -66,7 +63,7 @@ export default function Welcome({
                         Welcome to your personal task tracker. This is your one-stop shop for managing all your
                         university assignments, projects, and deadlines.
                       </p>
-                      <p className="py-1"> Let's conquer your to-do list together! </p>
+                      <p className="py-1"> Let's conquer your To Do List together! </p>
                     </div>
                     <Link href={route("register")} className="btn btn-primary">
                       Register now!
@@ -81,3 +78,6 @@ export default function Welcome({
     </>
   );
 }
+
+Welcome.layout = (page: JSX.Element) => <>{page}</>;
+export default Welcome;
