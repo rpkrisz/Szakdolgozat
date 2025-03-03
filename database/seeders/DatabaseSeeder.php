@@ -26,10 +26,14 @@ class DatabaseSeeder extends Seeder
                 ->for($student)
                 ->create(['user_id' => $student->id]);
 
-            $semesters = Semester::factory($uni->currSemester)
-                ->for($uni)
-                ->for($student)
-                ->create(['university_id' => $uni->id, 'user_id' => $student->id]);
+            $semesters = [];
+            for ($i = 0; $i < $uni->currSemester; $i++) {
+                $name = "Semester" . " " . $i + 1;
+                $semesters[$i] = Semester::factory()
+                    ->for($uni)
+                    ->for($student)
+                    ->create(['name' => $name, 'university_id' => $uni->id, 'user_id' => $student->id]);
+            }
 
             foreach ($semesters as $semester) {
                 $subjects = Subject::factory(3)

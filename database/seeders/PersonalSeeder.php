@@ -38,10 +38,16 @@ class PersonalSeeder extends Seeder
                 'user_id' => $me->id,
             ]);
 
-        $semesters = Semester::factory($uni->currSemester - 1)
-            ->for($uni)
-            ->for($me)
-            ->create(['university_id' => $uni->id, 'user_id' => $me->id]);
+
+        $semesters = [];
+        for ($i = 0; $i < $uni->currSemester - 1; $i++) {
+            $name = "Semester" . " " . $i + 1;
+            $semesters[$i] = Semester::factory()
+                ->for($uni)
+                ->for($me)
+                ->create(['name' => $name, 'university_id' => $uni->id, 'user_id' => $me->id]);
+        }
+
 
         foreach ($semesters as $semester) {
             $subjects = Subject::factory(3)
@@ -61,6 +67,7 @@ class PersonalSeeder extends Seeder
             ->for($uni)
             ->for($me)
             ->create([
+                'name' => "Semester 6",
                 'average' => '5',
                 'gradePointAverage' => '5',
                 'creditIndex' => '5',
@@ -71,6 +78,7 @@ class PersonalSeeder extends Seeder
                 'university_id' => $uni->id,
                 'user_id' => $me->id
             ]);
+
         $subjects = Subject::factory(3)
             ->for($semester)
             ->for($me)
@@ -82,7 +90,7 @@ class PersonalSeeder extends Seeder
                 ->for($me)
                 ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
         }
-        
+
         // $subjects = Subject::factory()
         //     ->for($semester)
         //     ->for($me)
