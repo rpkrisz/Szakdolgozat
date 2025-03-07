@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Semester;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class SemesterController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
+     */ 
     public function index()
     {
-        //
+        $semesters = Auth::user()->semesters()->get();
+        return response()->json($semesters);
     }
 
     /**
@@ -36,7 +39,13 @@ class SemesterController extends Controller
      */
     public function show(Semester $semester)
     {
-        //
+        if (!$semester || Auth::id() != $semester->user_id) {
+            abort(404);
+        }
+
+        $subjects = $semester->subjects()->get();
+
+        return Inertia::render('Semester', ['semester' => $semester, 'subjects' => $subjects]);
     }
 
     /**
@@ -60,6 +69,11 @@ class SemesterController extends Controller
      */
     public function destroy(Semester $semester)
     {
-        //
+        if (!$semester || Auth::id() != $semester->user_id) {
+            abort(404);
+        }
+
+        $semester->delete();
+        return redirect()->route('dashboard');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
@@ -12,7 +13,8 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        $subjects = Auth::user()->subjects()->get();
+        return response()->json($subjects);
     }
 
     /**
@@ -60,6 +62,11 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject)
     {
-        //
+        if (!$subject || Auth::id() != $subject->user_id) {
+            abort(404);
+        }
+
+        $subject->delete();
+        return redirect()->route('dashboard');
     }
 }

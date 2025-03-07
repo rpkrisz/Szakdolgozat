@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -12,7 +13,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Auth::user()->tasks()->get();
+        return response()->json($tasks);
     }
 
     /**
@@ -36,7 +38,10 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        if (!$task || Auth::id() != $task->user_id) {
+            abort(404);
+        }
+        return response()->json(['task' => $task]);
     }
 
     /**
@@ -52,7 +57,21 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'dueDate' => 'required|string',
+            'weight' => 'required|integer',
+            'type' => 'required|string',
+            'taskPage' => 'required|string',
+            'state' => 'required|string',
+            'score' => 'required|integer|min:0',
+        ]);
+
+        if (!$task || Auth::id() != $task->user_id) {
+            abort(404);
+        }
+
+        $task->update($validated);
     }
 
     /**
@@ -60,6 +79,12 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        if (!$task || Auth::id() != $task->user_id) {
+            abort(404);
+        }
+
+        $task->delete();
+
+        return redirect()->route('dashboard');
     }
 }
