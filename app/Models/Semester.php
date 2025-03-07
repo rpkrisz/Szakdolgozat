@@ -26,8 +26,6 @@ class Semester extends Model
         'registeredCredit',
         'passeedCredit',
         'completionRate',
-        'university_id',
-        'user_id',
     ];
 
     /**

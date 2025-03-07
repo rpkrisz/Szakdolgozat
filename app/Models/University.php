@@ -27,7 +27,6 @@ class University extends Model
         'currSemester',
         'currSemFstDay',
         'specialisation',
-        'user_id',
     ];
 
     /**

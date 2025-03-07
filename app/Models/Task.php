@@ -24,8 +24,6 @@ class Task extends Model
         'taskPage',
         'state',
         'score',
-        'subject_id',
-        'user_id',
     ];
 
     /**

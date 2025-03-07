@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $student) {
             $uni = University::factory()
                 ->for($student)
-                ->create(['user_id' => $student->id]);
+                ->create();
 
             $semesters = [];
             for ($i = 0; $i < $uni->currSemester; $i++) {

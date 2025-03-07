@@ -48,8 +48,7 @@ class Subject extends Model
         'pointsFor4',
         'pointsFor5',
         'isPercentage',
-        'semester_id',
-        'user_id',
+
     ];
 
     /**
