@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-const UiKit: FC = () => {
+const UiKit = () => {
   return (
     <div className="p-4">
       <h1>Heading 1</h1>
@@ -95,4 +95,5 @@ const UiKit: FC = () => {
   );
 };
 
+UiKit.layout = (page: JSX.Element) => <>{page}</>;
 export default UiKit;
