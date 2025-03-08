@@ -3,19 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Semester;
+use App\Models\Subject;
+use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class SemesterController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */ 
+     */
     public function index()
     {
         $semesters = Auth::user()->semesters()->get();
-        return response()->json($semesters);
+        return response()->json([
+            'success' => true,
+            'message' => 'Semesters',
+            'data' => $semesters
+        ]);
     }
 
     /**
@@ -31,7 +38,47 @@ class SemesterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate(
+            [
+                'university_id' => ['required'],
+            ]
+        );
+
+        $university = Auth::user()->universities()->find($validatedData)[0];
+
+        if (!$university) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Semester not created',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        $user = Auth::user();
+
+        $semester = Semester::factory()
+            ->for($university)
+            ->for($user)
+            ->create([
+                'name' => "Semester",
+                'average' => 0,
+                'gradePointAverage' => 0,
+                'creditIndex' => 0,
+                'correctedCreditIndex' => 0,
+                'registeredCredit' => 0,
+                'passeedCredit' => 0,
+                'completionRate' => 0,
+                'university_id' => $university->id,
+                'user_id' => $user->id
+            ]);
+
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Semester created successfully',
+            'data' => $semester,
+        ], 201);
     }
 
     /**
@@ -39,13 +86,18 @@ class SemesterController extends Controller
      */
     public function show(Semester $semester)
     {
-        if (!$semester || Auth::id() != $semester->user_id) {
-            abort(404);
+        if ($semester->user_id !== Auth::id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. University does not belong to the authenticated user.',
+            ], Response::HTTP_FORBIDDEN);
         }
 
-        $subjects = $semester->subjects()->get();
-
-        return Inertia::render('Semester', ['semester' => $semester, 'subjects' => $subjects]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Semester',
+            'data' => $semester,
+        ]);
     }
 
     /**
@@ -61,7 +113,26 @@ class SemesterController extends Controller
      */
     public function update(Request $request, Semester $semester)
     {
-        //
+
+        // $old = unserialize(serialize($semester));
+
+        $semesterSubjects = $semester->subjects()->get();
+
+        $semester->registeredCredit = $this->sumCredits($semesterSubjects);
+        $semester->passeedCredit = $this->getPasseedCredits($semesterSubjects);
+        $semester->completionRate = $this->getCompletionRate($semester);
+        $semester->average = $this->getAVG($semesterSubjects);
+        $semester->gradePointAverage = $this->getGPA($semesterSubjects);
+        $semester->creditIndex = $this->getCI($semesterSubjects);
+        $semester->correctedCreditIndex = $this->getCCI($semesterSubjects);
+
+        $semester->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Semester updated successfully',
+            'data' => $semester, // [$old, $semester, $semesterSubjects],
+        ]);
     }
 
     /**
@@ -69,11 +140,96 @@ class SemesterController extends Controller
      */
     public function destroy(Semester $semester)
     {
-        if (!$semester || Auth::id() != $semester->user_id) {
-            abort(404);
+        if ($semester->user_id !== Auth::id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. University does not belong to the authenticated user.',
+            ], Response::HTTP_FORBIDDEN);
         }
 
         $semester->delete();
-        return redirect()->route('dashboard');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Semester deleted successfully',
+        ]);
+    }
+
+    private function sumCredits($subjects)
+    {
+        $sum = 0;
+        foreach ($subjects as $subject) {
+            $sum += $subject->credit;
+        }
+        return $sum;
+    }
+
+    private function sumOfWeightedCredits($subjects)
+    {
+        $sum = 0;
+        foreach ($subjects as $subject) {
+            $sum += $subject->credit * $subject->grade;
+        }
+        return $sum;
+    }
+
+    private function getPassedSubjects($subjects)
+    {
+        return $subjects->where('grade', '>', 1);
+    }
+
+    public function getPasseedCredits($subjects)
+    {
+        return $this->sumCredits($this->getPassedSubjects($subjects));
+    }
+
+    private function getCompletionRate($semester)
+    {
+        if ($semester->passeedCredit === 0 || $semester->registeredCredit === 0) return 0;
+        return ($semester->passeedCredit / $semester->registeredCredit) * 100;
+    }
+
+    private function average($semesterSubjects, int $numOfSemesterSubjects)
+    {
+        if ($numOfSemesterSubjects == 0) return 0;
+
+        $sumGrades = 0;
+        foreach ($semesterSubjects as $subject) {
+            $sumGrades += $subject->grade;
+        }
+
+        return  $sumGrades / $numOfSemesterSubjects;
+    }
+
+    public function getAVG($semesterSubjects)
+    {
+        $filteredSubjects = $this->getPassedSubjects($semesterSubjects);
+        $numOfSemesterSubjects = $filteredSubjects->count();
+        return round($this->average($filteredSubjects, $numOfSemesterSubjects), 2);
+    }
+
+    public function getGPA($semesterSubjects)
+    {
+        $registeredCredits = $this->sumCredits($semesterSubjects);
+        $sumOfPassedWeightedCredits = $this->sumOfWeightedCredits($this->getPassedSubjects($semesterSubjects));
+        if ($sumOfPassedWeightedCredits == 0 || $registeredCredits == 0) return 0;
+
+        return round($sumOfPassedWeightedCredits / $registeredCredits, 2);
+    }
+
+    public function getCI($semesterSubjects)
+    {
+        $sumOfPassedWeightedCredits = $this->sumOfWeightedCredits($this->getPassedSubjects($semesterSubjects));
+        if ($sumOfPassedWeightedCredits === 0) return 0;
+        return round($sumOfPassedWeightedCredits / 30, 2);
+    }
+
+    public function getCCI($semesterSubjects)
+    {
+        $CI = $this->getCI($semesterSubjects);
+        $passedCredits = $this->getPasseedCredits($this->getPassedSubjects($semesterSubjects));
+        $registeredCredits = $this->sumCredits($semesterSubjects);
+        if ($passedCredits === 0 || $CI === 0) return 0;
+        return round(($CI * $passedCredits) / $registeredCredits, 2);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Semester;
 use App\Models\University;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,12 @@ class UniversityController extends Controller
     public function index()
     {
         $universities = Auth::user()->universities()->get();
-        return response()->json(["universities" => $universities]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'University',
+            'data' => $universities
+        ]);
     }
 
     /**
@@ -53,10 +59,30 @@ class UniversityController extends Controller
         $user = Auth::user();
         $university = University::factory()->for($user)->create($validatedData);
 
+        $semesters = [];
+        for ($i = 1; $i <= $university->currSemester; $i++) {
+            $name = "Semester" . " " . $i;
+            $semesters[] = Semester::factory()
+                ->for($university)
+                ->for($user)
+                ->create([
+                    'name' => $name,
+                    'average' => 0,
+                    'gradePointAverage' => 0,
+                    'creditIndex' => 0,
+                    'correctedCreditIndex' => 0,
+                    'registeredCredit' => 0,
+                    'passeedCredit' => 0,
+                    'completionRate' => 0,
+                    'university_id' => $university->id,
+                    'user_id' => $user->id
+                ]);
+        }
+
         return response()->json([
             'success' => true,
             'message' => 'University created successfully',
-            'data' => $university,
+            'data' => ["University" => $university, "Semesters" => $semesters],
         ], 201);
     }
 
@@ -73,8 +99,11 @@ class UniversityController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-
-        return response()->json(['university' => $university]);
+        return response()->json([
+            'success' => true,
+            'message' => 'University',
+            'data' => $university,
+        ]);
         // return Inertia::render('University', ['university' => $university]);
     }
 
@@ -139,7 +168,7 @@ class UniversityController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'University deleted successfully',
-        ], Response::HTTP_NO_CONTENT);
+        ]);
     }
 
     /**
