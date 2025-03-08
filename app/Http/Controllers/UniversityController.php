@@ -24,7 +24,7 @@ class UniversityController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'University',
+            'message' => 'Universities',
             'data' => $universities
         ]);
     }
@@ -217,6 +217,18 @@ class UniversityController extends Controller
                 'name' => $university->name,
                 'nickName' => $university->nickName
             ]
+        ]);
+    }
+
+    public function getSemesters($id)
+    {
+        $university = Auth::user()->universities()->find($id);
+        $semesters = $university->semesters()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "University's semesters",
+            'data' => $semesters,
         ]);
     }
 }

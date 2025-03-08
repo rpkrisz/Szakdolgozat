@@ -21,9 +21,7 @@ class Task extends Model
         'dueDate',
         'weight',
         'type',
-        'taskPage',
-        'state',
-        'score',
+        'taskPage'
     ];
 
     /**

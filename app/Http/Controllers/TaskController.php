@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Subject;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends Controller
 {
@@ -14,7 +16,12 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Auth::user()->tasks()->get();
-        return response()->json($tasks);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Tasks',
+            'data' => $tasks
+        ]);
     }
 
     /**
@@ -30,7 +37,42 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate(
+            [
+                'name' => ['required'],
+                'dueDate' => ['required'],
+                'weight' => ['required'],
+                'type' => ['required'],
+                'taskPage' => ['required'],
+                'subject_id' => ['required'],
+            ]
+        );
+
+
+        $user = Auth::user();
+        $subject = $user->subjects()->find($validatedData["subject_id"]);
+
+        if (!$subject) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Subject does not belong to the authenticated user.',
+            ], Response::HTTP_FORBIDDEN);
+        }
+
+        $validatedData["score"] = 0;
+        $validatedData["state"] = "inwork";
+
+        $task = Task::factory()
+            ->for($subject)
+            ->for($user)
+            ->create($validatedData);
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Task created successfully',
+            'data' => $task,
+        ], 201);
     }
 
     /**
@@ -38,10 +80,19 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        if (!$task || Auth::id() != $task->user_id) {
-            abort(404);
+        if ($task->user_id !== Auth::id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Task does not belong to the authenticated user.',
+            ], Response::HTTP_FORBIDDEN);
         }
-        return response()->json(['task' => $task]);
+
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Task',
+            'data' => $task,
+        ]);
     }
 
     /**
@@ -57,6 +108,13 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
+        if ($task->user_id !== Auth::id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Task does not belong to the authenticated user.',
+            ], Response::HTTP_FORBIDDEN);
+        }
+
         $validated = $request->validate([
             'name' => 'required|string',
             'dueDate' => 'required|string',
@@ -67,11 +125,13 @@ class TaskController extends Controller
             'score' => 'required|integer|min:0',
         ]);
 
-        if (!$task || Auth::id() != $task->user_id) {
-            abort(404);
-        }
-
         $task->update($validated);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Task updated successfully',
+            'data' => $task,
+        ]);
     }
 
     /**
@@ -79,12 +139,30 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        if (!$task || Auth::id() != $task->user_id) {
-            abort(404);
+        if ($task->user_id !== Auth::id()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Task does not belong to the authenticated user.',
+            ], Response::HTTP_FORBIDDEN);
         }
 
         $task->delete();
 
-        return redirect()->route('dashboard');
+        return response()->json([
+            'success' => true,
+            'message' => 'Task deleted successfully',
+        ]);
+    }
+
+    public function getSubject($id)
+    {
+        $task = Auth::user()->tasks()->find($id);
+        $subject = $task->subject()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Task's subject",
+            'data' => $subject,
+        ]);
     }
 }

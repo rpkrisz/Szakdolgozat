@@ -89,7 +89,7 @@ class SemesterController extends Controller
         if ($semester->user_id !== Auth::id()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Access denied. University does not belong to the authenticated user.',
+                'message' => 'Access denied. Semester does not belong to the authenticated user.',
             ], Response::HTTP_FORBIDDEN);
         }
 
@@ -231,5 +231,30 @@ class SemesterController extends Controller
         $registeredCredits = $this->sumCredits($semesterSubjects);
         if ($passedCredits === 0 || $CI === 0) return 0;
         return round(($CI * $passedCredits) / $registeredCredits, 2);
+    }
+
+
+    public function getUniversity($id)
+    {
+        $semester = Auth::user()->semesters()->find($id);
+        $university = $semester->university()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Semester university",
+            'data' => $university,
+        ]);
+    }
+
+    public function getSubjects($id)
+    {
+        $semester = Auth::user()->semesters()->find($id);
+        $subjects = $semester->subjects()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Semester's subjects",
+            'data' => $subjects,
+        ]);
     }
 }

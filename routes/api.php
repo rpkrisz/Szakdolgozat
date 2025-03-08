@@ -29,6 +29,10 @@ Route::middleware(['auth:sanctum'])
     ->get('universities/names', [UniversityController::class, 'getUniversitiesNames']);
 Route::middleware(['auth:sanctum'])
     ->get('universities/names/{id}', [UniversityController::class, 'getUniversityNamesById']);
+Route::middleware(['auth:sanctum'])
+    ->get('universities/{id}/semesters', [UniversityController::class, 'getSemesters']);
+
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -43,3 +47,12 @@ Route::middleware(['auth:sanctum'])->group(
         Route::resource('tasks', TaskController::class);
     }
 );
+
+
+Route::middleware(['auth:sanctum'])
+    ->get('tasks/{id}/subject', [TaskController::class, 'getSubject']);
+
+Route::middleware(['auth:sanctum'])
+    ->get('semesters/{id}/university', [SemesterController::class, 'getUniversity']);
+Route::middleware(['auth:sanctum'])
+    ->get('semesters/{id}/subjects', [SemesterController::class, 'getSubjects']);
