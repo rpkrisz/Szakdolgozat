@@ -21,13 +21,13 @@ return new class extends Migration
             $table->integer('grade');
 
             // Scores
-            $table->integer('midterms');
-            $table->integer('quizes');
-            $table->integer('assignments');
-            $table->integer('exams');
-            $table->integer('homeWorks');
-            $table->integer('bonusPoints');
-            $table->integer('sumScores');
+            $table->integer('midterms')->default(0);
+            $table->integer('quizes')->default(0);
+            $table->integer('assignments')->default(0);
+            $table->integer('exams')->default(0);
+            $table->integer('homeWorks')->default(0);
+            $table->integer('bonusPoints')->default(0);
+            $table->integer('sumScores')->default(0);
             $table->integer('maxScore');
 
             // Details

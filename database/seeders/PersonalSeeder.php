@@ -91,42 +91,42 @@ class PersonalSeeder extends Seeder
                 ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
         }
 
-        // $subjects = Subject::factory()
-        //     ->for($semester)
-        //     ->for($me)
-        //     ->create([
-        //         'name' => '',
-        //         'courseType' => '',
-        //         'credit' => '',
-        //         'notes' => '',
-        //         'isGraded' => '',
-        //         'grade' => '',
-        //         'midterms' => '',
-        //         'quizes' => '',
-        //         'assignments' => '',
-        //         'exams' => '',
-        //         'homeWorks' => '',
-        //         'bonusPoints' => '',
-        //         'sumScores' => '',
-        //         'maxScore' => '',
-        //         'coursePlacement' => '',
-        //         'markConditions' => '',
-        //         'scores' => '',
-        //         'bonusExercise' => '',
-        //         'mark' => '',
-        //         'examType' => '',
-        //         'readings' => '',
-        //         'absences' => '',
-        //         'programingLanguage' => '',
-        //         'coursePage' => '',
-        //         'weeklyTimeConsumption' => '',
-        //         'pointsFor2' => '',
-        //         'pointsFor3' => '',
-        //         'pointsFor4' => '',
-        //         'pointsFor5' => '',
-        //         'isPercentage' => '',
-        //         'semester_id' => $semester->id,
-        //         'user_id' => $me->id
-        //     ]);
+        $subjects = Subject::factory()
+            ->for($semester)
+            ->for($me)
+            ->create([
+                'name' => 'Nummod/SzamElmII',
+                'courseType' => '',
+                'credit' => 3,
+                'notes' => '',
+                'isGraded' => false,
+                'grade' => 1,
+                'midterms' => 0,
+                'quizes' => 0,
+                'assignments' => 0,
+                'exams' => 0,
+                'homeWorks' => 0,
+                'bonusPoints' => 0,
+                'sumScores' => 0,
+                'maxScore' => '',
+                'coursePlacement' => '',
+                'markConditions' => '',
+                'scores' => '',
+                'bonusExercise' => '',
+                'mark' => '',
+                'examType' => '',
+                'readings' => '',
+                'absences' => '',
+                'programingLanguage' => '',
+                'coursePage' => '',
+                'weeklyTimeConsumption' => '',
+                'pointsFor2' => '',
+                'pointsFor3' => '',
+                'pointsFor4' => '',
+                'pointsFor5' => '',
+                'isPercentage' => '',
+                'semester_id' => $semester->id,
+                'user_id' => $me->id
+            ]);
     }
 }

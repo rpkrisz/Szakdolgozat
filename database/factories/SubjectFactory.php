@@ -54,7 +54,7 @@ class SubjectFactory extends Factory
             'courseType' => fake()->randomElement($this->courseTypes),
             'credit' => fake()->numberBetween(1, 7),
             'notes' => fake()->sentence(),
-            'isGraded' => fake()->boolean(),
+            'isGraded' => $isGraded,
             'grade' => $isGraded ? $grade : 1,
 
             'midterms' => $midterms,
