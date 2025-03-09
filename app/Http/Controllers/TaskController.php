@@ -157,6 +157,12 @@ class TaskController extends Controller
     public function getSubject($id)
     {
         $task = Auth::user()->tasks()->find($id);
+        if (!$task) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Task does not belong to the authenticated user.',
+            ], Response::HTTP_BAD_REQUEST);
+        }
         $subject = $task->subject()->get();
 
         return response()->json([

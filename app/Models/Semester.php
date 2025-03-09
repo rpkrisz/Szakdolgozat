@@ -37,13 +37,13 @@ class Semester extends Model
     {
         return [
 
-            'average' => 'integer',
-            'gradePointAverage' => 'integer',
-            'creditIndex' => 'integer',
-            'correctedCreditIndex' => 'integer',
+            'average' => 'float',
+            'gradePointAverage' => 'float',
+            'creditIndex' => 'float',
+            'correctedCreditIndex' => 'float',
             'registeredCredit' => 'integer',
             'passeedCredit' => 'integer',
-            'completionRate' => 'integer',
+            'completionRate' => 'float',
             'university_id' => 'integer',
             'user_id' => 'integer',
         ];

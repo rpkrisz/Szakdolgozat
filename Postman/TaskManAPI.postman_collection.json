@@ -150,7 +150,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Universities",
+					"name": "Delete University",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -204,14 +204,33 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/universities/names/8",
+							"raw": "{{base_url}}/universities/names/6",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"universities",
 								"names",
-								"8"
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "University semesters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/6/semesters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"6",
+								"semesters"
 							]
 						}
 					},
@@ -323,7 +342,212 @@
 					"response": []
 				},
 				{
-					"name": "Update University",
+					"name": "Update Semester",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/semesters/20",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"20"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Semester",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/semesters/17",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Smester University",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/20/university",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"20",
+								"university"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Smester Subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/20/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"20",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subject routes",
+			"item": [
+				{
+					"name": "Subjects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/subjects/64",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"64"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Subject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"facilis\",\r\n    \"courseType\": \"Lecture & Tutorial\",\r\n    \"credit\": 1,\r\n    \"notes\": \"Debitis quia aut doloribus non praesentium at consectetur suscipit.\",\r\n    \"isGraded\": true,\r\n    \"grade\": 5,\r\n    \"maxScore\": 140,\r\n    \"coursePlacement\": \"ipsam\",\r\n    \"markConditions\": \"Et ipsa distinctio natus quos.\",\r\n    \"scores\": \"Repudiandae ipsam eaque quaerat pariatur at ea necessitatibus.\",\r\n    \"bonusExercise\": \"Voluptatem ipsam aut sit sunt nihil perspiciatis.\",\r\n    \"mark\": \"voluptatibus\",\r\n    \"examType\": \"fugit\",\r\n    \"readings\": \"quisquam autem voluptatum\",\r\n    \"absences\": 3,\r\n    \"programingLanguage\": \"reiciendis\",\r\n    \"coursePage\": \"http://turcotte.org/rerum-sint-qui-eum-dignissimos\",\r\n    \"weeklyTimeConsumption\": 45,\r\n    \"pointsFor2\": 50,\r\n    \"pointsFor3\": 53,\r\n    \"pointsFor4\": 78,\r\n    \"pointsFor5\": 85,\r\n    \"isPercentage\": true,\r\n    \"semester_id\": 21\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Subject",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -342,7 +566,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Budapesti Gazdaságtudományi Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Updated\",\r\n    \"courseType\": \"Lecture & Tutorial\",\r\n    \"credit\": 1,\r\n    \"notes\": \"Debitis quia aut doloribus non praesentium at consectetur suscipit.\",\r\n    \"isGraded\": true,\r\n    \"grade\": 5,\r\n    \"maxScore\": 140,\r\n    \"coursePlacement\": \"ipsam\",\r\n    \"markConditions\": \"Et ipsa distinctio natus quos.\",\r\n    \"scores\": \"Repudiandae ipsam eaque quaerat pariatur at ea necessitatibus.\",\r\n    \"bonusExercise\": \"Voluptatem ipsam aut sit sunt nihil perspiciatis.\",\r\n    \"mark\": \"voluptatibus\",\r\n    \"examType\": \"fugit\",\r\n    \"readings\": \"quisquam autem voluptatum\",\r\n    \"absences\": 3,\r\n    \"programingLanguage\": \"reiciendis\",\r\n    \"coursePage\": \"http://turcotte.org/rerum-sint-qui-eum-dignissimos\",\r\n    \"weeklyTimeConsumption\": 45,\r\n    \"pointsFor2\": 50,\r\n    \"pointsFor3\": 53,\r\n    \"pointsFor4\": 78,\r\n    \"pointsFor5\": 85,\r\n    \"isPercentage\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -350,20 +574,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/semesters/20",
+							"raw": "{{base_url}}/subjects/65",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"semesters",
-								"20"
+								"subjects",
+								"65"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete Universities",
+					"name": "Delete Subject",
 					"request": {
 						"method": "DELETE",
 						"header": [
@@ -381,13 +605,255 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/universities/10",
+							"raw": "{{base_url}}/subjects/65",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"universities",
-								"10"
+								"subjects",
+								"65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject Semester",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/64/semester",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"64",
+								"semester"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/62/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"62",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task routes",
+			"item": [
+				{
+					"name": "Tasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/tasks/162",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"162"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Task\",\r\n    \"dueDate\": \"2025-03-18\",\r\n    \"weight\": \"50\",\r\n    \"type\": \"HomeWork\",\r\n    \"taskPage\": \"-\",\r\n    \"subject_id\": 54\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"TaskU\",\r\n    \"dueDate\": \"2025-03-18\",\r\n    \"weight\": \"50\",\r\n    \"type\": \"Midterm\",\r\n    \"taskPage\": \"-\",\r\n    \"state\": \"done\",\r\n    \"score\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/190",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"190"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/190",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"190"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task Subject",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/180/subject",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"180",
+								"subject"
 							]
 						}
 					},

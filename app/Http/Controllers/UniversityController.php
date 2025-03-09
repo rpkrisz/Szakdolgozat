@@ -223,6 +223,13 @@ class UniversityController extends Controller
     public function getSemesters($id)
     {
         $university = Auth::user()->universities()->find($id);
+        if (!$university) {
+            return response()->json([
+                'success' => false,
+                'message' => "University's semesters",
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
         $semesters = $university->semesters()->get();
 
         return response()->json([

@@ -39,46 +39,50 @@ class SemesterController extends Controller
     public function store(Request $request)
     {
 
-        $validatedData = $request->validate(
-            [
-                'university_id' => ['required'],
-            ]
-        );
+        // $validatedData = $request->validate(
+        //     [
+        //         'university_id' => ['required'],
+        //     ]
+        // );
 
-        $university = Auth::user()->universities()->find($validatedData)[0];
+        // $university = Auth::user()->universities()->find($validatedData)[0];
 
-        if (!$university) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Semester not created',
-            ], Response::HTTP_BAD_REQUEST);
-        }
+        // if (!$university) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Semester not created',
+        //     ], Response::HTTP_BAD_REQUEST);
+        // }
 
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        $semester = Semester::factory()
-            ->for($university)
-            ->for($user)
-            ->create([
-                'name' => "Semester",
-                'average' => 0,
-                'gradePointAverage' => 0,
-                'creditIndex' => 0,
-                'correctedCreditIndex' => 0,
-                'registeredCredit' => 0,
-                'passeedCredit' => 0,
-                'completionRate' => 0,
-                'university_id' => $university->id,
-                'user_id' => $user->id
-            ]);
+        // $semester = Semester::factory()
+        //     ->for($university)
+        //     ->for($user)
+        //     ->create([
+        //         'name' => "Semester",
+        //         'average' => 0,
+        //         'gradePointAverage' => 0,
+        //         'creditIndex' => 0,
+        //         'correctedCreditIndex' => 0,
+        //         'registeredCredit' => 0,
+        //         'passeedCredit' => 0,
+        //         'completionRate' => 0,
+        //         'university_id' => $university->id,
+        //         'user_id' => $user->id
+        //     ]);
 
+        // return response()->json([
+        //     'success' => true,
+        //     'message' => 'Semester created successfully',
+        //     'data' => $semester,
+        // ], 201);
 
 
         return response()->json([
-            'success' => true,
-            'message' => 'Semester created successfully',
-            'data' => $semester,
-        ], 201);
+            'success' => false,
+            'message' => 'Semester development'
+        ], Response::HTTP_NOT_IMPLEMENTED);
     }
 
     /**
@@ -120,11 +124,11 @@ class SemesterController extends Controller
 
         $semester->registeredCredit = $this->sumCredits($semesterSubjects);
         $semester->passeedCredit = $this->getPasseedCredits($semesterSubjects);
-        $semester->completionRate = $this->getCompletionRate($semester);
-        $semester->average = $this->getAVG($semesterSubjects);
-        $semester->gradePointAverage = $this->getGPA($semesterSubjects);
-        $semester->creditIndex = $this->getCI($semesterSubjects);
-        $semester->correctedCreditIndex = $this->getCCI($semesterSubjects);
+        $semester->completionRate = round($this->getCompletionRate($semester), 2);
+        $semester->average = round($this->getAVG($semesterSubjects), 2);
+        $semester->gradePointAverage = round($this->getGPA($semesterSubjects), 2);
+        $semester->creditIndex = round($this->getCI($semesterSubjects), 2);
+        $semester->correctedCreditIndex = round($this->getCCI($semesterSubjects), 2);
 
         $semester->save();
 
@@ -143,7 +147,7 @@ class SemesterController extends Controller
         if ($semester->user_id !== Auth::id()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Access denied. University does not belong to the authenticated user.',
+                'message' => 'Access denied. Semester does not belong to the authenticated user.',
             ], Response::HTTP_FORBIDDEN);
         }
 
@@ -237,6 +241,13 @@ class SemesterController extends Controller
     public function getUniversity($id)
     {
         $semester = Auth::user()->semesters()->find($id);
+        if (!$semester) {
+            return response()->json([
+                'success' => false,
+                'message' => "Semester university",
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
         $university = $semester->university()->get();
 
         return response()->json([
@@ -249,6 +260,13 @@ class SemesterController extends Controller
     public function getSubjects($id)
     {
         $semester = Auth::user()->semesters()->find($id);
+        if (!$semester) {
+            return response()->json([
+                'success' => false,
+                'message' => "Semester's subjects",
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
         $subjects = $semester->subjects()->get();
 
         return response()->json([
