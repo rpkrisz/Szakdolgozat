@@ -37,7 +37,6 @@ class University extends Model
     protected function casts(): array
     {
         return [
-
             'semestersCount' => 'integer',
             'currSemester' => 'integer',
             'user_id' => 'integer',
