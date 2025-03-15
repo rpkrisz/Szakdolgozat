@@ -43,11 +43,23 @@ class ApiAuth extends Controller
         ])) {
             $user = Auth::user();
             $token = $user->createToken('Bang_game API Token')->plainTextToken;
+            $universities  = $user->universities()->get();
+
+            $unidata = [];
+            foreach ($universities as $uni) {
+                $unidata[] = [
+                    'id' => $uni->id,
+                    'semester' => $uni->currSemester,
+                    'semesterStart' => $uni->currSemFstDay
+                ];
+            }
 
             return response()->json([
                 'succes' => true,
                 'message' => 'Sikeres regisztráció',
                 'token' => $token,
+                'user' => $user,
+                'data' => $unidata,
             ]);
         }
 
@@ -62,11 +74,23 @@ class ApiAuth extends Controller
         ])) {
             $user = Auth::user();
             $token = $user->createToken('API_Token')->plainTextToken;
+            $universities  = $user->universities()->get();
+
+            $unidata = [];
+            foreach ($universities as $uni) {
+                $unidata[] = [
+                    'id' => $uni->id,
+                    'semester' => $uni->currSemester,
+                    'semesterStart' => $uni->currSemFstDay
+                ];
+            }
 
             return response()->json([
                 'succes' => true,
                 'message' => 'Sikeres bejelentkezés',
                 'token' => $token,
+                'user' => $user,
+                'data' => $unidata,
             ]);
         }
 

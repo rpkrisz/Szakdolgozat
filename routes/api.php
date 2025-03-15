@@ -18,7 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 // Test
 Route::get('/', function () {
-    return "Hello, this the Task Manager API!";
+    return response()->json([
+        "message" =>
+        "Hello, this the Task Manager API!"
+    ]);
 });
 
 Route::post('/register', [ApiAuth::class, 'register']);
