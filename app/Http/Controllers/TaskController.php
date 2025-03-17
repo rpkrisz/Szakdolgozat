@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\SubjectResource;
+use App\Http\Resources\TaskCollection;
+use App\Http\Resources\TaskResource;
 use App\Models\Subject;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -20,7 +25,7 @@ class TaskController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Tasks',
-            'data' => $tasks
+            'data' => new TaskCollection($tasks),
         ]);
     }
 
@@ -35,22 +40,12 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        $validatedData = $request->validate(
-            [
-                'name' => ['required'],
-                'dueDate' => ['required'],
-                'weight' => ['required'],
-                'type' => ['required'],
-                'taskPage' => ['required'],
-                'subject_id' => ['required'],
-            ]
-        );
 
 
         $user = Auth::user();
-        $subject = $user->subjects()->find($validatedData["subject_id"]);
+        $subject = $user->subjects()->find($request->subject_id);
 
         if (!$subject) {
             return response()->json([
@@ -59,19 +54,16 @@ class TaskController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $validatedData["score"] = 0;
-        $validatedData["state"] = "inwork";
-
         $task = Task::factory()
             ->for($subject)
             ->for($user)
-            ->create($validatedData);
+            ->create($request->validated());
 
 
         return response()->json([
             'success' => true,
             'message' => 'Task created successfully',
-            'data' => $task,
+            'data' => new TaskResource($task),
         ], 201);
     }
 
@@ -87,11 +79,10 @@ class TaskController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-
         return response()->json([
             'success' => true,
             'message' => 'Task',
-            'data' => $task,
+            'data' => new TaskResource($task),
         ]);
     }
 
@@ -106,7 +97,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         if ($task->user_id !== Auth::id()) {
             return response()->json([
@@ -115,22 +106,12 @@ class TaskController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'dueDate' => 'required|string',
-            'weight' => 'required|integer',
-            'type' => 'required|string',
-            'taskPage' => 'required|string',
-            'state' => 'required|string',
-            'score' => 'required|integer|min:0',
-        ]);
-
-        $task->update($validated);
+        $task->update($request->validated());
 
         return response()->json([
             'success' => true,
             'message' => 'Task updated successfully',
-            'data' => $task,
+            'data' => new TaskResource($task),
         ]);
     }
 
@@ -168,7 +149,7 @@ class TaskController extends Controller
         return response()->json([
             'success' => true,
             'message' => "Task's subject",
-            'data' => $subject,
+            'data' => new SubjectResource($subject),
         ]);
     }
 }

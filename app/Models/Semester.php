@@ -20,12 +20,12 @@ class Semester extends Model
     protected $fillable =  [
         'name',
         'average',
-        'gradePointAverage',
-        'creditIndex',
-        'correctedCreditIndex',
-        'registeredCredit',
-        'passeedCredit',
-        'completionRate',
+        'grade_point_average',
+        'credit_index',
+        'corrected_credit_index',
+        'registered_credit',
+        'passeed_credit',
+        'completion_rate',
     ];
 
     /**
@@ -36,14 +36,13 @@ class Semester extends Model
     protected function casts(): array
     {
         return [
-
             'average' => 'float',
-            'gradePointAverage' => 'float',
-            'creditIndex' => 'float',
-            'correctedCreditIndex' => 'float',
-            'registeredCredit' => 'integer',
-            'passeedCredit' => 'integer',
-            'completionRate' => 'float',
+            'grade_point_average' => 'float',
+            'credit_index' => 'float',
+            'corrected_credit_index' => 'float',
+            'registered_credit' => 'integer',
+            'passeed_credit' => 'integer',
+            'completion_rate' => 'float',
             'university_id' => 'integer',
             'user_id' => 'integer',
         ];

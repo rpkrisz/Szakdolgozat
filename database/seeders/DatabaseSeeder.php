@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
                 ->create();
 
             $semesters = [];
-            for ($i = 0; $i < $uni->currSemester; $i++) {
+            for ($i = 0; $i < $uni->semesters_count; $i++) {
                 $name = "Semester" . " " . $i + 1;
                 $semesters[$i] = Semester::factory()
                     ->for($uni)

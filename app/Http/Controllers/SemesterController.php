@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SemesterCollection;
+use App\Http\Resources\SemesterResource;
+use App\Http\Resources\SubjectCollection;
+use App\Http\Resources\UniversityResource;
 use App\Models\Semester;
 use App\Models\Subject;
 use App\Models\University;
@@ -21,7 +25,7 @@ class SemesterController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Semesters',
-            'data' => $semesters
+            'data' => new SemesterCollection($semesters)
         ]);
     }
 
@@ -100,7 +104,7 @@ class SemesterController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Semester',
-            'data' => $semester,
+            'data' => new SemesterResource($semester),
         ]);
     }
 
@@ -122,20 +126,23 @@ class SemesterController extends Controller
 
         $semesterSubjects = $semester->subjects()->get();
 
-        $semester->registeredCredit = $this->sumCredits($semesterSubjects);
-        $semester->passeedCredit = $this->getPasseedCredits($semesterSubjects);
-        $semester->completionRate = round($this->getCompletionRate($semester), 2);
-        $semester->average = round($this->getAVG($semesterSubjects), 2);
-        $semester->gradePointAverage = round($this->getGPA($semesterSubjects), 2);
-        $semester->creditIndex = round($this->getCI($semesterSubjects), 2);
-        $semester->correctedCreditIndex = round($this->getCCI($semesterSubjects), 2);
+        $semester->average =  round($this->getAVG($semesterSubjects), 2);
+        $semester->grade_point_average =  round($this->getGPA($semesterSubjects), 2);
+        $semester->credit_index =  round($this->getCI($semesterSubjects), 2);
+        $semester->corrected_credit_index =  round($this->getCCI($semesterSubjects), 2);
+
+
+        $semester->registered_credit =  $this->sumCredits($semesterSubjects);
+        $semester->passeed_credit = $this->getPasseedCredits($semesterSubjects);
+        $semester->completion_rate = round($this->getCompletionRate($semester), 2);
+
 
         $semester->save();
 
         return response()->json([
             'success' => true,
             'message' => 'Semester updated successfully',
-            'data' => $semester, // [$old, $semester, $semesterSubjects],
+            'data' => new SemesterResource($semester),
         ]);
     }
 
@@ -156,6 +163,44 @@ class SemesterController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Semester deleted successfully',
+        ]);
+    }
+
+    public function getUniversity($id)
+    {
+        $semester = Auth::user()->semesters()->find($id);
+        if (!$semester) {
+            return response()->json([
+                'success' => false,
+                'message' => "Semester university",
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        $university = $semester->university()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Semester university",
+            'data' => new UniversityResource($university),
+        ]);
+    }
+
+    public function getSubjects($id)
+    {
+        $semester = Auth::user()->semesters()->find($id);
+        if (!$semester) {
+            return response()->json([
+                'success' => false,
+                'message' => "Semester's subjects",
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        $subjects = $semester->subjects()->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => "Semester's subjects",
+            'data' => new SubjectCollection($subjects),
         ]);
     }
 
@@ -189,8 +234,8 @@ class SemesterController extends Controller
 
     private function getCompletionRate($semester)
     {
-        if ($semester->passeedCredit === 0 || $semester->registeredCredit === 0) return 0;
-        return ($semester->passeedCredit / $semester->registeredCredit) * 100;
+        if ($semester->passeed_credit == 0 || $semester->registered_credit == 0) return 0;
+        return ($semester->passeed_credit / $semester->registered_credit) * 100;
     }
 
     private function average($semesterSubjects, int $numOfSemesterSubjects)
@@ -214,11 +259,11 @@ class SemesterController extends Controller
 
     public function getGPA($semesterSubjects)
     {
-        $registeredCredits = $this->sumCredits($semesterSubjects);
+        $registered_credits = $this->sumCredits($semesterSubjects);
         $sumOfPassedWeightedCredits = $this->sumOfWeightedCredits($this->getPassedSubjects($semesterSubjects));
-        if ($sumOfPassedWeightedCredits == 0 || $registeredCredits == 0) return 0;
+        if ($sumOfPassedWeightedCredits == 0 || $registered_credits == 0) return 0;
 
-        return round($sumOfPassedWeightedCredits / $registeredCredits, 2);
+        return round($sumOfPassedWeightedCredits / $registered_credits, 2);
     }
 
     public function getCI($semesterSubjects)
@@ -232,47 +277,9 @@ class SemesterController extends Controller
     {
         $CI = $this->getCI($semesterSubjects);
         $passedCredits = $this->getPasseedCredits($this->getPassedSubjects($semesterSubjects));
-        $registeredCredits = $this->sumCredits($semesterSubjects);
+        $registered_credits = $this->sumCredits($semesterSubjects);
         if ($passedCredits === 0 || $CI === 0) return 0;
-        return round(($CI * $passedCredits) / $registeredCredits, 2);
+        return round(($CI * $passedCredits) / $registered_credits, 2);
     }
 
-
-    public function getUniversity($id)
-    {
-        $semester = Auth::user()->semesters()->find($id);
-        if (!$semester) {
-            return response()->json([
-                'success' => false,
-                'message' => "Semester university",
-            ], Response::HTTP_BAD_REQUEST);
-        }
-
-        $university = $semester->university()->get();
-
-        return response()->json([
-            'success' => true,
-            'message' => "Semester university",
-            'data' => $university,
-        ]);
-    }
-
-    public function getSubjects($id)
-    {
-        $semester = Auth::user()->semesters()->find($id);
-        if (!$semester) {
-            return response()->json([
-                'success' => false,
-                'message' => "Semester's subjects",
-            ], Response::HTTP_BAD_REQUEST);
-        }
-
-        $subjects = $semester->subjects()->get();
-
-        return response()->json([
-            'success' => true,
-            'message' => "Semester's subjects",
-            'data' => $subjects,
-        ]);
-    }
 }

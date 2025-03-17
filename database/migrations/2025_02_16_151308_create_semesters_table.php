@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('average');
-            $table->float('gradePointAverage');
-            $table->float('creditIndex');
-            $table->float('correctedCreditIndex');
-            $table->integer('registeredCredit');
-            $table->integer('passeedCredit');
-            $table->float('completionRate');
+            $table->float('grade_point_average');
+            $table->float('credit_index');
+            $table->float('corrected_credit_index');
+            $table->integer('registered_credit');
+            $table->integer('passeed_credit');
+            $table->float('completion_rate');
 
             $table->unsignedBigInteger('university_id');
             $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');

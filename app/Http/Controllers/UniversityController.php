@@ -2,6 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUniversityRequest;
+use App\Http\Requests\UpdateUniversityRequest;
+use App\Http\Resources\SemesterCollection;
+use App\Http\Resources\SemesterResource;
+use App\Http\Resources\UniversityCollection;
+use App\Http\Resources\UniversityResource;
 use App\Models\Semester;
 use App\Models\University;
 use App\Models\User;
@@ -25,7 +31,7 @@ class UniversityController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Universities',
-            'data' => $universities
+            'data' => new UniversityCollection($universities)
         ]);
     }
 
@@ -40,27 +46,14 @@ class UniversityController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUniversityRequest $request)
     {
-        $validatedData = $request->validate(
-            [
-                'name' => ['required'],
-                'nickName' => ['required', 'min:2', 'max:5'],
-                'faculty' => ['required'],
-                'major' => ['required'],
-                'degreeLevel' => ['required', Rule::in(['BA/BSc', 'MA/MSc'])],
-                'semestersCount' => ['required', 'integer'],
-                'currSemester' => ['required', 'integer'],
-                'currSemFstDay' => ['required'],
-                'specialisation' => ['required'],
-            ]
-        );
 
         $user = Auth::user();
-        $university = University::factory()->for($user)->create($validatedData);
+        $university = University::factory()->for($user)->create($request->validated());
 
         $semesters = [];
-        for ($i = 1; $i <= $university->currSemester; $i++) {
+        for ($i = 1; $i <= $university->curr_semester; $i++) {
             $name = "Semester" . " " . $i;
             $semesters[] = Semester::factory()
                 ->for($university)
@@ -68,12 +61,12 @@ class UniversityController extends Controller
                 ->create([
                     'name' => $name,
                     'average' => 0,
-                    'gradePointAverage' => 0,
-                    'creditIndex' => 0,
-                    'correctedCreditIndex' => 0,
-                    'registeredCredit' => 0,
-                    'passeedCredit' => 0,
-                    'completionRate' => 0,
+                    'grade_point_average' => 0,
+                    'credit_index' => 0,
+                    'corrected_credit_index' => 0,
+                    'registered_credit' => 0,
+                    'passeed_credit' => 0,
+                    'completion_rate' => 0,
                     'university_id' => $university->id,
                     'user_id' => $user->id
                 ]);
@@ -82,7 +75,10 @@ class UniversityController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'University created successfully',
-            'data' => ["University" => $university, "Semesters" => $semesters],
+            'data' => [
+                "University" => new UniversityResource($university) ,
+                "Semesters" => new SemesterCollection($semesters)
+            ],
         ], 201);
     }
 
@@ -102,9 +98,8 @@ class UniversityController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'University',
-            'data' => $university,
+            'data' => new UniversityResource($university),
         ]);
-        // return Inertia::render('University', ['university' => $university]);
     }
 
     /**
@@ -118,7 +113,7 @@ class UniversityController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, University $university)
+    public function update(UpdateUniversityRequest $request, University $university)
     {
 
         if ($university->user_id !== Auth::id()) {
@@ -142,12 +137,12 @@ class UniversityController extends Controller
             ]
         );
 
-        $university->update($validatedData);
+        $university->update($request->validated());
 
         return response()->json([
             'success' => true,
             'message' => 'University updated successfully',
-            'data' => $university,
+            'data' => new UniversityResource($university),
         ]);
     }
 
@@ -184,7 +179,7 @@ class UniversityController extends Controller
             $names[] = [
                 'id' => $university->id,
                 'name' => $university->name,
-                'nickName' => $university->nickName
+                'nickName' => $university->nick_name
             ];
         }
 
@@ -215,7 +210,7 @@ class UniversityController extends Controller
             'data' => [
                 'id' => $university->id,
                 'name' => $university->name,
-                'nickName' => $university->nickName
+                'nickName' => $university->nick_name
             ]
         ]);
     }
@@ -235,7 +230,7 @@ class UniversityController extends Controller
         return response()->json([
             'success' => true,
             'message' => "University's semesters",
-            'data' => $semesters,
+            'data' => new SemesterCollection($semesters),
         ]);
     }
 }

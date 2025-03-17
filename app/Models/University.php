@@ -19,13 +19,13 @@ class University extends Model
      */
     protected $fillable =  [
         'name',
-        'nickName',
+        'nick_name',
         'faculty',
         'major',
-        'degreeLevel',
-        'semestersCount',
-        'currSemester',
-        'currSemFstDay',
+        'degree_level',
+        'semesters_count',
+        'curr_semester',
+        'curr_semester_fst_day',
         'specialisation',
     ];
 
@@ -37,8 +37,8 @@ class University extends Model
     protected function casts(): array
     {
         return [
-            'semestersCount' => 'integer',
-            'currSemester' => 'integer',
+            'semesters_count' => 'integer',
+            'curr_semester' => 'integer',
             'user_id' => 'integer',
         ];
     }

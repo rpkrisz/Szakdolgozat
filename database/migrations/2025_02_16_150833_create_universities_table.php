@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('universities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nickName');
+            $table->string('nick_name');
             $table->string('faculty');
             $table->string('major');
-            $table->string('degreeLevel');
-            $table->integer('semestersCount');
-            $table->integer('currSemester');
-            $table->string('currSemFstDay');
+            $table->string('degree_level');
+            $table->integer('semesters_count');
+            $table->integer('curr_semester');
+            $table->string('curr_semester_fst_day');
             $table->string('specialisation');
 
             $table->unsignedBigInteger('user_id');

@@ -18,10 +18,10 @@ class Task extends Model
      */
     protected $fillable =  [
         'name',
-        'dueDate',
+        'due_date',
         'weight',
         'type',
-        'taskPage',
+        'task_page',
         'state',
         'score'
     ];

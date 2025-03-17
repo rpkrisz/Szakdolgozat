@@ -23,10 +23,10 @@ class TaskFactory extends Factory
 
         return [
             'name' => fake()->word(),
-            'dueDate' => fake()->date(),
+            'due_date' => fake()->date(),
             'weight' => fake()->numberBetween(0, 10),
             'type' => fake()->randomElement($this->types),
-            'taskPage' => fake()->url(),
+            'task_page' => fake()->url(),
             'state' => $taskState,
             'score' => ($taskState == "graded" || $taskState ==  "faild") ? fake()->numberBetween(0, 30) : 0,
         ];

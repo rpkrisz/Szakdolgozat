@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSubjectRequest;
+use App\Http\Requests\UpdateSubjectRequest;
+use App\Http\Resources\SemesterResource;
+use App\Http\Resources\SubjectCollection;
+use App\Http\Resources\SubjectResource;
+use App\Http\Resources\TaskCollection;
+use App\Http\Resources\TaskResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +25,7 @@ class SubjectController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Subjects',
-            'data' => $subjects
+            'data' => new SubjectCollection($subjects),
         ]);
     }
 
@@ -33,41 +40,9 @@ class SubjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreSubjectRequest $request)
     {
-
-        $validatedData = $request->validate(
-            [
-                'name' => ['required'],
-                'courseType' => ['required'],
-                'credit' => ['required'],
-                'notes' => ['required'],
-                'isGraded' => ['required'],
-                'grade' => ['required'],
-                'maxScore' => ['required'],
-                'coursePlacement' => ['required'],
-                'markConditions' => ['required'],
-                'scores' => ['required'],
-                'bonusExercise' => ['required'],
-                'mark' => ['required'],
-                'examType' => ['required'],
-                'readings' => ['required'],
-                'absences' => ['required'],
-                'programingLanguage' => ['required'],
-                'coursePage' => ['required'],
-                'weeklyTimeConsumption' => ['required'],
-                'pointsFor2' => ['required'],
-                'pointsFor3' => ['required'],
-                'pointsFor4' => ['required'],
-                'pointsFor5' => ['required'],
-                'isPercentage' => ['required'],
-                'semester_id' => ['required'],
-
-            ]
-        );
-
-
-        $semester = Auth::user()->semesters()->find($validatedData['semester_id']);
+        $semester = Auth::user()->semesters()->find($request->semester_id);
 
         if (!$semester) {
             return response()->json([
@@ -81,12 +56,12 @@ class SubjectController extends Controller
         $subject = Subject::factory()
             ->for($semester)
             ->for($user)
-            ->create($validatedData);
+            ->create($request->validated());
 
         return response()->json([
             'success' => true,
             'message' => 'Subject created successfully',
-            'data' => $subject,
+            'data' => new SubjectResource($subject),
         ], 201);
     }
 
@@ -105,7 +80,7 @@ class SubjectController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Subject',
-            'data' => $subject,
+            'data' => new SubjectResource($subject),
         ]);
     }
 
@@ -120,7 +95,7 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subject $subject)
+    public function update(UpdateSubjectRequest $request, Subject $subject)
     {
         if ($subject->user_id !== Auth::id()) {
             return response()->json([
@@ -129,40 +104,12 @@ class SubjectController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $validatedData = $request->validate(
-            [
-                'name' => ['required'],
-                'courseType' => ['required'],
-                'credit' => ['required'],
-                'notes' => ['required'],
-                'isGraded' => ['required'],
-                'grade' => ['required'],
-                'maxScore' => ['required'],
-                'coursePlacement' => ['required'],
-                'markConditions' => ['required'],
-                'scores' => ['required'],
-                'bonusExercise' => ['required'],
-                'mark' => ['required'],
-                'examType' => ['required'],
-                'readings' => ['required'],
-                'absences' => ['required'],
-                'programingLanguage' => ['required'],
-                'coursePage' => ['required'],
-                'weeklyTimeConsumption' => ['required'],
-                'pointsFor2' => ['required'],
-                'pointsFor3' => ['required'],
-                'pointsFor4' => ['required'],
-                'pointsFor5' => ['required'],
-                'isPercentage' => ['required'],
-            ]
-        );
-
-        $subject->update($validatedData);
+        $subject->update($request->validated());
 
         return response()->json([
             'success' => true,
             'message' => 'Subject updated successfully',
-            'data' => $subject,
+            'data' => new SubjectResource($subject),
         ]);
     }
 
@@ -202,7 +149,7 @@ class SubjectController extends Controller
         return response()->json([
             'success' => true,
             'message' => "Subject's semester",
-            'data' => $semester,
+            'data' => new SemesterResource($semester),
         ]);
     }
 
@@ -221,7 +168,7 @@ class SubjectController extends Controller
         return response()->json([
             'success' => true,
             'message' => "Subject's tasks",
-            'data' => $tasks,
+            'data' => new TaskCollection($tasks),
         ]);
     }
 }

@@ -14,44 +14,39 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('courseType');
+            $table->string('course_type');
             $table->integer('credit');
             $table->string('notes');
-            $table->boolean('isGraded')->default(false);
+            $table->boolean('is_graded')->default(false);
             $table->integer('grade');
 
             // Scores
-            $table->integer('midterms')->default(0);
-            $table->integer('quizes')->default(0);
-            $table->integer('assignments')->default(0);
-            $table->integer('exams')->default(0);
-            $table->integer('homeWorks')->default(0);
-            $table->integer('bonusPoints')->default(0);
-            $table->integer('sumScores')->default(0);
-            $table->integer('maxScore');
+            $table->float('midterms')->default(0);
+            $table->float('quizes')->default(0);
+            $table->float('assignments')->default(0);
+            $table->float('exams')->default(0);
+            $table->float('homeworks')->default(0);
+            $table->float('bonus_points')->default(0);
+            $table->float('sum_scores')->default(0);
+            $table->float('max_score');
 
             // Details
-            $table->string('coursePlacement');
-            $table->string('markConditions');
+            $table->string('course_placement');
+            $table->string('mark_conditions');
             $table->string('scores');
-            $table->string('bonusExercise');
+            $table->string('bonus_exercise');
             $table->string('mark');
-            $table->string('examType');
+            $table->string('exam_type');
             $table->string('readings');
             $table->integer('absences');
-            $table->string('programingLanguage');
-            $table->string('coursePage');
-            $table->integer('weeklyTimeConsumption');
-            $table->integer('pointsFor2');
-            $table->integer('pointsFor3');
-            $table->integer('pointsFor4');
-            $table->integer('pointsFor5');
-            $table->boolean('isPercentage')->default(false);
-
-            // $table->unsignedBigInteger('score_id')->nullable();
-            // $table->foreign('score_id')->references('id')->on('scores')->onDelete('cascade');
-            // $table->unsignedBigInteger('details_id')->nullable();
-            // $table->foreign('details_id')->references('id')->on('details')->onDelete('cascade');
+            $table->string('programing_language');
+            $table->string('course_page');
+            $table->integer('weekly_time_consumption');
+            $table->integer('points_for_2');
+            $table->integer('points_for_3');
+            $table->integer('points_for_4');
+            $table->integer('points_for_5');
+            $table->boolean('is_percentage')->default(false);
 
             $table->unsignedBigInteger('semester_id');
             $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');

@@ -18,29 +18,32 @@ class Subject extends Model
      * @var array<int, string>
      */
     protected $fillable =  [
+        // subject //
         'name',
-        'courseType',
+        'course_type',
         'credit',
         'notes',
-        'isGraded',
+        'is_graded',
         'grade',
-        'maxScore',
-        'coursePlacement',
-        'markConditions',
+
+        // details //
+        'max_score',
+        'course_placement',
+        'mark_conditions',
         'scores',
-        'bonusExercise',
+        'bonus_exercise',
         'mark',
-        'examType',
+        'exam_type',
         'readings',
         'absences',
-        'programingLanguage',
-        'coursePage',
-        'weeklyTimeConsumption',
-        'pointsFor2',
-        'pointsFor3',
-        'pointsFor4',
-        'pointsFor5',
-        'isPercentage',
+        'programing_language',
+        'course_page',
+        'weekly_time_consumption',
+        'points_for_2',
+        'points_for_3',
+        'points_for_4',
+        'points_for_5',
+        'is_percentage',
 
     ];
 
@@ -54,25 +57,27 @@ class Subject extends Model
         return [
 
             'credit' => 'integer',
-            'isGraded' => 'boolean',
+            'is_graded' => 'boolean',
             'grade' => 'integer',
 
-            'midterms' => 'integer',
-            'quizes' => 'integer',
-            'assignments' => 'integer',
-            'exams' => 'integer',
-            'homeWorks' => 'integer',
-            'bonusPoints' => 'integer',
-            'sumScores' => 'integer',
-            'maxScore' => 'integer',
+            // scores //
+            'midterms' => 'float',
+            'quizes' => 'float',
+            'assignments' => 'float',
+            'exams' => 'float',
+            'homeworks' => 'float',
+            'bonus_points' => 'float',
+            'sum_scores' => 'float',
+            'max_score' => 'float',
 
-            'weeklyTimeConsumption' => 'integer',
+            // details //
+            'weekly_time_consumption' => 'integer',
             'maxPoint' => 'integer',
-            'pointsFor2' => 'integer',
-            'pointsFor3' => 'integer',
-            'pointsFor4' => 'integer',
-            'pointsFor5' => 'integer',
-            'isPercentage' => 'boolean',
+            'points_for_2' => 'integer',
+            'points_for_3' => 'integer',
+            'points_for_4' => 'integer',
+            'points_for_5' => 'integer',
+            'is_percentage' => 'boolean',
             'semester_id' => 'integer',
             'user_id' => 'integer',
         ];
@@ -92,14 +97,4 @@ class Subject extends Model
     {
         return $this->hasMany(Task::class);
     }
-
-    // public function subjectdetail(): HasOne
-    // {
-    //     return $this->hasOne(Subjectdetail::class);
-    // }
-
-    // public function subjectscore(): HasOne
-    // {
-    //     return $this->hasOne(Subjectscore::class);
-    // }
 }

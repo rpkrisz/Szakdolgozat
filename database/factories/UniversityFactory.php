@@ -12,7 +12,7 @@ use function PHPSTORM_META\map;
 class UniversityFactory extends Factory
 {
     private $levles = ["BA/BSc", "MA/MSc"];
-    
+
     /**
      * Define the model's default state.
      *
@@ -30,13 +30,13 @@ class UniversityFactory extends Factory
         $semesterCount = fake()->numberBetween(6, 8);
         return [
             'name' => $uniName,
-            'nickName' => $cityFst . "U",
+            'nick_name' => $cityFst . "U",
             'faculty' => fake()->word() . " " . "faculty",
             'major' => fake()->jobTitle(),
-            'degreeLevel' => fake()->randomElement($this->levles),
-            'semestersCount' => $semesterCount,
-            'currSemester' => fake()->numberBetween(1, $semesterCount),
-            'currSemFstDay' => fake()->date(),
+            'degree_level' => fake()->randomElement($this->levles),
+            'semesters_count' => $semesterCount,
+            'curr_semester' => fake()->numberBetween(1, $semesterCount),
+            'curr_semester_fst_day' => fake()->date(),
             'specialisation' => fake()->word(),
         ];
     }

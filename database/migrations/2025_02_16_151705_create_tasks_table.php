@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('dueDate');
+            $table->string('due_date');
             $table->integer('weight');
             $table->string('type');
-            $table->string('taskPage');
+            $table->string('task_page');
             $table->string('state');
             $table->integer('score');
 

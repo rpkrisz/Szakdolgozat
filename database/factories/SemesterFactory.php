@@ -19,14 +19,14 @@ class SemesterFactory extends Factory
         $registeredCredit = fake()->numberBetween(25, 35);
         $passeedCredit = fake()->numberBetween($registeredCredit - 5, $registeredCredit);
         return [
-            'name' => "Semester"." ".fake()->numberBetween(1,8),
-            'average' => fake()->randomFloat(2,1,5),
-            'gradePointAverage' => fake()->randomFloat(2, 1, 5),
-            'creditIndex' => fake()->randomFloat(2, 1, 5),
-            'correctedCreditIndex' => fake()->randomFloat(2, 1, 5),
-            'registeredCredit' => $registeredCredit,
-            'passeedCredit' => $passeedCredit,
-            'completionRate' => $passeedCredit / $registeredCredit,
+            'name' => "Semester" . " " . fake()->numberBetween(1, 8),
+            'average' => fake()->randomFloat(2, 1, 5),
+            'grade_point_average' => fake()->randomFloat(2, 1, 5),
+            'credit_index' => fake()->randomFloat(2, 1, 5),
+            'corrected_credit_index' => fake()->randomFloat(2, 1, 5),
+            'registered_credit' => $registeredCredit,
+            'passeed_credit' => $passeedCredit,
+            'completion_rate' => $passeedCredit / $registeredCredit,
         ];
     }
 }
