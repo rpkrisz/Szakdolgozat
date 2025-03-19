@@ -132,6 +132,7 @@ class TaskController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Task deleted successfully',
+            'data' => new TaskResource($task),
         ]);
     }
 

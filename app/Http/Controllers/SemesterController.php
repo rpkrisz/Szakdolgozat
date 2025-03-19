@@ -163,6 +163,7 @@ class SemesterController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Semester deleted successfully',
+            'data' => new SemesterResource($semester),
         ]);
     }
 
@@ -281,5 +282,4 @@ class SemesterController extends Controller
         if ($passedCredits === 0 || $CI === 0) return 0;
         return round(($CI * $passedCredits) / $registered_credits, 2);
     }
-
 }

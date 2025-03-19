@@ -130,6 +130,7 @@ class SubjectController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Subject deleted successfully',
+            'data' => new SubjectResource($subject),
         ]);
     }
 

@@ -76,7 +76,7 @@ class UniversityController extends Controller
             'success' => true,
             'message' => 'University created successfully',
             'data' => [
-                "University" => new UniversityResource($university) ,
+                "University" => new UniversityResource($university),
                 "Semesters" => new SemesterCollection($semesters)
             ],
         ], 201);
@@ -163,6 +163,7 @@ class UniversityController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'University deleted successfully',
+            'data' => new UniversityResource($university),
         ]);
     }
 

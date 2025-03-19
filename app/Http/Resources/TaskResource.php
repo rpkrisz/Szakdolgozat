@@ -22,7 +22,8 @@ class TaskResource extends JsonResource
             'type' => $this->type,
             'taskPage' => $this->task_page,
             'state' => $this->state,
-            'score' => $this->score
+            'score' => $this->score,
+            'subjectID' => $this->subject_id
         ];
     }
 }
