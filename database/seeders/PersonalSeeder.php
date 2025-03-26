@@ -51,12 +51,15 @@ class PersonalSeeder extends Seeder
 
         foreach ($semesters as $semester) {
             $subjects = Subject::factory(3)
+                ->for($uni)
                 ->for($semester)
                 ->for($me)
                 ->create(['semester_id' => $semester->id, 'user_id' => $me->id]);
 
             foreach ($subjects as $subject) {
                 Task::factory(3)
+                    ->for($uni)
+                    ->for($semester)
                     ->for($subject)
                     ->for($me)
                     ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
@@ -80,18 +83,22 @@ class PersonalSeeder extends Seeder
             ]);
 
         $subjects = Subject::factory(3)
+            ->for($uni)
             ->for($semester)
             ->for($me)
             ->create(['semester_id' => $semester->id, 'user_id' => $me->id]);
 
         foreach ($subjects as $subject) {
             Task::factory(3)
+                ->for($uni)
+                ->for($semester)
                 ->for($subject)
                 ->for($me)
                 ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
         }
 
         $subjects = Subject::factory()
+            ->for($uni)
             ->for($semester)
             ->for($me)
             ->create([

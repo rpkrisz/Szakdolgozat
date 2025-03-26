@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Resources\SemesterResource;
 use App\Http\Resources\SubjectResource;
 use App\Http\Resources\TaskCollection;
 use App\Http\Resources\TaskResource;
+use App\Http\Resources\UniversityResource;
 use App\Models\Subject;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -136,6 +138,40 @@ class TaskController extends Controller
         ]);
     }
 
+    public function getUniversity($id)
+    {
+        $task = Auth::user()->tasks()->find($id);
+        if (!$task) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Task does not belong to the authenticated user.',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "Task university",
+            'data' => new UniversityResource($task->university),
+        ]);
+    }
+
+    public function getSemester($id)
+    {
+        $task = Auth::user()->tasks()->find($id);
+        if (!$task) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Task does not belong to the authenticated user.',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "Task's semester",
+            'data' => new SemesterResource($task->semester),
+        ]);
+    }
+
     public function getSubject($id)
     {
         $task = Auth::user()->tasks()->find($id);
@@ -145,12 +181,11 @@ class TaskController extends Controller
                 'message' => 'Access denied. Task does not belong to the authenticated user.',
             ], Response::HTTP_BAD_REQUEST);
         }
-        $subject = $task->subject()->get();
 
         return response()->json([
             'success' => true,
             'message' => "Task's subject",
-            'data' => new SubjectResource($subject),
+            'data' => new SubjectResource($task->subject),
         ]);
     }
 }

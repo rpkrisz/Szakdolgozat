@@ -37,6 +37,8 @@ class Task extends Model
             'weight' => 'integer',
             'score' => 'integer',
             'subject_id' => 'integer',
+            'semester_id' => 'integer',
+            'university_id' => 'integer',
             'user_id' => 'integer',
         ];
     }
@@ -44,6 +46,16 @@ class Task extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function university(): BelongsTo
+    {
+        return $this->belongsTo(University::class);
+    }
+
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class);
     }
 
     public function subject(): BelongsTo

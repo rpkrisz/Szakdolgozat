@@ -6,6 +6,8 @@ use App\Http\Requests\StoreUniversityRequest;
 use App\Http\Requests\UpdateUniversityRequest;
 use App\Http\Resources\SemesterCollection;
 use App\Http\Resources\SemesterResource;
+use App\Http\Resources\SubjectCollection;
+use App\Http\Resources\TaskCollection;
 use App\Http\Resources\UniversityCollection;
 use App\Http\Resources\UniversityResource;
 use App\Models\Semester;
@@ -226,12 +228,44 @@ class UniversityController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $semesters = $university->semesters()->get();
-
         return response()->json([
             'success' => true,
             'message' => "University's semesters",
-            'data' => new SemesterCollection($semesters),
+            'data' => new SemesterCollection($university->semesters),
+        ]);
+    }
+
+    public function getSubjects($id)
+    {
+        $university = Auth::user()->universities()->find($id);
+        if (!$university) {
+            return response()->json([
+                'success' => false,
+                'message' => "University's subjects",
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "University's subjects",
+            'data' => new SubjectCollection($university->subjects),
+        ]);
+    }
+
+    public function getTasks($id)
+    {
+        $university = Auth::user()->semesters()->find($id);
+        if (!$university) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. University does not belong to the authenticated user.',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "University's tasks",
+            'data' => new TaskCollection($university->tasks),
         ]);
     }
 }

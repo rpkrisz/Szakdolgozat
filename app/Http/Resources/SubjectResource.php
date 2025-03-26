@@ -46,6 +46,7 @@ class SubjectResource extends JsonResource
             "pointsFor4" => $this->points_for_4,
             "pointsFor5" => $this->points_for_5,
             "isPercentage" => $this->is_percentage,
+            'universityID' => $this->university_id,
             "semesterID" => $this->semester_id,
             "userID" => $this->user_id,
         ];

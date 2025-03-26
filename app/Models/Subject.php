@@ -79,6 +79,7 @@ class Subject extends Model
             'points_for_5' => 'integer',
             'is_percentage' => 'boolean',
             'semester_id' => 'integer',
+            'university_id' => 'integer',
             'user_id' => 'integer',
         ];
     }
@@ -86,6 +87,11 @@ class Subject extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function university(): BelongsTo
+    {
+        return $this->belongsTo(University::class);
     }
 
     public function semester(): BelongsTo

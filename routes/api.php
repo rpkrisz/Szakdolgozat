@@ -43,16 +43,22 @@ Route::middleware(['auth:sanctum'])->group(
         Route::get('universities/names', [UniversityController::class, 'getUniversitiesNames']);
         Route::get('universities/names/{id}', [UniversityController::class, 'getUniversityNamesById']);
         Route::get('universities/{id}/semesters', [UniversityController::class, 'getSemesters']);
+        Route::get('universities/{id}/subjects', [UniversityController::class, 'getSubjects']);
+        Route::get('universities/{id}/tasks', [UniversityController::class, 'getTasks']);
 
         // Semesters
-        Route::get('semesters/{id}/subjects', [SemesterController::class, 'getSubjects']);
         Route::get('semesters/{id}/university', [SemesterController::class, 'getUniversity']);
+        Route::get('semesters/{id}/subjects', [SemesterController::class, 'getSubjects']);
+        Route::get('semesters/{id}/tasks', [SemesterController::class, 'getTasks']);
 
         // Subject
+        Route::get('subjects/{id}/university', [SubjectController::class, 'getUniversity']);
         Route::get('subjects/{id}/semester', [SubjectController::class, 'getSemester']);
         Route::get('subjects/{id}/tasks', [SubjectController::class, 'getTasks']);
 
         // Task
+        Route::get('tasks/{id}/university', [TaskController::class, 'getUniversity']);
+        Route::get('tasks/{id}/semester', [TaskController::class, 'getSemester']);
         Route::get('tasks/{id}/subject', [TaskController::class, 'getSubject']);
     }
 );

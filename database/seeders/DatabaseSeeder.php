@@ -37,12 +37,15 @@ class DatabaseSeeder extends Seeder
 
             foreach ($semesters as $semester) {
                 $subjects = Subject::factory(3)
+                    ->for($uni)
                     ->for($semester)
                     ->for($student)
                     ->create(['semester_id' => $semester->id, 'user_id' => $student->id]);
 
                 foreach ($subjects as $subject) {
                     Task::factory(3)
+                        ->for($uni)
+                        ->for($semester)
                         ->for($subject)
                         ->for($student)
                         ->create(['subject_id' => $subject->id, 'user_id' => $student->id]);

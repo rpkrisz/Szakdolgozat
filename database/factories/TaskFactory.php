@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class TaskFactory extends Factory
 {
-    private $types = ["midterm", "quiz", "assignment", "exam", "homeWork", "bonusPoint"];
+    private $types = ["midterm", "quiz", "assignment", "exam", "homework", "bonusPoint"];
     private $taskStates = ["inwork" , "done" , "graded" , "faild"];
 
     /**

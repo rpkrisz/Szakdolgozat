@@ -59,13 +59,13 @@ class User extends Authenticatable
         return $this->hasMany(Semester::class);
     }
 
-    public function tasks(): HasMany
-    {
-        return $this->hasMany(Task::class);
-    }
-
     public function subjects(): HasMany
     {
         return $this->hasMany(Subject::class);
+    }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
     }
 }

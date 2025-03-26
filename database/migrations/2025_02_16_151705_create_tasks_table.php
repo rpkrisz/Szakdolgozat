@@ -21,6 +21,10 @@ return new class extends Migration
             $table->string('state');
             $table->integer('score');
 
+            $table->unsignedBigInteger('semester_id');
+            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
+            $table->unsignedBigInteger('university_id');
+            $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
             $table->unsignedBigInteger('subject_id');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
 

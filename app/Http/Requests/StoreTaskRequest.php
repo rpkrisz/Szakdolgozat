@@ -28,6 +28,8 @@ class StoreTaskRequest extends FormRequest
             'weight' => ['required', 'integer'],
             'type' => ['required', Rule::in(["midterm", "quiz", "assignment", "exam", "homework", "bonusPoint"])],
             'task_page' => ['required'],
+            'university_id' => ['required'],
+            'semester_id' => ['required'],
             'subject_id' => ['required'],
         ];
     }
@@ -37,6 +39,8 @@ class StoreTaskRequest extends FormRequest
         $this->merge([
             'due_date' => $this->dueDate,
             'task_page' => $this->taskPage,
+            'university_id' => $this->universityID,
+            'semester_id' => $this->semesterID,
             'subject_id' => $this->subjectID
         ]);
     }

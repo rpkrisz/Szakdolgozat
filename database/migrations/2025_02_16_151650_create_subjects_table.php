@@ -50,6 +50,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('semester_id');
             $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
+            $table->unsignedBigInteger('university_id');
+            $table->foreign('university_id')->references('id')->on('universities')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 

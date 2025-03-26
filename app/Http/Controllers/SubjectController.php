@@ -9,6 +9,7 @@ use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
 use App\Http\Resources\TaskCollection;
 use App\Http\Resources\TaskResource;
+use App\Http\Resources\UniversityResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -134,6 +135,22 @@ class SubjectController extends Controller
         ]);
     }
 
+    public function getUniversity($id)
+    {
+        $subject = Auth::user()->subjects()->find($id);
+        if (!$subject) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Access denied. Subject does not belong to the authenticated user.',
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => "Semester university",
+            'data' => new UniversityResource($subject->university),
+        ]);
+    }
 
     public function getSemester($id)
     {
@@ -145,12 +162,10 @@ class SubjectController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $semester = $subject->semester()->get();
-
         return response()->json([
             'success' => true,
             'message' => "Subject's semester",
-            'data' => new SemesterResource($semester),
+            'data' => new SemesterResource($subject->semester),
         ]);
     }
 
@@ -164,12 +179,10 @@ class SubjectController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $tasks = $subject->tasks()->get();
-
         return response()->json([
             'success' => true,
             'message' => "Subject's tasks",
-            'data' => new TaskCollection($tasks),
+            'data' => new TaskCollection($subject->tasks),
         ]);
     }
 }

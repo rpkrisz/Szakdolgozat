@@ -47,6 +47,7 @@ class StoreSubjectRequest extends FormRequest
             'points_for_5' => ['integer', 'nullable'],
             'is_percentage' => ["boolean"],
             'semester_id' => ['required'],
+            'university_id' => ['required'],
         ];
     }
 
@@ -69,6 +70,7 @@ class StoreSubjectRequest extends FormRequest
             "points_for_5" => $this->pointsFor5,
             "is_percentage" => $this->isPercentage,
             "semester_id" => $this->semesterID,
+            "university_id" => $this->universityID,
         ]);
     }
 }
