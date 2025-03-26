@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('course_type');
             $table->integer('credit');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->boolean('is_graded')->default(false);
-            $table->integer('grade');
+            $table->integer('grade')->nullable();
 
             // Scores
             $table->float('midterms')->default(0);
@@ -28,24 +28,24 @@ return new class extends Migration
             $table->float('homeworks')->default(0);
             $table->float('bonus_points')->default(0);
             $table->float('sum_scores')->default(0);
-            $table->float('max_score');
+            $table->float('max_score')->nullable();
 
             // Details
-            $table->string('course_placement');
-            $table->string('mark_conditions');
-            $table->string('scores');
-            $table->string('bonus_exercise');
-            $table->string('mark');
-            $table->string('exam_type');
-            $table->string('readings');
-            $table->integer('absences');
-            $table->string('programing_language');
-            $table->string('course_page');
-            $table->integer('weekly_time_consumption');
-            $table->integer('points_for_2');
-            $table->integer('points_for_3');
-            $table->integer('points_for_4');
-            $table->integer('points_for_5');
+            $table->string('course_placement')->nullable()->default("");
+            $table->string('mark_conditions')->nullable()->default("");
+            $table->string('scores')->nullable()->default("");
+            $table->string('bonus_exercise')->nullable()->default("");
+            $table->string('mark')->nullable()->default("");
+            $table->string('exam_type')->nullable()->default("");
+            $table->string('readings')->nullable()->default("");
+            $table->integer('absences')->nullable();
+            $table->string('programing_language')->nullable();
+            $table->string('course_page')->nullable();
+            $table->integer('weekly_time_consumption')->nullable();
+            $table->integer('points_for_2')->nullable();
+            $table->integer('points_for_3')->nullable();
+            $table->integer('points_for_4')->nullable();
+            $table->integer('points_for_5')->nullable();
             $table->boolean('is_percentage')->default(false);
 
             $table->unsignedBigInteger('semester_id');
