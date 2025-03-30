@@ -19,7 +19,9 @@ class PersonalSeeder extends Seeder
     {
 
         $me = User::factory()->create([
-            'name' => 'Krisz',
+            'first_name' => 'Krisztián',
+            'last_name' => 'Réthey-Prikkel',
+            'nick_name' => 'Krisz',
             'email' => 'rp.krisz123@gmail.com',
         ]);
 

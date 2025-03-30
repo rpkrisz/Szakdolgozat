@@ -16,7 +16,9 @@ class ApiAuth extends Controller
         $validatedData = $request->validate(
             [
                 'email' => ['required', 'email', 'unique:users'],
-                'name' => ['required'],
+                'first_name' => ['required'],
+                'last_name' => ['required'],
+                'nick_name' => ['present'],
                 'password' => ['required', 'same:password_confirmation']
             ],
             [
@@ -31,7 +33,9 @@ class ApiAuth extends Controller
 
         // create new user
         $user = User::create([
-            'name' => $validatedData['name'],
+            'first_name' => $validatedData['first_name'],
+            'last_name' => $validatedData['last_name'],
+            'nick_name' => $validatedData['nick_name'],
             'email' => $validatedData['email'],
             'password' => bcrypt($validatedData['password'])
         ]);
