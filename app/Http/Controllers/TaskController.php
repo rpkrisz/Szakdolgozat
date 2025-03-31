@@ -138,6 +138,29 @@ class TaskController extends Controller
         ]);
     }
 
+    public function getTaskNames()
+    {
+
+        $tasks = Auth::user()->tasks()->get();
+
+        $names = [];
+        foreach ($tasks as $task) {
+            $names[] = [
+                'id' => $task->id,
+                'name' => $task->name,
+                'universityID' => $task->university_id,
+                'semesterID' => $task->semester_id,
+                'subjectID' => $task->subject_id,
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Task names',
+            'data' => $names
+        ]);
+    }
+
     public function getUniversity($id)
     {
         $task = Auth::user()->tasks()->find($id);

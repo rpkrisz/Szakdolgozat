@@ -168,6 +168,27 @@ class SemesterController extends Controller
         ]);
     }
 
+    public function getSemesterNames()
+    {
+
+        $semesters = Auth::user()->semesters()->get();
+
+        $names = [];
+        foreach ($semesters as $semester) {
+            $names[] = [
+                'id' => $semester->id,
+                'name' => $semester->name,
+                'universityID' => $semester->university_id,
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Semesters name',
+            'data' => $names
+        ]);
+    }
+
     public function getUniversity($id)
     {
         $semester = Auth::user()->semesters()->find($id);

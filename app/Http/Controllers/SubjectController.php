@@ -135,6 +135,28 @@ class SubjectController extends Controller
         ]);
     }
 
+    public function getSubjectkNames()
+    {
+
+        $subjects = Auth::user()->subjects()->get();
+
+        $names = [];
+        foreach ($subjects as $subject) {
+            $names[] = [
+                'id' => $subject->id,
+                'name' => $subject->name,
+                'universityID' => $subject->university_id,
+                'semesterID' => $subject->semester_id,
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Subjects name',
+            'data' => $names
+        ]);
+    }
+
     public function getUniversity($id)
     {
         $subject = Auth::user()->subjects()->find($id);

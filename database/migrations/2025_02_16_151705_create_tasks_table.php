@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('due_date');
             $table->integer('weight');
             $table->string('type');
-            $table->string('task_page');
-            $table->string('state');
+            $table->string('task_page')->nullable();
+            $table->string('state')->default("inwork");
             $table->integer('score');
 
             $table->unsignedBigInteger('semester_id');

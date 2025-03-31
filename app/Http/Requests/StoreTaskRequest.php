@@ -22,34 +22,31 @@ class StoreTaskRequest extends FormRequest
      */
     public function rules(): array
     {
+
         return [
             'name' => ['required'],
             'due_date' => ['required'],
-            'weight' => ['required', 'integer'],
+            'weight' => ['present', 'integer'],
             'type' => ['required', Rule::in(["midterm", "quiz", "assignment", "exam", "homework", "bonusPoint"])],
-            'task_page' => ['required'],
+            'task_page' => ['present'],
             'university_id' => ['required'],
             'semester_id' => ['required'],
             'subject_id' => ['required'],
+            'state' => ['required', Rule::in(["inwork"])],
+            'score' => ['required', 'numeric'],
         ];
     }
 
     protected function prepareForValidation()
     {
         $this->merge([
+            'state' => 'inwork',
+            'score' => 0,
             'due_date' => $this->dueDate,
             'task_page' => $this->taskPage,
             'university_id' => $this->universityID,
             'semester_id' => $this->semesterID,
             'subject_id' => $this->subjectID
-        ]);
-    }
-
-    protected function passedValidation(): void
-    {
-        $this->merge([
-            'state' => 'inwork',
-            'score' => 0
         ]);
     }
 }
