@@ -8,12 +8,11 @@ use App\Http\Resources\SemesterResource;
 use App\Http\Resources\SubjectCollection;
 use App\Http\Resources\SubjectResource;
 use App\Http\Resources\TaskCollection;
-use App\Http\Resources\TaskResource;
 use App\Http\Resources\UniversityResource;
 use App\Models\Subject;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Controllers\TaskController;
 
 class SubjectController extends Controller
 {
@@ -43,18 +42,21 @@ class SubjectController extends Controller
      */
     public function store(StoreSubjectRequest $request)
     {
-        $semester = Auth::user()->semesters()->find($request->semester_id);
+        $user = Auth::user();
 
-        if (!$semester) {
+        $semester = Auth::user()->semesters()->find($request->semester_id);
+        $university = $user->universities()->find($request->university_id);
+
+        if (!$semester || !$university) {
             return response()->json([
                 'success' => false,
                 'message' => 'Subject not created',
             ], Response::HTTP_BAD_REQUEST);
         }
 
-        $user = Auth::user();
 
         $subject = Subject::factory()
+            ->for($university)
             ->for($semester)
             ->for($user)
             ->create($request->validated());
@@ -201,10 +203,13 @@ class SubjectController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
+        $tasks = $subject->tasks->sortBy('due_date', 0);
+        $TaskController = app(TaskController::class);
+
         return response()->json([
             'success' => true,
             'message' => "Subject's tasks",
-            'data' => new TaskCollection($subject->tasks),
+            'data' => [$TaskController->maxTasksPerMonth($tasks), new TaskCollection($tasks)],
         ]);
     }
 }

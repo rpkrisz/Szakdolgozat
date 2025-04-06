@@ -63,4 +63,9 @@ class Semester extends Model
     {
         return $this->hasMany(Subject::class);
     }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }

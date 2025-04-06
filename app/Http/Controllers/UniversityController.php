@@ -262,10 +262,13 @@ class UniversityController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
+        $tasks = $university->tasks->sortBy('due_date', 0);
+        $TaskController = app(TaskController::class);
+
         return response()->json([
             'success' => true,
             'message' => "University's tasks",
-            'data' => new TaskCollection($university->tasks),
+            'data' => [$TaskController->maxTasksPerMonth($tasks), new TaskCollection($tasks)],
         ]);
     }
 }

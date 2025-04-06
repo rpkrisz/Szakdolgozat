@@ -233,10 +233,13 @@ class SemesterController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
+        $tasks = $semester->tasks->sortBy('due_date', 0);
+        $TaskController = app(TaskController::class);
+
         return response()->json([
             'success' => true,
             'message' => "Semester's tasks",
-            'data' => new TaskCollection($semester->tasks),
+            'data' => [$TaskController->maxTasksPerMonth($tasks), new TaskCollection($tasks)],
         ]);
     }
 

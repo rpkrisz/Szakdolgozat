@@ -63,6 +63,7 @@ Route::middleware(['auth:sanctum'])->group(
         Route::get('tasks/{id}/university', [TaskController::class, 'getUniversity']);
         Route::get('tasks/{id}/semester', [TaskController::class, 'getSemester']);
         Route::get('tasks/{id}/subject', [TaskController::class, 'getSubject']);
+        Route::get('tasks/urgent', [TaskController::class, 'getUrgentTasks']);
     }
 );
 
