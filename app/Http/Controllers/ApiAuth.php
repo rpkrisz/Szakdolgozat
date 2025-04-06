@@ -53,8 +53,9 @@ class ApiAuth extends Controller
             foreach ($universities as $uni) {
                 $unidata[] = [
                     'id' => $uni->id,
-                    'semester' => $uni->currSemester,
-                    'semesterStart' => $uni->currSemFstDay
+                    'semester' => $uni->curr_semester,
+                    'semesterID' => $uni->curr_semesterID,
+                    'semesterStart' => $uni->curr_semester_fst_day
                 ];
             }
 
@@ -84,8 +85,9 @@ class ApiAuth extends Controller
             foreach ($universities as $uni) {
                 $unidata[] = [
                     'id' => $uni->id,
-                    'semester' => $uni->currSemester,
-                    'semesterStart' => $uni->currSemFstDay
+                    'semester' => $uni->curr_semester,
+                    'semesterID' => $uni->curr_semesterID,
+                    'semesterStart' => $uni->curr_semester_fst_day
                 ];
             }
 

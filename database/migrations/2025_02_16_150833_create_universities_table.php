@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('degree_level');
             $table->integer('semesters_count');
             $table->integer('curr_semester');
+            $table->integer('curr_semesterID');
             $table->string('curr_semester_fst_day');
             $table->string('specialisation');
 

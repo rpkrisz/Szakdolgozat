@@ -23,6 +23,7 @@ class UniversityResource extends JsonResource
             'degreeLevel' => $this->degree_level,
             'semestersCount' => $this->semesters_count,
             'currSemester' => $this->curr_semester,
+            'currSemesterID' => $this->curr_semesterID,
             'currSemFstDay' => $this->curr_semester_fst_day,
             'specialisation' => $this->specialisation,
             'userID' => $this->user_id,

@@ -35,6 +35,7 @@ class PersonalSeeder extends Seeder
                 'degree_level' => 'BA/BSc',
                 'semesters_count' => 6,
                 'curr_semester' => 6,
+                'curr_semesterID' => 6,
                 'curr_semester_fst_day' => '2025-02-10',
                 'specialisation' => 'Szoftverfejlesztő',
                 'user_id' => $me->id,
@@ -83,6 +84,10 @@ class PersonalSeeder extends Seeder
                 'university_id' => $uni->id,
                 'user_id' => $me->id
             ]);
+
+        $uni->update([
+            'curr_semesterID' => $semester->id,
+        ]);
 
         $subjects = Subject::factory(3)
             ->for($uni)

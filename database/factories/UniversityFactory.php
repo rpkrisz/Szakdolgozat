@@ -36,6 +36,7 @@ class UniversityFactory extends Factory
             'degree_level' => fake()->randomElement($this->levles),
             'semesters_count' => $semesterCount,
             'curr_semester' => fake()->numberBetween(1, $semesterCount),
+            'curr_semesterID' => fake()->numberBetween(1, 2147483647),
             'curr_semester_fst_day' => fake()->date(),
             'specialisation' => fake()->word(),
         ];

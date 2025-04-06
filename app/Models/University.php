@@ -25,6 +25,7 @@ class University extends Model
         'degree_level',
         'semesters_count',
         'curr_semester',
+        'curr_semesterID',
         'curr_semester_fst_day',
         'specialisation',
     ];
@@ -39,6 +40,7 @@ class University extends Model
         return [
             'semesters_count' => 'integer',
             'curr_semester' => 'integer',
+            'curr_semesterID' => 'integer',
             'user_id' => 'integer',
         ];
     }

@@ -30,6 +30,7 @@ class UpdateUniversityRequest extends FormRequest
             'degree_level' => ['required', Rule::in(['BA/BSc', 'MA/MSc'])],
             'semesters_count' => ['required', 'integer'],
             'curr_semester' => ['required', 'integer'],
+            'curr_semesterID' => ['required', 'integer'],
             'curr_semester_fst_day' => ['required'],
             'specialisation' => ['required'],
         ];
@@ -42,6 +43,7 @@ class UpdateUniversityRequest extends FormRequest
             'degree_level' => $this->degreeLevel,
             'semesters_count' => $this->semestersCount,
             'curr_semester' => $this->currSemester,
+            'curr_semesterID' => $this->currSemesterID,
             'curr_semester_fst_day' => $this->currSemFstDay,
         ]);
     }
