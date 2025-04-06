@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+
+        $this->call([
+            PersonalSeeder::class,
+        ]);
+
         $users = User::factory(5)->create();
 
 
@@ -50,11 +55,8 @@ class DatabaseSeeder extends Seeder
                         ->for($student)
                         ->create(['subject_id' => $subject->id, 'user_id' => $student->id]);
                 }
+                $semester->update();
             }
         }
-
-        $this->call([
-            PersonalSeeder::class,
-        ]);
     }
 }

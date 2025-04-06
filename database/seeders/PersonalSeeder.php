@@ -67,6 +67,7 @@ class PersonalSeeder extends Seeder
                     ->for($me)
                     ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
             }
+            $semester->update();
         }
 
         $semester = Semester::factory()
@@ -142,5 +143,6 @@ class PersonalSeeder extends Seeder
                 'semester_id' => $semester->id,
                 'user_id' => $me->id
             ]);
+        $semester->update();
     }
 }
