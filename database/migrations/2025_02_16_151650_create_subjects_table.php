@@ -21,14 +21,14 @@ return new class extends Migration
             $table->integer('grade')->nullable();
 
             // Scores
-            $table->float('midterms')->default(0);
-            $table->float('quizes')->default(0);
-            $table->float('assignments')->default(0);
-            $table->float('exams')->default(0);
-            $table->float('homeworks')->default(0);
-            $table->float('bonus_points')->default(0);
-            $table->float('sum_scores')->default(0);
-            $table->float('max_score')->nullable();
+            $table->float('midterms')->nullable()->default(0);
+            $table->float('quizes')->nullable()->default(0);
+            $table->float('assignments')->nullable()->default(0);
+            $table->float('exams')->nullable()->default(0);
+            $table->float('homeworks')->nullable()->default(0);
+            $table->float('bonus_points')->nullable()->default(0);
+            $table->float('sum_scores')->nullable()->default(0);
+            $table->float('max_score')->nullable()->nullable();
 
             // Details
             $table->string('course_placement')->nullable()->default("");
