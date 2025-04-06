@@ -90,59 +90,55 @@ class PersonalSeeder extends Seeder
             'curr_semesterID' => $semester->id,
         ]);
 
-        $subjects = Subject::factory(3)
-            ->for($uni)
-            ->for($semester)
-            ->for($me)
-            ->create(['semester_id' => $semester->id, 'user_id' => $me->id]);
-
-        foreach ($subjects as $subject) {
-            Task::factory(3)
-                ->for($uni)
-                ->for($semester)
-                ->for($subject)
-                ->for($me)
-                ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
-        }
-
-        $subjects = Subject::factory()
+        Subject::factory()
             ->for($uni)
             ->for($semester)
             ->for($me)
             ->create([
-                'name' => 'Nummod/SzamElmII',
-                'course_type' => '',
-                'credit' => 3,
-                'notes' => '',
-                'is_graded' => false,
-                'grade' => 1,
-                'midterms' => 0,
-                'quizes' => 0,
-                'assignments' => 0,
-                'exams' => 0,
-                'homeworks' => 0,
-                'bonus_points' => 0,
-                'sum_scores' => 0,
-                'max_score' => 0,
-                'course_placement' => '',
-                'mark_conditions' => '',
-                'scores' => '',
-                'bonus_exercise' => '',
-                'mark' => '',
-                'exam_type' => '',
-                'readings' => '',
-                'absences' => 0,
-                'programing_language' => '',
-                'course_page' => '',
-                'weekly_time_consumption' => 0,
-                'points_for_2' => 0,
-                'points_for_3' => 0,
-                'points_for_4' => 0,
-                'points_for_5' => 0,
-                'is_percentage' => false,
-                'semester_id' => $semester->id,
-                'user_id' => $me->id
+                "name" => "Nummod EA",
+                "credit" => 2,
+                "course_type" => "Tutorial",
+                "is_graded" => false,
+                "is_percentage" => false
             ]);
+
+        Subject::factory()
+            ->for($uni)
+            ->for($semester)
+            ->for($me)
+            ->create([
+                "name" => "Nummod GY",
+                "credit" => 3,
+                "course_type" => "Tutorial",
+                "is_graded" => false,
+                "is_percentage" => false
+            ]);
+
+        Subject::factory()
+            ->for($uni)
+            ->for($semester)
+            ->for($me)
+            ->create([
+                "name" => "SzámElm",
+                "credit" => 2,
+                "course_type" => "Tutorial",
+                "is_graded" => false,
+                "is_percentage" => false
+            ]);
+
+        Subject::factory()
+            ->for($uni)
+            ->for($semester)
+            ->for($me)
+            ->create([
+                "name" => "Szakdolgozat",
+                "credit" => 20,
+                "course_type" => "Tutorial",
+                "is_graded" => false,
+                "is_percentage" => false
+            ]);
+
+
         $semester->update();
     }
 }
