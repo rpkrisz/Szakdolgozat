@@ -74,6 +74,10 @@ class UniversityController extends Controller
                 ]);
         }
 
+        $university->update([
+            'curr_semesterID' =>  $semesters[$university->curr_semester - 1]->id
+        ]);
+
         return response()->json([
             'success' => true,
             'message' => 'University created successfully',
@@ -125,21 +129,11 @@ class UniversityController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $validatedData = $request->validate(
-            [
-                'name' => ['required'],
-                'nickName' => ['required', 'min:2', 'max:5'],
-                'faculty' => ['required'],
-                'major' => ['required'],
-                'degreeLevel' => ['required', Rule::in(['BA/BSc', 'MA/MSc'])],
-                'semestersCount' => ['required', 'integer'],
-                'currSemester' => ['required', 'integer'],
-                'currSemFstDay' => ['required'],
-                'specialisation' => ['required'],
-            ]
-        );
-
         $university->update($request->validated());
+
+        $university->update([
+            'curr_semesterID' =>  $university->semesters[$university->curr_semester - 1]->id
+        ]);
 
         return response()->json([
             'success' => true,
@@ -224,7 +218,7 @@ class UniversityController extends Controller
         if (!$university) {
             return response()->json([
                 'success' => false,
-                'message' => "University's semesters",
+                'message' => 'Access denied. University does not belong to the authenticated user.',
             ], Response::HTTP_BAD_REQUEST);
         }
 
@@ -241,7 +235,7 @@ class UniversityController extends Controller
         if (!$university) {
             return response()->json([
                 'success' => false,
-                'message' => "University's subjects",
+                'message' => 'Access denied. University does not belong to the authenticated user.',
             ], Response::HTTP_BAD_REQUEST);
         }
 
