@@ -57,14 +57,14 @@ class PersonalSeeder extends Seeder
 
 
         foreach ($semesters as $semester) {
-            $subjects = Subject::factory(3)
+            $subjects = Subject::factory(5)
                 ->for($uni)
                 ->for($semester)
                 ->for($me)
                 ->create(['semester_id' => $semester->id, 'user_id' => $me->id]);
 
             foreach ($subjects as $subject) {
-                Task::factory(3)
+                Task::factory(2)
                     ->for($uni)
                     ->for($semester)
                     ->for($subject)
@@ -112,6 +112,7 @@ class PersonalSeeder extends Seeder
                 "name" => "Nummod EA",
                 "credit" => 2,
                 "course_type" => "Tutorial",
+                "weekly_time_consumption" => 90,
                 "is_graded" => false,
                 "is_percentage" => false
             ]);
@@ -124,6 +125,7 @@ class PersonalSeeder extends Seeder
                 "name" => "Nummod GY",
                 "credit" => 3,
                 "course_type" => "Tutorial",
+                "weekly_time_consumption" => 90,
                 "is_graded" => false,
                 "is_percentage" => false
             ]);
@@ -133,9 +135,10 @@ class PersonalSeeder extends Seeder
             ->for($semester)
             ->for($me)
             ->create([
-                "name" => "SzámElm",
+                "name" => "SzámElm II",
                 "credit" => 2,
                 "course_type" => "Tutorial",
+                "weekly_time_consumption" => 10,
                 "is_graded" => false,
                 "is_percentage" => false
             ]);
@@ -148,6 +151,7 @@ class PersonalSeeder extends Seeder
                 "name" => "Szakdolgozat",
                 "credit" => 20,
                 "course_type" => "Tutorial",
+                "weekly_time_consumption" => 180,
                 "is_graded" => false,
                 "is_percentage" => false
             ]);
