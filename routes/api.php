@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TaskController;
@@ -29,16 +30,17 @@ Route::post('/login', [ApiAuth::class, 'login']);
 Route::middleware(['auth:sanctum'])->delete('/logout', [ApiAuth::class, 'logout']);
 
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware(['auth:sanctum']);
 
 
+Route::resource('users', ProfileController::class)->middleware(['auth:sanctum']);
 
 
 
 Route::middleware(['auth:sanctum'])->group(
     function () {
+        //User
+        Route::put('profile/{id}', [ProfileController::class, 'update']);
+
         // Universities
         Route::get('universities/names', [UniversityController::class, 'getUniversitiesNames']);
         Route::get('universities/names/{id}', [UniversityController::class, 'getUniversityNamesById']);

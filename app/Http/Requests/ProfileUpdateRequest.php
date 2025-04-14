@@ -16,7 +16,9 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:50'],
+            'last_name' => ['required', 'string', 'max:50'],
+            'nick_name' => ['present', 'string', 'max:50'],
             'email' => [
                 'required',
                 'string',
@@ -26,5 +28,14 @@ class ProfileUpdateRequest extends FormRequest
                 Rule::unique(User::class)->ignore($this->user()->id),
             ],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+            'nick_name' => $this->nickName,
+        ]);
     }
 }

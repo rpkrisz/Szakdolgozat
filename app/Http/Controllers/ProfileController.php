@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,10 +26,40 @@ class ProfileController extends Controller
         ]);
     }
 
+
+    /**
+     * Display the specified resource.
+     */
+    public function index()
+    {
+        $user = Auth::user();
+
+        $universities  = $user->universities()->get();
+
+        $unidata = [];
+        foreach ($universities as $uni) {
+            $unidata[] = [
+                'id' => $uni->id,
+                'semester' => $uni->curr_semester,
+                'semesterID' => $uni->curr_semesterID,
+                'semesterStart' => $uni->curr_semester_fst_day
+            ];
+        }
+
+        return response()->json([
+            'succes' => true,
+            'message' => 'User',
+            'user' => new UserResource($user),
+            'data' => $unidata,
+        ]);
+    }
+
+
+
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request)
     {
         $request->user()->fill($request->validated());
 
@@ -37,13 +69,17 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        return response()->json([
+            'succes' => true,
+            'message' => 'Sikeres profile update',
+            'user' => new UserResource($request->user()),
+        ]);
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
         $request->validate([
             'password' => ['required', 'current_password'],

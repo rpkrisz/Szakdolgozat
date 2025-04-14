@@ -3,33 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ApiAuth extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
 
-        // validate formdata
-        $validatedData = $request->validate(
-            [
-                'email' => ['required', 'email', 'unique:users'],
-                'first_name' => ['required'],
-                'last_name' => ['required'],
-                'nick_name' => ['present'],
-                'password' => ['required', 'same:password_confirmation']
-            ],
-            [
-                'email.required' => 'Email cím megadása kötelező',
-                'email.unique' => 'Ezzel az email címmel már létezik felhasználó',
-                'email.email' => 'Érvénytelen email cím',
-                'name.required' => 'Név megadása kötelező',
-                'password.required' => 'Jelszó megadása kötelező',
-                'password.same' => 'A jelszavak nem egyeznek'
-            ]
-        );
+        $validatedData = $request->validationData();
 
         // create new user
         $user = User::create([
@@ -37,7 +22,7 @@ class ApiAuth extends Controller
             'last_name' => $validatedData['last_name'],
             'nick_name' => $validatedData['nick_name'],
             'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password'])
+            'password' => $validatedData['bcrypted_password']
         ]);
 
         // login to the new profile
@@ -63,7 +48,7 @@ class ApiAuth extends Controller
                 'succes' => true,
                 'message' => 'Sikeres regisztráció',
                 'token' => $token,
-                'user' => $user,
+                'user' => new UserResource($user),
                 'data' => $unidata,
             ]);
         }
@@ -95,7 +80,7 @@ class ApiAuth extends Controller
                 'succes' => true,
                 'message' => 'Sikeres bejelentkezés',
                 'token' => $token,
-                'user' => $user,
+                'user' => new UserResource($user),
                 'data' => $unidata,
             ]);
         }
@@ -108,7 +93,7 @@ class ApiAuth extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json([
             'succes' => true,
-            'message' => 'Sikeres kijelentkezés'
+            'message' => 'Succesful log off!'
         ]);
     }
 }
