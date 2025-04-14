@@ -55,7 +55,7 @@ class UniversityController extends Controller
         $university = University::factory()->for($user)->create($request->validated());
 
         $semesters = [];
-        for ($i = 1; $i <= $university->curr_semester; $i++) {
+        for ($i = 1; $i <= $university->semesters_count; $i++) {
             $name = "Semester" . " " . $i;
             $semesters[] = Semester::factory()
                 ->for($university)
