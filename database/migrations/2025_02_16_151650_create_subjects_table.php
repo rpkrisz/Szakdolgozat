@@ -18,17 +18,17 @@ return new class extends Migration
             $table->integer('credit');
             $table->string('notes')->nullable();
             $table->boolean('is_graded')->default(false);
-            $table->integer('grade')->nullable();
+            $table->integer('grade')->nullable()->default(1);
 
             // Scores
-            $table->float('midterms')->nullable()->default(0);
-            $table->float('quizes')->nullable()->default(0);
-            $table->float('assignments')->nullable()->default(0);
-            $table->float('exams')->nullable()->default(0);
-            $table->float('homeworks')->nullable()->default(0);
-            $table->float('bonus_points')->nullable()->default(0);
+            $table->float('midterm_score')->nullable()->default(0);
+            $table->float('quiz_score')->nullable()->default(0);
+            $table->float('assignment_score')->nullable()->default(0);
+            $table->float('exam_score')->nullable()->default(0);
+            $table->float('homework_score')->nullable()->default(0);
+            $table->float('bonus_point_score')->nullable()->default(0);
             $table->float('sum_scores')->nullable()->default(0);
-            $table->float('max_score')->nullable()->nullable();
+            $table->float('max_score')->nullable();
 
             // Details
             $table->string('course_placement')->nullable()->default("");

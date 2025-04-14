@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\SubjectController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,6 +15,9 @@ class SubjectResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $SubjectController = app(SubjectController::class);
+        $SubjectController->calculateScores($this);
+
         return [
             'id' => $this->id,
             "name" => $this->name,
@@ -22,12 +26,12 @@ class SubjectResource extends JsonResource
             "notes" => $this->notes,
             "isGraded" => $this->is_graded,
             "grade" => $this->grade,
-            "midterms" => $this->midterms,
-            "quizes" => $this->quizes,
-            "assignments" => $this->assignments,
-            "exams" => $this->exams,
-            "homeWorks" => $this->homeworks,
-            "bonusPoints" => $this->bonus_points,
+            "midterms" => $this->midterm_score,
+            "quizes" => $this->quiz_score,
+            "assignments" => $this->assignment_score,
+            "exams" => $this->exam_score,
+            "homeWorks" => $this->homework_score,
+            "bonusPoints" => $this->bonus_point_score,
             "sumScores" => $this->sum_scores,
             "maxScore" => $this->max_score,
             "coursePlacement" => $this->course_placement,

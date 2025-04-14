@@ -212,4 +212,28 @@ class SubjectController extends Controller
             'data' => [$TaskController->maxTasksPerMonth($tasks), new TaskCollection($tasks)],
         ]);
     }
+
+
+    public function calculateScores($subject)
+    {
+
+        $scores = [
+            'midterm_score' => 0,
+            'quiz_score' => 0,
+            'assignment_score' => 0,
+            'exam_score' => 0,
+            'homework_score' => 0,
+            'bonus_point_score' => 0,
+            'sum_scores' => 0,
+        ];
+
+        foreach ($subject->tasks as $task) {
+            $score = ($task->score * $task->weight) / 100;
+            $type = $task->type . '_score';
+            $scores[$type] = $scores[$type] + $score;
+            $scores['sum_scores'] = $scores['sum_scores'] + $score;
+        }
+
+        $subject->update($scores);
+    }
 }

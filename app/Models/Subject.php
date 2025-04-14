@@ -26,6 +26,15 @@ class Subject extends Model
         'is_graded',
         'grade',
 
+        // scores //
+        'midterm_score',
+        'quiz_score',
+        'assignment_score',
+        'exam_score',
+        'homework_score',
+        'bonus_point_score',
+        'sum_scores',
+
         // details //
         'max_score',
         'course_placement',
@@ -61,12 +70,12 @@ class Subject extends Model
             'grade' => 'integer',
 
             // scores //
-            'midterms' => 'float',
-            'quizes' => 'float',
-            'assignments' => 'float',
-            'exams' => 'float',
-            'homeworks' => 'float',
-            'bonus_points' => 'float',
+            'midterm_score' => 'float',
+            'quiz_score' => 'float',
+            'assignment_score' => 'float',
+            'exam_score' => 'float',
+            'homework_score' => 'float',
+            'bonus_point_score' => 'float',
             'sum_scores' => 'float',
             'max_score' => 'float',
 

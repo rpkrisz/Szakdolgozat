@@ -23,6 +23,7 @@ class SemesterController extends Controller
     public function index()
     {
         $semesters = Auth::user()->semesters()->get();
+
         return response()->json([
             'success' => true,
             'message' => 'Semesters',
@@ -43,46 +44,6 @@ class SemesterController extends Controller
      */
     public function store(Request $request)
     {
-
-        // $validatedData = $request->validate(
-        //     [
-        //         'university_id' => ['required'],
-        //     ]
-        // );
-
-        // $university = Auth::user()->universities()->find($validatedData)[0];
-
-        // if (!$university) {
-        //     return response()->json([
-        //         'success' => false,
-        //         'message' => 'Semester not created',
-        //     ], Response::HTTP_BAD_REQUEST);
-        // }
-
-        // $user = Auth::user();
-
-        // $semester = Semester::factory()
-        //     ->for($university)
-        //     ->for($user)
-        //     ->create([
-        //         'name' => "Semester",
-        //         'average' => 0,
-        //         'gradePointAverage' => 0,
-        //         'creditIndex' => 0,
-        //         'correctedCreditIndex' => 0,
-        //         'registeredCredit' => 0,
-        //         'passeedCredit' => 0,
-        //         'completionRate' => 0,
-        //         'university_id' => $university->id,
-        //         'user_id' => $user->id
-        //     ]);
-
-        // return response()->json([
-        //     'success' => true,
-        //     'message' => 'Semester created successfully',
-        //     'data' => $semester,
-        // ], 201);
-
 
         return response()->json([
             'success' => false,
@@ -124,21 +85,6 @@ class SemesterController extends Controller
     {
 
         // $old = unserialize(serialize($semester));
-
-        $semesterSubjects = $semester->subjects()->get();
-
-        $semester->average =  round($this->getAVG($semesterSubjects), 2);
-        $semester->grade_point_average =  round($this->getGPA($semesterSubjects), 2);
-        $semester->credit_index =  round($this->getCI($semesterSubjects), 2);
-        $semester->corrected_credit_index =  round($this->getCCI($semesterSubjects), 2);
-
-
-        $semester->registered_credit =  $this->sumCredits($semesterSubjects);
-        $semester->passeed_credit = $this->getPasseedCredits($semesterSubjects);
-        $semester->completion_rate = round($this->getCompletionRate($semester), 2);
-
-
-        $semester->save();
 
         return response()->json([
             'success' => true,
@@ -243,6 +189,34 @@ class SemesterController extends Controller
         ]);
     }
 
+    public function semesterStatisticUpdate($semester)
+    {
+        $semesterSubjects = $semester->subjects()->get();
+
+        $semester->average =  round($this->getAVG($semesterSubjects), 2);
+        $semester->grade_point_average =  round($this->getGPA($semesterSubjects), 2);
+        $semester->credit_index =  round($this->getCI($semesterSubjects), 2);
+        $semester->corrected_credit_index =  round($this->getCCI($semesterSubjects), 2);
+
+
+        $semester->registered_credit =  $this->sumCredits($semesterSubjects);
+        $semester->passeed_credit = $this->getPasseedCredits($semesterSubjects);
+        $semester->completion_rate = round($this->getCompletionRate($semester)  * 100, 2);
+
+
+        $newSemester = [
+            "average" =>  round($this->getAVG($semesterSubjects), 2),
+            "grade_point_average" =>  round($this->getGPA($semesterSubjects), 2),
+            "credit_index" =>  round($this->getCI($semesterSubjects), 2),
+            "corrected_credit_index" =>  round($this->getCCI($semesterSubjects), 2),
+            "registered_credit" =>  $this->sumCredits($semesterSubjects),
+            "passeed_credit" => $this->getPasseedCredits($semesterSubjects),
+            "completion_rate" => round($this->getCompletionRate($semester)  * 100, 2),
+        ];
+
+        $semester->update($newSemester);
+    }
+
     private function sumCredits($subjects)
     {
         $sum = 0;
@@ -274,7 +248,7 @@ class SemesterController extends Controller
     private function getCompletionRate($semester)
     {
         if ($semester->passeed_credit == 0 || $semester->registered_credit == 0) return 0;
-        return ($semester->passeed_credit / $semester->registered_credit) * 100;
+        return ($semester->passeed_credit / $semester->registered_credit);
     }
 
     private function average($semesterSubjects, int $numOfSemesterSubjects)

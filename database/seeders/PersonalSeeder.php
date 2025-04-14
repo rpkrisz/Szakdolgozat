@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\SemesterController;
+use App\Http\Controllers\SubjectController;
 use App\Models\Semester;
 use App\Models\Subject;
 use App\Models\Task;
@@ -17,6 +19,8 @@ class PersonalSeeder extends Seeder
      */
     public function run(): void
     {
+        $SemesterController = app(SemesterController::class);
+        $SubjectController = app(SubjectController::class);
 
         $me = User::factory()->create([
             'first_name' => 'Krisztián',
@@ -66,8 +70,18 @@ class PersonalSeeder extends Seeder
                     ->for($subject)
                     ->for($me)
                     ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
+
+
+                $SubjectController->calculateScores($subject);
+                $grade = 1;
+                if ($subject->is_graded) {
+                    foreach ([$subject->points_for_2, $subject->points_for_3, $subject->points_for_4, $subject->points_for_5] as $gradeLimit) {
+                        if ($gradeLimit > ($subject->sum_scores /  $subject->max_score)) $grade = $grade + 1;
+                    }
+                }
+                $subject->update(['grade' => $grade]);
             }
-            $semester->update();
+            $SemesterController->semesterStatisticUpdate($semester);
         }
 
         $semester = Semester::factory()
@@ -138,7 +152,17 @@ class PersonalSeeder extends Seeder
                 "is_percentage" => false
             ]);
 
+        foreach ($semester->subjects as $subject) {
+            $SubjectController->calculateScores($subject);
+            $grade = 1;
+            if ($subject->is_graded) {
+                foreach ([$subject->points_for_2, $subject->points_for_3, $subject->points_for_4, $subject->points_for_5] as $gradeLimit) {
+                    if ($gradeLimit > ($subject->sum_scores /  $subject->max_score)) $grade = $grade + 1;
+                }
+            }
+            $subject->update(["grade" => $grade]);
+        }
 
-        $semester->update();
+        $SemesterController->semesterStatisticUpdate($semester);
     }
 }

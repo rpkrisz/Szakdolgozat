@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\SemesterController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,6 +15,10 @@ class SemesterResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+
+        $SemesterController = app(SemesterController::class);
+        $SemesterController->semesterStatisticUpdate($this);
+
         return [
             'id' => $this->id,
             'name' => $this->name,

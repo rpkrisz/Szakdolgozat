@@ -57,12 +57,12 @@ class SubjectFactory extends Factory
             'is_graded' => $isGraded,
             'grade' => $isGraded ? $grade : 1,
 
-            'midterms' => $midterms,
-            'quizes' => $quizes,
-            'assignments' => $assignments,
-            'exams' => $exams,
-            'homeworks' => $homeWorks,
-            'bonus_points' => $bonusPoints,
+            'midterm_score' => $midterms,
+            'quiz_score' => $quizes,
+            'assignment_score' => $assignments,
+            'exam_score' => $exams,
+            'homework_score' => $homeWorks,
+            'bonus_point_score' => $bonusPoints,
             'sum_scores' => $sumScores,
             'max_score' => $maxScore,
 
