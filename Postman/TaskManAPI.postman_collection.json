@@ -58,13 +58,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/universities/6",
+							"raw": "{{base_url}}/universities/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"universities",
-								"6"
+								"1"
 							]
 						}
 					},
@@ -90,7 +90,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Budapesti Gazdasági Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Budapesti Gazdasági Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemesterID\": 49,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,7 +129,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Budapesti Gazdaságtudományi Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Budapesti Gazdaságtudományi Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemesterID\": 45,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -137,13 +137,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/universities/3",
+							"raw": "{{base_url}}/universities/7",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"universities",
-								"3"
+								"7"
 							]
 						}
 					},
@@ -168,13 +168,32 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/universities/9",
+							"raw": "{{base_url}}/universities/17",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"universities",
-								"9"
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "University semesters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/6/semesters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"6",
+								"semesters"
 							]
 						}
 					},
@@ -218,19 +237,38 @@
 					"response": []
 				},
 				{
-					"name": "University semesters",
+					"name": "Universitiy Tasks",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/universities/6/semesters",
+							"raw": "{{base_url}}/universities/1/tasks",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"universities",
-								"6",
-								"semesters"
+								"1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Universitiy Subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/1/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"1",
+								"subjects"
 							]
 						}
 					},
@@ -290,13 +328,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/semesters/20",
+							"raw": "{{base_url}}/semesters/6",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"semesters",
-								"20"
+								"6"
 							]
 						}
 					},
@@ -343,6 +381,47 @@
 				},
 				{
 					"name": "Update Semester",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Message</th>\r",
+									"        <th>Exception</th>\r",
+									"        <th>File</th>\r",
+									"        <th>Line</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>{{response.message}}</td>\r",
+									"        <td>{{response.exception}}</td>\r",
+									"        <td>{{response.file}}</td>\r",
+									"        <td>{{response.line}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -360,13 +439,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/semesters/20",
+							"raw": "{{base_url}}/semesters/42",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"semesters",
-								"20"
+								"42"
 							]
 						}
 					},
@@ -409,13 +488,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/semesters/20/university",
+							"raw": "{{base_url}}/semesters/41/university",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"semesters",
-								"20",
+								"41",
 								"university"
 							]
 						}
@@ -428,14 +507,51 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/semesters/20/subjects",
+							"raw": "{{base_url}}/semesters/6/subjects",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"semesters",
-								"20",
+								"6",
 								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Smester Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/6/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"6",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Semester names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/names",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"names"
 							]
 						}
 					},
@@ -495,13 +611,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/subjects/64",
+							"raw": "{{base_url}}/subjects/19",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"subjects",
-								"64"
+								"19"
 							]
 						}
 					},
@@ -527,7 +643,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"facilis\",\r\n    \"courseType\": \"Lecture & Tutorial\",\r\n    \"credit\": 1,\r\n    \"notes\": \"Debitis quia aut doloribus non praesentium at consectetur suscipit.\",\r\n    \"isGraded\": true,\r\n    \"grade\": 5,\r\n    \"maxScore\": 140,\r\n    \"coursePlacement\": \"ipsam\",\r\n    \"markConditions\": \"Et ipsa distinctio natus quos.\",\r\n    \"scores\": \"Repudiandae ipsam eaque quaerat pariatur at ea necessitatibus.\",\r\n    \"bonusExercise\": \"Voluptatem ipsam aut sit sunt nihil perspiciatis.\",\r\n    \"mark\": \"voluptatibus\",\r\n    \"examType\": \"fugit\",\r\n    \"readings\": \"quisquam autem voluptatum\",\r\n    \"absences\": 3,\r\n    \"programingLanguage\": \"reiciendis\",\r\n    \"coursePage\": \"http://turcotte.org/rerum-sint-qui-eum-dignissimos\",\r\n    \"weeklyTimeConsumption\": 45,\r\n    \"pointsFor2\": 50,\r\n    \"pointsFor3\": 53,\r\n    \"pointsFor4\": 78,\r\n    \"pointsFor5\": 85,\r\n    \"isPercentage\": true,\r\n    \"semester_id\": 21\r\n}",
+							"raw": "{\r\n    \"courseType\": \"Tutorial\",\r\n    \"name\": \"asdf\",\r\n    \"semesterID\": 6,\r\n    \"universityID\": 1,\r\n    \"credit\": 1,\r\n    \"isGraded\": false,\r\n    \"isPercentage\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -574,13 +690,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/subjects/65",
+							"raw": "{{base_url}}/subjects/19",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"subjects",
-								"65"
+								"19"
 							]
 						}
 					},
@@ -618,18 +734,37 @@
 					"response": []
 				},
 				{
-					"name": "Subject Semester",
+					"name": "Subject University",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/subjects/64/semester",
+							"raw": "{{base_url}}/subjects/124/university",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"subjects",
-								"64",
+								"124",
+								"university"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject Semester",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/124/semester",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"124",
 								"semester"
 							]
 						}
@@ -642,14 +777,32 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/subjects/62/tasks",
+							"raw": "{{base_url}}/subjects/19/tasks",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"subjects",
-								"62",
+								"19",
 								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/names",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"names"
 							]
 						}
 					},
@@ -741,7 +894,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Task\",\r\n    \"dueDate\": \"2025-03-18\",\r\n    \"weight\": \"50\",\r\n    \"type\": \"HomeWork\",\r\n    \"taskPage\": \"-\",\r\n    \"subject_id\": 54\r\n}",
+							"raw": "{\r\n    \"name\": \"Task\",\r\n    \"dueDate\": \"2025-05-08\",\r\n    \"weight\": \"0\",\r\n    \"type\": \"homework\",\r\n    \"taskPage\": \"\",\r\n    \"description\": \"\",\r\n    \"semesterID\": 6,\r\n    \"universityID\": 1,\r\n    \"subjectID\": 19\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -780,7 +933,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"TaskU\",\r\n    \"dueDate\": \"2025-03-18\",\r\n    \"weight\": \"50\",\r\n    \"type\": \"Midterm\",\r\n    \"taskPage\": \"-\",\r\n    \"state\": \"done\",\r\n    \"score\": 3\r\n}",
+							"raw": "{\r\n    \"name\": \"TaskU\",\r\n    \"dueDate\": \"2025-03-18\",\r\n    \"weight\": \"50\",\r\n    \"type\": \"midterm\",\r\n    \"taskPage\": \"-\",\r\n    \"description\": \"\",\r\n    \"stage\": \"done\",\r\n    \"score\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -788,13 +941,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/tasks/190",
+							"raw": "{{base_url}}/tasks/366",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"tasks",
-								"190"
+								"366"
 							]
 						}
 					},
@@ -841,19 +994,93 @@
 					"response": []
 				},
 				{
-					"name": "Task Subject",
+					"name": "Task University",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/tasks/180/subject",
+							"raw": "{{base_url}}/tasks/369/university",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"tasks",
-								"180",
+								"369",
+								"university"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task Semester",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/369/semester",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"369",
+								"semester"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task Subject",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/369/subject",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"369",
 								"subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/names",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Urgent tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/urgent",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"urgent"
 							]
 						}
 					},
@@ -894,12 +1121,12 @@
 					}
 				],
 				"url": {
-					"raw": "{{base_url}}/user",
+					"raw": "{{base_url}}/users",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"user"
+						"users"
 					]
 				}
 			},
@@ -946,11 +1173,11 @@
 					"formdata": [
 						{
 							"key": "email",
-							"value": "rpkr@gmail.com",
+							"value": "erepkr@gmail.com",
 							"type": "text"
 						},
 						{
-							"key": "name",
+							"key": "nickName",
 							"value": "RP Krisz",
 							"type": "text"
 						},
@@ -960,8 +1187,18 @@
 							"type": "text"
 						},
 						{
-							"key": "password_confirmation",
+							"key": "passwordConfirmation",
 							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "firstName",
+							"value": "Krisz",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "RP",
 							"type": "text"
 						}
 					]
@@ -1086,6 +1323,46 @@
 					],
 					"path": [
 						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Krisztián\",\r\n    \"lastName\": \"Réthey-Prikkel\",\r\n    \"nickName\": \"Krisz\",\r\n    \"email\": \"rp.krisz123@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/profile/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"profile",
+						"1"
 					]
 				}
 			},
