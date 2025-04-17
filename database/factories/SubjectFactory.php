@@ -67,9 +67,9 @@ class SubjectFactory extends Factory
             'max_score' => $maxScore,
 
             'course_placement' => fake()->word(),
-            'mark_conditions' => fake()->sentence(),
-            'scores' => fake()->sentence(),
-            'bonus_exercise' => fake()->sentence(),
+            'mark_conditions' => fake()->word(4),
+            'scores' => fake()->word(3),
+            'bonus_exercise' => fake()->word(2),
             'mark' => fake()->word(),
             'exam_type' => fake()->word(),
             'readings' => fake()->words(3, true),
