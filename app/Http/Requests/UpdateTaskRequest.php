@@ -28,7 +28,8 @@ class UpdateTaskRequest extends FormRequest
             'weight' => ['required'],
             'type' => ['required', Rule::in(["midterm", "quiz", "assignment", "exam", "homework", "bonusPoint"])],
             'task_page' => ['present', 'nullable'],
-            'state' => ['required', 'string', Rule::in(["inwork", "done", "graded", "faild"])],
+            'description' => ['present',  'max:250'],
+            'stage' => ['required', 'string', Rule::in(["inprogress", "done", "graded", "faild"])],
             'score' => ['present', 'numeric', 'min:0'],
         ];
     }

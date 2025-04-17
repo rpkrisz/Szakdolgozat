@@ -10,7 +10,7 @@ const ColorNotationTable: FC = () => {
         <tr className="flex flex-wrap justify-center items-center gap-1">
           <td className="assaigment ">assaigment</td>
           <td className="midterm ">midterm or exam</td>
-          <td className="inwork ">handed out, inwork</td>
+          <td className="inprogress ">handed out, inprogress</td>
           <td className="relevant ">now / in a week</td>
           <td className="done ">done</td>
           <td className="graded ">finished, graded</td>

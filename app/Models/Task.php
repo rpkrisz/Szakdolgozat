@@ -22,7 +22,8 @@ class Task extends Model
         'weight',
         'type',
         'task_page',
-        'state',
+        'description',
+        'stage',
         'score'
     ];
 

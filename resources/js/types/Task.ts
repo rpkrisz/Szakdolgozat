@@ -4,7 +4,7 @@ export type Task = {
   dueDate: string;
   weight: number;
   type: "midterm" | "quiz" | "assignment" | "exam" | "homeWork" | "bonusPoint";
-  state: "inwork" | "done" | "graded" | "faild";
+  state: "inprogress" | "done" | "graded" | "faild";
   score: number;
   taskPage: string;
   universityID: string;

@@ -29,10 +29,11 @@ class StoreTaskRequest extends FormRequest
             'weight' => ['present', 'integer'],
             'type' => ['required', Rule::in(["midterm", "quiz", "assignment", "exam", "homework", "bonusPoint"])],
             'task_page' => ['present'],
+            'description' => ['present', 'max:250'],
             'university_id' => ['required'],
             'semester_id' => ['required'],
             'subject_id' => ['required'],
-            'state' => ['required', Rule::in(["inwork"])],
+            'stage' => ['required', Rule::in(["inprogress"])],
             'score' => ['required', 'numeric'],
         ];
     }
@@ -40,7 +41,7 @@ class StoreTaskRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge([
-            'state' => 'inwork',
+            'stage' => 'inprogress',
             'score' => 0,
             'due_date' => $this->dueDate,
             'task_page' => $this->taskPage,

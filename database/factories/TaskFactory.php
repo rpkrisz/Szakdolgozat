@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class TaskFactory extends Factory
 {
     private $types = ["midterm", "quiz", "assignment", "exam", "homework", "bonus_point"];
-    private $taskStates = ["inwork", "done", "graded", "faild"];
+    private $taskStages = ["inprogress", "done", "graded", "faild"];
 
     /**
      * Define the model's default state.
@@ -19,7 +19,7 @@ class TaskFactory extends Factory
      */
     public function definition(): array
     {
-        $taskState = fake()->randomElement($this->taskStates);
+        $taskStage = fake()->randomElement($this->taskStages);
 
         return [
             'name' => fake()->word(),
@@ -27,8 +27,9 @@ class TaskFactory extends Factory
             'weight' => fake()->numberBetween(0, 10) * 10,
             'type' => fake()->randomElement($this->types),
             'task_page' => fake()->url(),
-            'state' => $taskState,
-            'score' => ($taskState == "graded" || $taskState ==  "faild") ? fake()->numberBetween(0, 30) : 0,
+            'description' => fake()->sentence(),
+            'stage' => $taskStage,
+            'score' => ($taskStage == "graded" || $taskStage ==  "faild") ? fake()->numberBetween(0, 30) : 0,
         ];
     }
 }

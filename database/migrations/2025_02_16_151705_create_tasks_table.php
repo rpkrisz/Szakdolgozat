@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('weight');
             $table->string('type');
             $table->string('task_page')->nullable();
-            $table->string('state')->default("inwork");
+            $table->string('description')->nullable();
+            $table->string('stage')->default("inprogress");
             $table->integer('score');
 
             $table->unsignedBigInteger('semester_id');
