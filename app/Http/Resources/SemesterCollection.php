@@ -14,6 +14,8 @@ class SemesterCollection extends ResourceCollection
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        $array = parent::toArray($request);
+        asort($array);
+        return $array;
     }
 }

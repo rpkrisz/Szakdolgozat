@@ -127,6 +127,7 @@ class SemesterController extends Controller
                 'universityID' => $semester->university_id,
             ];
         }
+        sort($names);
 
         return response()->json([
             'success' => true,
