@@ -54,12 +54,13 @@ class SubjectController extends Controller
             ], Response::HTTP_BAD_REQUEST);
         }
 
+        $subject = new Subject($request->validated());
 
-        $subject = Subject::factory()
-            ->for($university)
-            ->for($semester)
-            ->for($user)
-            ->create($request->validated());
+        $subject->semester()->associate($semester);
+        $subject->university()->associate($university);
+        $subject->user()->associate($user);
+
+        $subject->save();
 
         return response()->json([
             'success' => true,

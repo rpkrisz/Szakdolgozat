@@ -24,7 +24,7 @@ class Semester extends Model
         'credit_index',
         'corrected_credit_index',
         'registered_credit',
-        'passeed_credit',
+        'passed_credit',
         'completion_rate',
     ];
 
@@ -41,7 +41,7 @@ class Semester extends Model
             'credit_index' => 'float',
             'corrected_credit_index' => 'float',
             'registered_credit' => 'integer',
-            'passeed_credit' => 'integer',
+            'passed_credit' => 'integer',
             'completion_rate' => 'float',
             'university_id' => 'integer',
             'user_id' => 'integer',

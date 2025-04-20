@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('task_page')->nullable();
             $table->string('description')->nullable();
             $table->string('stage')->default("inprogress");
-            $table->integer('score');
+            $table->integer('score')->default(0);
 
             $table->unsignedBigInteger('semester_id');
             $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');

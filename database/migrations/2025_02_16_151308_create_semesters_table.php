@@ -19,7 +19,7 @@ return new class extends Migration
             $table->float('credit_index');
             $table->float('corrected_credit_index');
             $table->integer('registered_credit');
-            $table->integer('passeed_credit');
+            $table->integer('passed_credit');
             $table->float('completion_rate');
 
             $table->unsignedBigInteger('university_id');

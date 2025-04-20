@@ -28,24 +28,24 @@ return new class extends Migration
             $table->float('homework_score')->nullable()->default(0);
             $table->float('bonus_point_score')->nullable()->default(0);
             $table->float('sum_scores')->nullable()->default(0);
-            $table->float('max_score')->nullable();
+            $table->float('max_score')->nullable()->default(0);
 
             // Details
-            $table->string('course_placement')->nullable()->default("");
-            $table->string('mark_conditions')->nullable()->default("");
-            $table->string('scores')->nullable()->default("");
-            $table->string('bonus_exercise')->nullable()->default("");
-            $table->string('mark')->nullable()->default("");
-            $table->string('exam_type')->nullable()->default("");
-            $table->string('readings')->nullable()->default("");
-            $table->integer('absences')->nullable();
+            $table->string('course_placement')->nullable();
+            $table->string('mark_conditions')->nullable();
+            $table->string('scores')->nullable();
+            $table->string('bonus_exercise')->nullable();
+            $table->string('mark')->nullable();
+            $table->string('exam_type')->nullable();
+            $table->string('readings')->nullable();
+            $table->integer('absences')->nullable()->default(0);
             $table->string('programing_language')->nullable();
             $table->string('course_page')->nullable();
-            $table->integer('weekly_time_consumption')->nullable();
-            $table->integer('points_for_2')->nullable();
-            $table->integer('points_for_3')->nullable();
-            $table->integer('points_for_4')->nullable();
-            $table->integer('points_for_5')->nullable();
+            $table->integer('weekly_time_consumption')->nullable()->default(0);
+            $table->integer('points_for_2')->nullable()->default(0);
+            $table->integer('points_for_3')->nullable()->default(0);
+            $table->integer('points_for_4')->nullable()->default(0);
+            $table->integer('points_for_5')->nullable()->default(0);
             $table->boolean('is_percentage')->default(false);
 
             $table->unsignedBigInteger('semester_id');

@@ -94,7 +94,7 @@ class PersonalSeeder extends Seeder
                 'credit_index' => '5',
                 'corrected_credit_index' => '5',
                 'registered_credit' => '27',
-                'passeed_credit' => '27',
+                'passed_credit' => '27',
                 'completion_rate' => '100',
                 'university_id' => $uni->id,
                 'user_id' => $me->id

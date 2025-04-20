@@ -52,31 +52,37 @@ class UniversityController extends Controller
     {
 
         $user = Auth::user();
-        $university = University::factory()->for($user)->create($request->validated());
+        $university = new University($request->validated());
+        $university->user()->associate($user);
+        $university->curr_semesterID =  0;
+        $university->save();
 
         $semesters = [];
         for ($i = 1; $i <= $university->semesters_count; $i++) {
             $name = "Semester" . " " . $i;
-            $semesters[] = Semester::factory()
-                ->for($university)
-                ->for($user)
-                ->create([
-                    'name' => $name,
-                    'average' => 0,
-                    'grade_point_average' => 0,
-                    'credit_index' => 0,
-                    'corrected_credit_index' => 0,
-                    'registered_credit' => 0,
-                    'passeed_credit' => 0,
-                    'completion_rate' => 0,
-                    'university_id' => $university->id,
-                    'user_id' => $user->id
-                ]);
+
+            $semester = new Semester([
+                'name' => $name,
+                'average' => 0,
+                'grade_point_average' => 0,
+                'credit_index' => 0,
+                'corrected_credit_index' => 0,
+                'registered_credit' => 0,
+                'passed_credit' => 0,
+                'completion_rate' => 0,
+                'university_id' => $university->id,
+                'user_id' => $user->id,
+            ]);
+
+            $semester->university()->associate($university);
+            $semester->user()->associate($user);
+
+            $semester->save();
+            $semesters[] = $semester;
         }
 
-        $university->update([
-            'curr_semesterID' =>  $semesters[$university->curr_semester - 1]->id
-        ]);
+        $university->curr_semesterID =  $semesters[$university->curr_semester - 1]->id;
+        $university->save();
 
         return response()->json([
             'success' => true,

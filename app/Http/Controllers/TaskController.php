@@ -59,13 +59,14 @@ class TaskController extends Controller
             ], Response::HTTP_FORBIDDEN);
         }
 
-        $task = Task::factory()
-            ->for($subject)
-            ->for($semester)
-            ->for($university)
-            ->for($user)
-            ->create($request->validated());
+        $task = new Task($request->validated());
 
+        $task->subject()->associate($subject);
+        $task->semester()->associate($semester);
+        $task->university()->associate($university);
+        $task->user()->associate($user);
+
+        $task->save();
 
         return response()->json([
             'success' => true,
