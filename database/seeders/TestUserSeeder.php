@@ -12,7 +12,7 @@ use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class PersonalSeeder extends Seeder
+class TestUserSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -23,10 +23,10 @@ class PersonalSeeder extends Seeder
         $SubjectController = app(SubjectController::class);
 
         $me = User::factory()->create([
-            'first_name' => 'Krisztián',
-            'last_name' => 'Réthey-Prikkel',
-            'nick_name' => 'Krisz',
-            'email' => 'rp.krisz123@gmail.com',
+            'first_name' => 'Felhaszáló',
+            'last_name' => 'Teszt',
+            'nick_name' => 'User',
+            'email' => 'user@test.com',
         ]);
 
         $uni = University::factory()
@@ -55,35 +55,6 @@ class PersonalSeeder extends Seeder
                 ->create(['name' => $name, 'university_id' => $uni->id, 'user_id' => $me->id]);
         }
 
-
-        foreach ($semesters as $semester) {
-            $subjects = Subject::factory(5)
-                ->for($uni)
-                ->for($semester)
-                ->for($me)
-                ->create(['semester_id' => $semester->id, 'user_id' => $me->id]);
-
-            foreach ($subjects as $subject) {
-                Task::factory(2)
-                    ->for($uni)
-                    ->for($semester)
-                    ->for($subject)
-                    ->for($me)
-                    ->create(['subject_id' => $subject->id, 'user_id' => $me->id]);
-
-
-                $SubjectController->calculateScores($subject);
-                $grade = 1;
-                if ($subject->is_graded) {
-                    foreach ([$subject->points_for_2, $subject->points_for_3, $subject->points_for_4, $subject->points_for_5] as $gradeLimit) {
-                        if ($gradeLimit > ($subject->sum_scores /  $subject->max_score)) $grade = $grade + 1;
-                    }
-                }
-                $subject->update(['grade' => $grade]);
-            }
-            $SemesterController->semesterStatisticUpdate($semester);
-        }
-
         $semester = Semester::factory()
             ->for($uni)
             ->for($me)
@@ -93,8 +64,8 @@ class PersonalSeeder extends Seeder
                 'grade_point_average' => '5',
                 'credit_index' => '5',
                 'corrected_credit_index' => '5',
-                'registered_credit' => '27',
-                'passed_credit' => '27',
+                'registered_credit' => '20',
+                'passed_credit' => '20',
                 'completion_rate' => '100',
                 'university_id' => $uni->id,
                 'user_id' => $me->id
@@ -103,45 +74,6 @@ class PersonalSeeder extends Seeder
         $uni->update([
             'curr_semesterID' => $semester->id,
         ]);
-
-        Subject::factory()
-            ->for($uni)
-            ->for($semester)
-            ->for($me)
-            ->create([
-                "name" => "Nummod EA",
-                "credit" => 2,
-                "course_type" => "Tutorial",
-                "weekly_time_consumption" => 90,
-                "is_graded" => false,
-                "is_percentage" => false
-            ]);
-
-        Subject::factory()
-            ->for($uni)
-            ->for($semester)
-            ->for($me)
-            ->create([
-                "name" => "Nummod GY",
-                "credit" => 3,
-                "course_type" => "Tutorial",
-                "weekly_time_consumption" => 90,
-                "is_graded" => false,
-                "is_percentage" => false
-            ]);
-
-        Subject::factory()
-            ->for($uni)
-            ->for($semester)
-            ->for($me)
-            ->create([
-                "name" => "SzámElm II",
-                "credit" => 2,
-                "course_type" => "Tutorial",
-                "weekly_time_consumption" => 10,
-                "is_graded" => false,
-                "is_percentage" => false
-            ]);
 
         Subject::factory()
             ->for($uni)
@@ -159,6 +91,7 @@ class PersonalSeeder extends Seeder
                 'points_for_4' => 23,
                 'points_for_5' => 27,
                 "is_percentage" => false
+
             ]);
 
         foreach ($semester->subjects as $subject) {

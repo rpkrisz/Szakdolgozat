@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             PersonalSeeder::class,
+            TestUserSeeder::class,
         ]);
 
         $users = User::factory(5)->create();
