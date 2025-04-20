@@ -33,7 +33,7 @@ class UpdateSemesterRequest extends FormRequest
       'credit_index' => $this->creditIndex,
       'corrected_credit_index' => $this->correctedCreditIndex,
       'registered_credit' => $this->registeredCredit,
-      'passed_credit' => $this->passeedCredit,
+      'passed_credit' => $this->passedCredit,
       'completion_rate' => $this->completionRate,
     ]);
   }

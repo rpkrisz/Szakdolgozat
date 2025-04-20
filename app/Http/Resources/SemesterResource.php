@@ -27,7 +27,7 @@ class SemesterResource extends JsonResource
       'creditIndex' => $this->credit_index,
       'correctedCreditIndex' => $this->corrected_credit_index,
       'registeredCredit' => $this->registered_credit,
-      'passeedCredit' => $this->passed_credit,
+      'passedCredit' => $this->passed_credit,
       'completionRate' => $this->completion_rate,
       'universityID' => $this->university_id,
       'userID' => $this->user_id

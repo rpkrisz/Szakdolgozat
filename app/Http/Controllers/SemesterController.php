@@ -200,7 +200,7 @@ class SemesterController extends Controller
 
 
         $semester->registered_credit =  $this->sumCredits($semesterSubjects);
-        $semester->passed_credit = $this->getPasseedCredits($semesterSubjects);
+        $semester->passed_credit = $this->getPassedCredits($semesterSubjects);
         $semester->completion_rate = round($this->getCompletionRate($semester)  * 100, 2);
 
 
@@ -210,7 +210,7 @@ class SemesterController extends Controller
             "credit_index" =>  round($this->getCI($semesterSubjects), 2),
             "corrected_credit_index" =>  round($this->getCCI($semesterSubjects), 2),
             "registered_credit" =>  $this->sumCredits($semesterSubjects),
-            "passed_credit" => $this->getPasseedCredits($semesterSubjects),
+            "passed_credit" => $this->getPassedCredits($semesterSubjects),
             "completion_rate" => round($this->getCompletionRate($semester)  * 100, 2),
         ];
 
@@ -240,7 +240,7 @@ class SemesterController extends Controller
         return $subjects->where('grade', '>', 1);
     }
 
-    public function getPasseedCredits($subjects)
+    public function getPassedCredits($subjects)
     {
         return $this->sumCredits($this->getPassedSubjects($subjects));
     }
@@ -289,7 +289,7 @@ class SemesterController extends Controller
     public function getCCI($semesterSubjects)
     {
         $CI = $this->getCI($semesterSubjects);
-        $passedCredits = $this->getPasseedCredits($this->getPassedSubjects($semesterSubjects));
+        $passedCredits = $this->getPassedCredits($this->getPassedSubjects($semesterSubjects));
         $registered_credits = $this->sumCredits($semesterSubjects);
         if ($passedCredits === 0 || $CI === 0) return 0;
         return round(($CI * $passedCredits) / $registered_credits, 2);
