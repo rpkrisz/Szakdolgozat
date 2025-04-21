@@ -111,7 +111,7 @@ class PersonalSeeder extends Seeder
             ->create([
                 "name" => "Nummod EA",
                 "credit" => 2,
-                "course_type" => "Tutorial",
+                "course_type" => "Practice",
                 "weekly_time_consumption" => 90,
                 "is_graded" => false,
                 "is_percentage" => false
@@ -124,7 +124,7 @@ class PersonalSeeder extends Seeder
             ->create([
                 "name" => "Nummod GY",
                 "credit" => 3,
-                "course_type" => "Tutorial",
+                "course_type" => "Practice",
                 "weekly_time_consumption" => 90,
                 "is_graded" => false,
                 "is_percentage" => false
@@ -137,7 +137,7 @@ class PersonalSeeder extends Seeder
             ->create([
                 "name" => "SzámElm II",
                 "credit" => 2,
-                "course_type" => "Tutorial",
+                "course_type" => "Practice",
                 "weekly_time_consumption" => 10,
                 "is_graded" => false,
                 "is_percentage" => false
@@ -150,7 +150,7 @@ class PersonalSeeder extends Seeder
             ->create([
                 "name" => "Szakdolgozat",
                 "credit" => 20,
-                "course_type" => "Tutorial",
+                "course_type" => "Practice",
                 "weekly_time_consumption" => 180,
                 "is_graded" => false,
                 'max_score' => 30,

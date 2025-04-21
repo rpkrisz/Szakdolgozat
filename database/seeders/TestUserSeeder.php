@@ -82,7 +82,7 @@ class TestUserSeeder extends Seeder
             ->create([
                 "name" => "Szakdolgozat",
                 "credit" => 20,
-                "course_type" => "Tutorial",
+                "course_type" => "Practice",
                 "weekly_time_consumption" => 180,
                 "is_graded" => false,
                 'max_score' => 30,
