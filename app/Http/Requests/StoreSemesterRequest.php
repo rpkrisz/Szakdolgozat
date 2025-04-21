@@ -31,7 +31,7 @@ class StoreSemesterRequest extends FormRequest
         $this->merge([
             'name' => $this->name,
             'average' => $this->average,
-            'grade_point_average' => $this->gradePointAverage,
+            'weighted_average' => $this->weightedAverage,
             'credit_index' => $this->creditIndex,
             'corrected_credit_index' => $this->correctedCreditIndex,
             'registered_credit' => $this->registeredCredit,

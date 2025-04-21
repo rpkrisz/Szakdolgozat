@@ -2,7 +2,7 @@ export type Semester = {
   id: number;
   name: string;
   average: number;
-  gradePointAverage: number;
+  weightedAverage: number;
   creditIndex: number;
   correctedCreditIndex: number;
   registeredCredit: number;

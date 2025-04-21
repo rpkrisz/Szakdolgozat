@@ -61,7 +61,7 @@ class TestUserSeeder extends Seeder
             ->create([
                 'name' => "Semester 6",
                 'average' => '5',
-                'grade_point_average' => '5',
+                'weighted_average' => '5',
                 'credit_index' => '5',
                 'corrected_credit_index' => '5',
                 'registered_credit' => '20',

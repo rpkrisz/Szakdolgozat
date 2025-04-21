@@ -21,7 +21,7 @@ class SemesterFactory extends Factory
     return [
       'name' => "Semester" . " " . fake()->numberBetween(1, 8),
       'average' => fake()->randomFloat(2, 1, 5),
-      'grade_point_average' => fake()->randomFloat(2, 1, 5),
+      'weighted_average' => fake()->randomFloat(2, 1, 5),
       'credit_index' => fake()->randomFloat(2, 1, 5),
       'corrected_credit_index' => fake()->randomFloat(2, 1, 5),
       'registered_credit' => $registeredCredit,

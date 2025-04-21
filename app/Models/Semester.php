@@ -20,7 +20,7 @@ class Semester extends Model
     protected $fillable =  [
         'name',
         'average',
-        'grade_point_average',
+        'weighted_average',
         'credit_index',
         'corrected_credit_index',
         'registered_credit',
@@ -37,7 +37,7 @@ class Semester extends Model
     {
         return [
             'average' => 'float',
-            'grade_point_average' => 'float',
+            'weighted_average' => 'float',
             'credit_index' => 'float',
             'corrected_credit_index' => 'float',
             'registered_credit' => 'integer',

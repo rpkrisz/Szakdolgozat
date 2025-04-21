@@ -23,7 +23,7 @@ class SemesterResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'average' => $this->average,
-            'gradePointAverage' => $this->grade_point_average,
+            'weightedAverage' => $this->weighted_average,
             'creditIndex' => $this->credit_index,
             'correctedCreditIndex' => $this->corrected_credit_index,
             'registeredCredit' => $this->registered_credit,

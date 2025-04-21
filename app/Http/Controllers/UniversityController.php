@@ -64,7 +64,7 @@ class UniversityController extends Controller
             $semester = new Semester([
                 'name' => $name,
                 'average' => 0,
-                'grade_point_average' => 0,
+                'weighted_average' => 0,
                 'credit_index' => 0,
                 'corrected_credit_index' => 0,
                 'registered_credit' => 0,

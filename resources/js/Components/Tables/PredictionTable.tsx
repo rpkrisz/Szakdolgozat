@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {getAVG, getCCI, getCI, getGPA} from "@/repositories/SemesterRepository";
+import {getAVG, getCCI, getCI, getWAVG} from "@/repositories/SemesterRepository";
 import {Subject} from "@/types/Subject";
 import GradeTable from "@/Components/Tables/GradeTable";
 
@@ -14,7 +14,7 @@ const PredictionTables: FC<{subjects: Subject[]; title: string; baseGrade: numbe
 
   const averages = {
     average: getAVG(gradedSubjects),
-    gradePointAverage: getGPA(gradedSubjects),
+    weightedAverage: getWAVG(gradedSubjects),
     creditIndex: getCI(gradedSubjects),
     correctedCreditIndex: getCCI(gradedSubjects),
   };
@@ -35,7 +35,7 @@ const PredictionTables: FC<{subjects: Subject[]; title: string; baseGrade: numbe
           <tbody>
             <tr className="hover">
               <th className="text-center">{averages.average}</th>
-              <th className="text-center">{averages.gradePointAverage}</th>
+              <th className="text-center">{averages.weightedAverage}</th>
               <th className="text-center">{averages.creditIndex}</th>
               <th className="text-center">{averages.correctedCreditIndex}</th>
             </tr>

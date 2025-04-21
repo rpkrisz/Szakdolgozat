@@ -35,7 +35,7 @@ const SemesterOverview: FC<{
                   <td className="text-center">{semester.passeedCredit}</td>
                   <td className="text-center">{round(semester.completionRate, 2)} %</td>
                   <td className="text-center">{semester.average}</td>
-                  <td className="text-center">{semester.gradePointAverage}</td>
+                  <td className="text-center">{semester.weightedAverage}</td>
                   <td className="text-center">{semester.creditIndex}</td>
                   <td className="text-center">{semester.correctedCreditIndex}</td>
                 </tr>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->float('average');
-            $table->float('grade_point_average');
+            $table->float('weighted_average');
             $table->float('credit_index');
             $table->float('corrected_credit_index');
             $table->integer('registered_credit');

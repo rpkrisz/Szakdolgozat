@@ -195,7 +195,7 @@ class SemesterController extends Controller
         $semesterSubjects = $semester->subjects()->get();
 
         $semester->average =  round($this->getAVG($semesterSubjects), 2);
-        $semester->grade_point_average =  round($this->getGPA($semesterSubjects), 2);
+        $semester->weighted_average =  round($this->getWAVG($semesterSubjects), 2);
         $semester->credit_index =  round($this->getCI($semesterSubjects), 2);
         $semester->corrected_credit_index =  round($this->getCCI($semesterSubjects), 2);
 
@@ -207,7 +207,7 @@ class SemesterController extends Controller
 
         $newSemester = [
             "average" =>  round($this->getAVG($semesterSubjects), 2),
-            "grade_point_average" =>  round($this->getGPA($semesterSubjects), 2),
+            "weighted_average" =>  round($this->getWAVG($semesterSubjects), 2),
             "credit_index" =>  round($this->getCI($semesterSubjects), 2),
             "corrected_credit_index" =>  round($this->getCCI($semesterSubjects), 2),
             "registered_credit" =>  $this->sumCredits($semesterSubjects),
@@ -271,7 +271,7 @@ class SemesterController extends Controller
         return round($this->average($filteredSubjects, $numOfSemesterSubjects), 2);
     }
 
-    public function getGPA($semesterSubjects)
+    public function getWAVG($semesterSubjects)
     {
         $registered_credits = $this->sumCredits($semesterSubjects);
         $sumOfPassedWeightedCredits = $this->sumOfWeightedCredits($this->getPassedSubjects($semesterSubjects));
