@@ -1,1404 +1,1404 @@
 {
-  "info": {
-    "_postman_id": "6126326a-f485-499f-a5aa-8df9285b6bec",
-    "name": "TaskManAPI",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "34911041"
-  },
-  "item": [
-    {
-      "name": "University routes",
-      "item": [
-        {
-          "name": "Universities",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/universities",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "University",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/universities/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "1"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create University",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Budapesti Gazdasági Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemesterID\": 49,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/universities",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update University",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Budapesti Gazdaságtudományi Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemesterID\": 45,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/universities/7",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "7"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete University",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/universities/17",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "17"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "University semesters",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/universities/6/semesters",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "6",
-                "semesters"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Universities names",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/universities/names",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "names"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "University names",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/universities/names/6",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "names",
-                "6"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Universitiy Tasks",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/universities/1/tasks",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "1",
-                "tasks"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Universitiy Subjects",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/universities/1/subjects",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "universities",
-                "1",
-                "subjects"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Semester routes",
-      "item": [
-        {
-          "name": "Semesters",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/semesters",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Semester",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/semesters/6",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters",
-                "6"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create Semester",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"university_id\": 6\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/semesters",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Semester",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "var template = `\r",
-                  "<style type=\"text/css\">\r",
-                  "    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
-                  "    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
-                  "    .tftable tr {background-color:#ffffff;}\r",
-                  "    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
-                  "    .tftable tr:hover {background-color:#e0ffff;}\r",
-                  "</style>\r",
-                  "\r",
-                  "<table class=\"tftable\" border=\"1\">\r",
-                  "    <tr>\r",
-                  "        <th>Message</th>\r",
-                  "        <th>Exception</th>\r",
-                  "        <th>File</th>\r",
-                  "        <th>Line</th>\r",
-                  "    </tr>\r",
-                  "    <tr>\r",
-                  "        <td>{{response.message}}</td>\r",
-                  "        <td>{{response.exception}}</td>\r",
-                  "        <td>{{response.file}}</td>\r",
-                  "        <td>{{response.line}}</td>\r",
-                  "    </tr>\r",
-                  "</table>\r",
-                  "`;\r",
-                  "\r",
-                  "function constructVisualizerPayload() {\r",
-                  "    return { response: pm.response.json() }\r",
-                  "}\r",
-                  "\r",
-                  "pm.visualizer.set(template, constructVisualizerPayload());"
-                ],
-                "type": "text/javascript",
-                "packages": {}
-              }
-            }
-          ],
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/semesters/42",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters",
-                "42"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Semester",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/semesters/17",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters",
-                "17"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Smester University",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/semesters/41/university",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters",
-                "41",
-                "university"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Smester Subjects",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/semesters/6/subjects",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters",
-                "6",
-                "subjects"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Smester Tasks",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/semesters/6/tasks",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters",
-                "6",
-                "tasks"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Semester names",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/semesters/names",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "semesters",
-                "names"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Subject routes",
-      "item": [
-        {
-          "name": "Subjects",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/subjects",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Subject",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/subjects/19",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects",
-                "19"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create Subject",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"courseType\": \"Practice\",\r\n    \"name\": \"asdf\",\r\n    \"semesterID\": 6,\r\n    \"universityID\": 1,\r\n    \"credit\": 1,\r\n    \"isGraded\": false,\r\n    \"isPercentage\": false\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/subjects",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Subject",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Updated\",\r\n    \"courseType\": \"Lecture & Practice\",\r\n    \"credit\": 1,\r\n    \"notes\": \"Debitis quia aut doloribus non praesentium at consectetur suscipit.\",\r\n    \"isGraded\": true,\r\n    \"grade\": 5,\r\n    \"maxScore\": 140,\r\n    \"coursePlacement\": \"ipsam\",\r\n    \"markConditions\": \"Et ipsa distinctio natus quos.\",\r\n    \"scores\": \"Repudiandae ipsam eaque quaerat pariatur at ea necessitatibus.\",\r\n    \"bonusExercise\": \"Voluptatem ipsam aut sit sunt nihil perspiciatis.\",\r\n    \"mark\": \"voluptatibus\",\r\n    \"examType\": \"fugit\",\r\n    \"readings\": \"quisquam autem voluptatum\",\r\n    \"absences\": 3,\r\n    \"programingLanguage\": \"reiciendis\",\r\n    \"coursePage\": \"http://turcotte.org/rerum-sint-qui-eum-dignissimos\",\r\n    \"weeklyTimeConsumption\": 45,\r\n    \"pointsFor2\": 50,\r\n    \"pointsFor3\": 53,\r\n    \"pointsFor4\": 78,\r\n    \"pointsFor5\": 85,\r\n    \"isPercentage\": true\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/subjects/19",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects",
-                "19"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Subject",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/subjects/65",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects",
-                "65"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Subject University",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/subjects/124/university",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects",
-                "124",
-                "university"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Subject Semester",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/subjects/124/semester",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects",
-                "124",
-                "semester"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Subject Tasks",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/subjects/19/tasks",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects",
-                "19",
-                "tasks"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Subject names",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/subjects/names",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "subjects",
-                "names"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Task routes",
-      "item": [
-        {
-          "name": "Tasks",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/tasks",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Task",
-          "request": {
-            "method": "GET",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/tasks/162",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "162"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create Task",
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Task\",\r\n    \"dueDate\": \"2025-05-08\",\r\n    \"weight\": \"0\",\r\n    \"type\": \"homework\",\r\n    \"taskPage\": \"\",\r\n    \"description\": \"\",\r\n    \"semesterID\": 6,\r\n    \"universityID\": 1,\r\n    \"subjectID\": 19\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/tasks",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Task",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"TaskU\",\r\n    \"dueDate\": \"2025-03-18\",\r\n    \"weight\": \"50\",\r\n    \"type\": \"midterm\",\r\n    \"taskPage\": \"-\",\r\n    \"description\": \"\",\r\n    \"stage\": \"done\",\r\n    \"score\": 3\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/tasks/366",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "366"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Task",
-          "request": {
-            "method": "DELETE",
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Authorization",
-                "value": "Bearer {{token}}"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{base_url}}/tasks/190",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "190"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Task University",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/tasks/369/university",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "369",
-                "university"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Task Semester",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/tasks/369/semester",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "369",
-                "semester"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Task Subject",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/tasks/369/subject",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "369",
-                "subject"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Task names",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/tasks/names",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "names"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Urgent tasks",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/tasks/urgent",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "tasks",
-                "urgent"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Main",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "{{base_url}}",
-          "host": [
-            "{{base_url}}"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Get User",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/json"
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/users",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "users"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Register",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "let jsonData = pm.response.json(); // Parse the JSON response\r",
-              "\r",
-              "if (jsonData && jsonData.token) {\r",
-              "    let token = jsonData.token; // Extract the token\r",
-              "\r",
-              "    pm.globals.set(\"token\", token); //save the token to a global variable\r",
-              "\r",
-              "    console.log(\"Token saved: \" + token);\r",
-              "} else {\r",
-              "    console.error(\"Token not found in response.\");\r",
-              "}"
-            ],
-            "type": "text/javascript",
-            "packages": {}
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/json"
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
-            {
-              "key": "email",
-              "value": "erepkr@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "nickName",
-              "value": "RP Krisz",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "password",
-              "type": "text"
-            },
-            {
-              "key": "passwordConfirmation",
-              "value": "password",
-              "type": "text"
-            },
-            {
-              "key": "firstName",
-              "value": "Krisz",
-              "type": "text"
-            },
-            {
-              "key": "lastName",
-              "value": "RP",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{base_url}}/register",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "register"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Login",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "let jsonData = pm.response.json(); // Parse the JSON response\r",
-              "\r",
-              "if (jsonData && jsonData.token) {\r",
-              "    let token = jsonData.token; // Extract the token\r",
-              "\r",
-              "    pm.globals.set(\"token\", token); //save the token to a global variable\r",
-              "\r",
-              "    console.log(\"Token saved: \" + token);\r",
-              "} else {\r",
-              "    console.error(\"Token not found in response.\");\r",
-              "}"
-            ],
-            "type": "text/javascript",
-            "packages": {}
-          }
-        }
-      ],
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/json"
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "formdata",
-          "formdata": [
-            {
-              "key": "email",
-              "value": "rp.krisz123@gmail.com",
-              "type": "text"
-            },
-            {
-              "key": "password",
-              "value": "password",
-              "type": "text"
-            }
-          ]
-        },
-        "url": {
-          "raw": "{{base_url}}/login",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "login"
-          ],
-          "query": [
-            {
-              "key": "",
-              "value": null,
-              "disabled": true
-            }
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Log out",
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "exec": [
-              "pm.globals.set(\"token\", \"\"); //erase the token\r",
-              ""
-            ],
-            "type": "text/javascript",
-            "packages": {}
-          }
-        }
-      ],
-      "request": {
-        "method": "DELETE",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/json"
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/logout",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "logout"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "User Update",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Accept",
-            "value": "application/json"
-          },
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          },
-          {
-            "key": "Authorization",
-            "value": "Bearer {{token}}"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\r\n    \"firstName\": \"Krisztián\",\r\n    \"lastName\": \"Réthey-Prikkel\",\r\n    \"nickName\": \"Krisz\",\r\n    \"email\": \"rp.krisz123@gmail.com\"\r\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{base_url}}/profile/1",
-          "host": [
-            "{{base_url}}"
-          ],
-          "path": [
-            "profile",
-            "1"
-          ]
-        }
-      },
-      "response": []
-    }
-  ],
-  "auth": {
-    "type": "bearer",
-    "bearer": [
-      {
-        "key": "token",
-        "value": "{{token}}",
-        "type": "string"
-      }
-    ]
-  },
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "exec": [
-          ""
-        ]
-      }
-    },
-    {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "packages": {},
-        "exec": [
-          ""
-        ]
-      }
-    }
-  ]
+	"info": {
+		"_postman_id": "6126326a-f485-499f-a5aa-8df9285b6bec",
+		"name": "TaskManAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34911041"
+	},
+	"item": [
+		{
+			"name": "University routes",
+			"item": [
+				{
+					"name": "Universities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/universities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "University",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/universities/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create University",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Budapesti Gazdasági Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemesterID\": 49,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/universities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update University",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Budapesti Gazdaságtudományi Egyetem\",\r\n    \"nickName\": \"BGE\",\r\n    \"faculty\": \"PSZK\",\r\n    \"major\": \"GM\",\r\n    \"degreeLevel\": \"BA/BSc\",\r\n    \"semestersCount\": 7,\r\n    \"currSemester\": 7,\r\n    \"currSemesterID\": 45,\r\n    \"currSemFstDay\": \"2025-02-10\",\r\n    \"specialisation\": \"DigVáll\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/universities/7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete University",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/universities/17",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "University semesters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/6/semesters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"6",
+								"semesters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Universities names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/names",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "University names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/names/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"names",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Universitiy Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/1/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Universitiy Subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/universities/1/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"universities",
+								"1",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Semester routes",
+			"item": [
+				{
+					"name": "Semesters",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/semesters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Semester",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/semesters/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Semester",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"university_id\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/semesters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Semester",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `\r",
+									"<style type=\"text/css\">\r",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+									"    .tftable tr {background-color:#ffffff;}\r",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+									"    .tftable tr:hover {background-color:#e0ffff;}\r",
+									"</style>\r",
+									"\r",
+									"<table class=\"tftable\" border=\"1\">\r",
+									"    <tr>\r",
+									"        <th>Message</th>\r",
+									"        <th>Exception</th>\r",
+									"        <th>File</th>\r",
+									"        <th>Line</th>\r",
+									"    </tr>\r",
+									"    <tr>\r",
+									"        <td>{{response.message}}</td>\r",
+									"        <td>{{response.exception}}</td>\r",
+									"        <td>{{response.file}}</td>\r",
+									"        <td>{{response.line}}</td>\r",
+									"    </tr>\r",
+									"</table>\r",
+									"`;\r",
+									"\r",
+									"function constructVisualizerPayload() {\r",
+									"    return { response: pm.response.json() }\r",
+									"}\r",
+									"\r",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/semesters/42",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Semester",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/semesters/17",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Smester University",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/41/university",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"41",
+								"university"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Smester Subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/6/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"6",
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Smester Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/6/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"6",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Semester names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/semesters/names",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"semesters",
+								"names"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Subject routes",
+			"item": [
+				{
+					"name": "Subjects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/subjects/12",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Subject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"courseType\": \"Tutorial\",\r\n    \"name\": \"assdfgdf\",\r\n    \"semesterID\": 6,\r\n    \"universityID\": 1,\r\n    \"credit\": 1,\r\n    \"isGraded\": false,\r\n    \"isPercentage\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/subjects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Subject",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Updated\",\r\n    \"courseType\": \"Lecture & Tutorial\",\r\n    \"credit\": 1,\r\n    \"notes\": \"Debitis quia aut doloribus non praesentium at consectetur suscipit.\",\r\n    \"isGraded\": true,\r\n    \"grade\": 5,\r\n    \"maxScore\": 140,\r\n    \"coursePlacement\": \"ipsam\",\r\n    \"markConditions\": \"Et ipsa distinctio natus quos.\",\r\n    \"scores\": \"Repudiandae ipsam eaque quaerat pariatur at ea necessitatibus.\",\r\n    \"bonusExercise\": \"Voluptatem ipsam aut sit sunt nihil perspiciatis.\",\r\n    \"mark\": \"voluptatibus\",\r\n    \"examType\": \"fugit\",\r\n    \"readings\": \"quisquam autem voluptatum\",\r\n    \"absences\": 3,\r\n    \"programingLanguage\": \"reiciendis\",\r\n    \"coursePage\": \"http://turcotte.org/rerum-sint-qui-eum-dignissimos\",\r\n    \"weeklyTimeConsumption\": 45,\r\n    \"pointsFor2\": 50,\r\n    \"pointsFor3\": 53,\r\n    \"pointsFor4\": 78,\r\n    \"pointsFor5\": 85,\r\n    \"isPercentage\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/subjects/19",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"19"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Subject",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/subjects/65",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"65"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject University",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/124/university",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"124",
+								"university"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject Semester",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/124/semester",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"124",
+								"semester"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/19/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"19",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Subject names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/names",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"subjects",
+								"names"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task routes",
+			"item": [
+				{
+					"name": "Tasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/tasks/162",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"162"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Task\",\r\n    \"dueDate\": \"2025-05-08\",\r\n    \"weight\": \"0\",\r\n    \"type\": \"homework\",\r\n    \"taskPage\": \"\",\r\n    \"description\": \"\",\r\n    \"semesterID\": 6,\r\n    \"universityID\": 1,\r\n    \"subjectID\": 19\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"TaskU\",\r\n    \"dueDate\": \"2025-03-18\",\r\n    \"weight\": \"50\",\r\n    \"type\": \"midterm\",\r\n    \"taskPage\": \"-\",\r\n    \"description\": \"\",\r\n    \"stage\": \"done\",\r\n    \"score\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/366",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"366"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks/190",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"190"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task University",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/369/university",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"369",
+								"university"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task Semester",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/369/semester",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"369",
+								"semester"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task Subject",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/369/subject",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"369",
+								"subject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Task names",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/names",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"names"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Urgent tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/tasks/urgent",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"tasks",
+								"urgent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Main",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json(); // Parse the JSON response\r",
+							"\r",
+							"if (jsonData && jsonData.token) {\r",
+							"    let token = jsonData.token; // Extract the token\r",
+							"\r",
+							"    pm.globals.set(\"token\", token); //save the token to a global variable\r",
+							"\r",
+							"    console.log(\"Token saved: \" + token);\r",
+							"} else {\r",
+							"    console.error(\"Token not found in response.\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "erepkr@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "nickName",
+							"value": "RP Krisz",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "passwordConfirmation",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "firstName",
+							"value": "Krisz",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "RP",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json(); // Parse the JSON response\r",
+							"\r",
+							"if (jsonData && jsonData.token) {\r",
+							"    let token = jsonData.token; // Extract the token\r",
+							"\r",
+							"    pm.globals.set(\"token\", token); //save the token to a global variable\r",
+							"\r",
+							"    console.log(\"Token saved: \" + token);\r",
+							"} else {\r",
+							"    console.error(\"Token not found in response.\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "rp.krisz123@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.globals.set(\"token\", \"\"); //erase the token\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/logout",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Krisztián\",\r\n    \"lastName\": \"Réthey-Prikkel\",\r\n    \"nickName\": \"Krisz\",\r\n    \"email\": \"rp.krisz123@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/profile/1",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"profile",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
 }
