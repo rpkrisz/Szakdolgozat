@@ -229,7 +229,7 @@ class SubjectController extends Controller
         ];
 
         foreach ($subject->tasks as $task) {
-            $score = ($task->score * $task->weight) / 100;
+            $score = round(($task->score * $task->weight) / 100, 2);
             $type = $task->type . '_score';
             $scores[$type] = $scores[$type] + $score;
             $scores['sum_scores'] = $scores['sum_scores'] + $score;
