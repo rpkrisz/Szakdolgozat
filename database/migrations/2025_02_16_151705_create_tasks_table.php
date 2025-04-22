@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('due_date');
-            $table->integer('weight');
+            $table->float('weight');
             $table->string('type');
             $table->string('task_page')->nullable();
             $table->string('description')->nullable();
             $table->string('stage')->default("inprogress");
-            $table->integer('score')->default(0);
+            $table->float('score')->default(0);
 
             $table->unsignedBigInteger('semester_id');
             $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('cascade');
