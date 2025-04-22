@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class ApiAuth extends Controller
+class ApiAuthController extends Controller
 {
     public function register(RegisterRequest $request)
     {
