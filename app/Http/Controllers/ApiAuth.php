@@ -93,7 +93,7 @@ class ApiAuthController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json([
             'succes' => true,
-            'message' => 'Succesful log off!'
+            'message' => 'Succesful log off'
         ]);
     }
 }
