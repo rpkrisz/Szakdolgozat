@@ -31,7 +31,7 @@ class ApiAuthController extends Controller
             'password' => $validatedData['password']
         ])) {
             $user = Auth::user();
-            $token = $user->createToken('Bang_game API Token')->plainTextToken;
+            $token = $user->createToken('API_Token')->plainTextToken;
             $universities  = $user->universities()->get();
 
             $unidata = [];
@@ -46,7 +46,7 @@ class ApiAuthController extends Controller
 
             return response()->json([
                 'succes' => true,
-                'message' => 'Sikeres regisztráció',
+                'message' => 'Succesfull registration',
                 'token' => $token,
                 'user' => new UserResource($user),
                 'data' => $unidata,
@@ -78,7 +78,7 @@ class ApiAuthController extends Controller
 
             return response()->json([
                 'succes' => true,
-                'message' => 'Sikeres bejelentkezés',
+                'message' => 'Succesful login',
                 'token' => $token,
                 'user' => new UserResource($user),
                 'data' => $unidata,
