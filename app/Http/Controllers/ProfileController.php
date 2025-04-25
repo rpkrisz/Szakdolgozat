@@ -16,18 +16,6 @@ use Inertia\Response;
 class ProfileController extends Controller
 {
     /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): Response
-    {
-        return Inertia::render('Profile/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
-            'status' => session('status'),
-        ]);
-    }
-
-
-    /**
      * Display the specified resource.
      */
     public function index()
@@ -71,7 +59,7 @@ class ProfileController extends Controller
 
         return response()->json([
             'succes' => true,
-            'message' => 'Sikeres profile update',
+            'message' => 'Succesful profile update',
             'user' => new UserResource($request->user()),
         ]);
     }
@@ -94,6 +82,10 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        return response()->json([
+            'success' => true,
+            'message' => 'User deleted successfully',
+            'data' => new UserResource($user),
+        ]);
     }
 }
