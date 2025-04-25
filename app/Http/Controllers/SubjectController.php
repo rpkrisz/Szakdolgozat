@@ -138,7 +138,7 @@ class SubjectController extends Controller
         ]);
     }
 
-    public function getSubjectkNames()
+    public function getSubjectNames()
     {
 
         $subjects = Auth::user()->subjects()->get();
