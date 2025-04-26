@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setup": "npm i && npm run frontend_install && npm run backend_install",
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "setup": "npm run frontend_install && npm run backend_install",
     "frontend": "cd frontend && npm run dev",
     "backend": "cd backend && composer run dev",
     "frontend_install": "cd frontend && npm install",
@@ -14,8 +13,5 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "concurrently": "^9.1.2"
-  }
+  "description": ""
 }
