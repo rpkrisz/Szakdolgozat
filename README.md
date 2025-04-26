@@ -42,9 +42,11 @@ http://localhost:5173/
 
 ## Tech Stack
 
-**Frontend:** React, TailwindCSS, DaisyUI
+**Backend:** SQLite / PostgreSQL
 
 **Backend:** Laravel REST API
+
+**Frontend:** React, TailwindCSS, DaisyUI
 
 ## License
 
