@@ -55,7 +55,7 @@ Route::middleware(['auth:sanctum'])->group(
     Route::get('semesters/{id}/tasks', [SemesterController::class, 'getTasks']);
 
     // Subject
-    Route::get('subjects/names', [SubjectController::class, 'getSubjectkNames']);
+    Route::get('subjects/names', [SubjectController::class, 'getSubjectNames']);
     Route::get('subjects/{id}/university', [SubjectController::class, 'getUniversity']);
     Route::get('subjects/{id}/semester', [SubjectController::class, 'getSemester']);
     Route::get('subjects/{id}/tasks', [SubjectController::class, 'getTasks']);
