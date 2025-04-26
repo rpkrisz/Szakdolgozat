@@ -4,12 +4,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setup": "npm i && concurrently \"npm run frontend_install\" \"npm run backend_install\"",
+    "setup": "npm i && npm run frontend_install && npm run backend_install",
     "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
     "frontend": "cd frontend && npm run dev",
     "backend": "cd backend && composer run dev",
     "frontend_install": "cd frontend && npm install",
-    "backend_install": "cd backend && copy .env.example .env && composer i && php artisan migrate:fresh --seed",
+    "backend_install": "cd backend && copy .env.example .env && npm i && composer i && php artisan migrate:fresh --seed",
     "db": "cd backend && php artisan migrate:fresh --seed"
   },
   "author": "",
