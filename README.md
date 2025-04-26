@@ -8,13 +8,13 @@ Egy webapp, az applikáció egy személyes Task-Manager alkalmazás lenne. Első
 
 ## Installation
 
-A projekt root mappájában futtassuk le az alább commadot. Ez telepíteni fogja a megfelelő backend és frontend függőségeket.
+A projekt root mappájában futtassuk le az alább commadot. A parancs először létrehozza a .env fájlt, majd telepíteni fogja a megfelelő backend és frontend függőségeket és végül létrehozza és feltölti az adatbázist.
 
 ```bash
 npm run setup
 ```
 
-Majd a program futtatásához az aábbi  parancsot kell meg adni:
+A program futtatásához a lenti parancsot kell meg adni. A paranncs elindítja a frontendet és a laravel szervert.
 
 ```bash
 npm run dev

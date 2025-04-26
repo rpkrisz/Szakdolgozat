@@ -9,7 +9,8 @@
     "frontend": "cd frontend && npm run dev",
     "backend": "cd backend && composer run dev",
     "frontend_install": "cd frontend && npm install",
-    "backend_install": "cd backend && composer i"
+    "backend_install": "cd backend && copy .env.example .env && composer i && php artisan migrate:fresh --seed",
+    "db": "cd backend && php artisan migrate:fresh --seed"
   },
   "author": "",
   "license": "ISC",
