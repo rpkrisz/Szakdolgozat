@@ -1,0 +1,72 @@
+export type Subject = {
+  id: number;
+  name: string;
+  courseType: courseTypes;
+  credit: number;
+  notes: string;
+  isGraded: boolean;
+  grade: number;
+  midterms: number;
+  quizes: number;
+  assignments: number;
+  exams: number;
+  homeworks: number;
+  bonusPoints: number;
+  sumScores: number;
+  maxScore: number;
+  coursePlacement: string;
+  markConditions: string;
+  scores: string;
+  bonusExercise: string;
+  mark: string;
+  examType: string;
+  readings: string;
+  absences: number;
+  programingLanguage: string;
+  coursePage: string;
+  weeklyTimeConsumption: number;
+  pointsFor2: number;
+  pointsFor3: number;
+  pointsFor4: number;
+  pointsFor5: number;
+  isPercentage: boolean;
+  universityID: number;
+  semesterID: number;
+  userID: number;
+};
+
+export type SubjectForm = {
+  name: string;
+  courseType: string;
+  credit: number;
+  notes: string;
+  grade: number;
+  isGraded: boolean;
+  coursePlacement: string;
+  markConditions: string;
+  scores: string;
+  bonusExercise: string;
+  mark: string;
+  examType: string;
+  readings: string;
+  absences: number;
+  programingLanguage: string;
+  coursePage: string;
+  weeklyTimeConsumption: number;
+  pointsFor2: number;
+  pointsFor3: number;
+  pointsFor4: number;
+  pointsFor5: number;
+  maxScore: number;
+  isPercentage: boolean;
+  semesterID: number;
+  universityID: number;
+};
+
+type courseTypes = "Lecture" | "Practice" | "Lecture & Practice";
+
+export type chartData = {
+  name: string;
+  value: number;
+  color: string;
+};
