@@ -79,7 +79,7 @@ const router = createBrowserRouter([
         element: <Tasks />,
       },
       {
-        path: "semesters/:universityID/:s emesterID/predictions",
+        path: "semesters/:universityID/:semesterID/predictions",
         element: <Predictions />,
       },
       {
