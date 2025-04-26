@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, useEffect, useMemo, useState} from "react";
 import MonthTable from "./MonthTable";
 import {isEmpty} from "lodash";
 import TaskTableHeaders from "./TaskTableHeaders";
@@ -8,32 +8,41 @@ import {TaskSelectionType} from "@/types";
 import {countTasksPerMonthToSubject} from "@/utils/";
 
 const UrgentTasks: FC = () => {
-  const [[, inWeekTasks, nearBigTasks]] = useGetUrgentTasks();
+  const [[max, inWeekTasks, nearBigTasks]] = useGetUrgentTasks();
+  const [maxTaskPerMonth, setMaxTaskPerMonth] = useState(max);
 
-  const taskSelections = [
-    [
-      "",
+  const taskSelections = useMemo(
+    () =>
       [
-        {
-          id: "inWeekTasks",
-          name: "In week tasks",
-          tasks: inWeekTasks,
-          tasksPerMonth: countTasksPerMonthToSubject(inWeekTasks!),
-        },
-        {
-          id: "nearBigTasks",
-          name: "Near big tasks",
-          tasks: nearBigTasks,
-          tasksPerMonth: countTasksPerMonthToSubject(nearBigTasks!),
-        },
-      ],
-    ],
-  ] as TaskSelectionType;
+        [
+          "",
+          [
+            {
+              id: "inWeekTasks",
+              name: "In week tasks",
+              tasks: inWeekTasks,
+              tasksPerMonth: countTasksPerMonthToSubject(inWeekTasks!),
+            },
+            {
+              id: "nearBigTasks",
+              name: "Near big tasks",
+              tasks: nearBigTasks,
+              tasksPerMonth: countTasksPerMonthToSubject(nearBigTasks!),
+            },
+          ],
+        ],
+      ] as TaskSelectionType,
+    [inWeekTasks, nearBigTasks]
+  );
 
-  const maxTaskPerMonth = taskSelections[0][1][1].tasksPerMonth.map((taskNumA, index) => {
-    const taskNumB = taskSelections[0][1][0].tasksPerMonth[index];
-    return taskNumA > taskNumB ? taskNumA : taskNumB;
-  });
+  useEffect(() => {
+    if (isEmpty(taskSelections[0][1][1].tasksPerMonth) || isEmpty(taskSelections[0][1][0].tasksPerMonth)) return;
+    const realMax = taskSelections[0][1][1].tasksPerMonth.map((taskNumA, index) => {
+      const taskNumB = taskSelections[0][1][0].tasksPerMonth[index];
+      return taskNumA > taskNumB ? taskNumA : taskNumB;
+    });
+    setMaxTaskPerMonth(realMax);
+  }, [taskSelections]);
 
   if (isEmpty(taskSelections)) return <p className="text-center font-bold text-3xl">No tasks available!</p>;
 
@@ -44,7 +53,7 @@ const UrgentTasks: FC = () => {
         {taskSelections.map(([filter, tasktypes]) => {
           return (
             <TaskTableHeaders key={filter} title={"Urgent tasks"} headers={tasktypes} headerTitle="Type">
-              {maxTaskPerMonth.map((taskNum, index) => {
+              {maxTaskPerMonth?.map((taskNum, index) => {
                 if (!taskNum) return;
                 return <MonthTable key={index} data={tasktypes} month={index} taskNum={taskNum} />;
               })}
