@@ -8,7 +8,7 @@ Egy webapp, az applikáció egy személyes Task-Manager alkalmazás lenne. Első
 
 ## Installation
 
-A projekt root mappájában futtassuk le az alábbi commadot. A parancs először létrehozza a .env fájlt, majd telepíteni fogja a megfelelő backend és frontend függőségeket és végül létrehozza és feltölti az adatbázist.
+A projekt root mappájában futtassuk le az alábbi commadot. A parancs először létrehozza a .env fájlt, majd telepíteni fogja a megfelelő backend és frontend függőségeket és végül létrehozza és feltölti az adatbázist. (A 'Generating optimized autoload files' folyamat percekig is eltarthat a backend telepítésekor.)
 
 ```bash
 npm run setup
