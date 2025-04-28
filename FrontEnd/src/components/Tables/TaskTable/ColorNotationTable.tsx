@@ -1,5 +1,5 @@
 import {FC} from "react";
-import ToolTip from "../ToolTip";
+import ToolTip from "../../ToolTip";
 
 const ColorNotationTable: FC = () => {
   return (

@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 import MonthTable from "./MonthTable";
 import {entries, groupBy, isEmpty} from "lodash";
 import TaskTableHeaders from "./TaskTableHeaders";
-import ColorNotationTable from "@/components/Tables/ColorNotationTable";
+import ColorNotationTable from "@/components/Tables/TaskTable/ColorNotationTable";
 import {useGetUniversitiesNames} from "@/services";
 import {useAtomValue} from "jotai/react";
 import {userAtom} from "@/store/atoms";

@@ -2,7 +2,7 @@ import {FC, useEffect, useMemo, useState} from "react";
 import MonthTable from "./MonthTable";
 import {isEmpty} from "lodash";
 import TaskTableHeaders from "./TaskTableHeaders";
-import ColorNotationTable from "@/components/Tables/ColorNotationTable";
+import ColorNotationTable from "@/components/Tables/TaskTable/ColorNotationTable";
 import {useGetUrgentTasks} from "@/services";
 import {TaskSelectionType} from "@/types";
 import {countTasksPerMonthToSubject} from "@/utils/";
