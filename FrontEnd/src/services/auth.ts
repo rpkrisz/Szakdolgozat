@@ -39,7 +39,6 @@ const register = async (userData: RegisterData) => {
 const useRegister = () => {
   const setUser = useSetAtom(userAtom);
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["register"],
     mutationFn: register,
@@ -69,7 +68,6 @@ const useRegister = () => {
         },
         isLoggedIn: true,
       });
-      await queryClient.invalidateQueries({queryKey: ["user"]});
       navigate(navigateRoutes.homePage);
     },
   });
@@ -87,8 +85,6 @@ const login = async (userData: LogInData) => {
 const useLogin = () => {
   const setUser = useSetAtom(userAtom);
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
   return useMutation({
     mutationKey: ["login"],
     mutationFn: login,
@@ -118,7 +114,6 @@ const useLogin = () => {
         },
         isLoggedIn: true,
       });
-      await queryClient.invalidateQueries({queryKey: ["user"]});
       const url = window.history.state.usr.split("/");
       url[url.length - 1] === "hero" || url[url.length - 1] === "" ? navigate(navigateRoutes.homePage) : navigate(-1);
     },
