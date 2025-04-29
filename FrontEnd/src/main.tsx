@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <App />
     </QueryClientProvider>
-    <ToastContainer position="bottom-right" theme="dark" />
+    <ToastContainer position="bottom-right" theme="dark" draggable="touch" />
     <ReactQueryDevtools initialIsOpen={true} client={queryClient} />
   </React.StrictMode>
 );
