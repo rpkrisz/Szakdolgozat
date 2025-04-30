@@ -14,7 +14,13 @@ A projekt root mappájában futtassuk le az alábbi commadot. A parancs előszö
 npm run setup
 ```
 
-A program futtatásához a lenti parancsokat kell meg adni két külön terminálban. Az egyik paranncs elindítja a frontendet, a másik meg a laravel szervert.
+A program futtatásához a lenti parancsot kell meg adni a terminálban. A parancs párhuzamosan elindítja a frontendet és a backendet.
+
+```bash
+npm run dev
+```
+
+Amennyiben a programnak csak egyik részét szeretnék kipróbálni akkor a lenti parancsok egyikét kell megadni a terminálban. Az egyik paranncs elindítja a frontendet, a másik meg a backend, laravel szervert.
 
 ```bash
 npm run frontend
