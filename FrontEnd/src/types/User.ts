@@ -1,6 +1,7 @@
 export type User = {
   uid: number | null;
   token: string | null;
+  colorTheme: string | null;
   user: FrontendUser | null;
   data: dataModel | null;
   isLoggedIn: boolean;
@@ -16,5 +17,6 @@ export type FrontendUser = {
   firstName: string;
   lastName: string;
   nickName: string;
+  colorTheme: string;
   email: string;
 };

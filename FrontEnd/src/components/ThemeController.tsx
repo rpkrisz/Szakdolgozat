@@ -1,4 +1,28 @@
+import {useAtomValue} from "jotai";
+import {userAtom} from "@/store/atoms";
+import {useUpdateUser} from "@/services";
+import {FrontendUser} from "@/types";
+import {useEffect, useState} from "react";
+
 const ThemeController = () => {
+  const {colorTheme} = useAtomValue(userAtom);
+
+  // const [form, setForm] = useState(userData);
+  // const [updateUser] = useUpdateUser();
+
+  // useEffect(() => {
+  //   setForm(userData);
+  // }, [userData]);
+
+  // const saveColorTheme = async () => {
+  //   try {
+  //     await updateUser(form as FrontendUser);
+  //   } catch (error) {
+  //     console.error("User saving faild!");
+  //   }
+  //   setForm({...form});
+  // };
+
   return (
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn m-1">
@@ -21,6 +45,7 @@ const ThemeController = () => {
             className="theme-controller  btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Business"
             value="business"
+            defaultChecked={colorTheme === "business"}
           />
         </li>
         <li>
@@ -30,6 +55,7 @@ const ThemeController = () => {
             className="theme-controller  btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Dim"
             value="dim"
+            defaultChecked={colorTheme === "dim"}
           />
         </li>
         <li>
@@ -39,6 +65,7 @@ const ThemeController = () => {
             className="theme-controller  btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Retro"
             value="retro"
+            defaultChecked={colorTheme === "retro"}
           />
         </li>
         <li>
@@ -48,6 +75,7 @@ const ThemeController = () => {
             className="theme-controller  btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Autumn"
             value="autumn"
+            defaultChecked={colorTheme === "autumn"}
           />
         </li>
         <li>
@@ -57,6 +85,8 @@ const ThemeController = () => {
             className="theme-controller  btn btn-sm btn-block btn-ghost justify-start"
             aria-label="Pastel"
             value="pastel"
+            defaultChecked={colorTheme === "pastel"}
+            onClick={(e) => console.log((e.target as HTMLInputElement).value)}
           />
         </li>
       </ul>

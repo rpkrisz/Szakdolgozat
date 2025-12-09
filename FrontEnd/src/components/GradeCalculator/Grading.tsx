@@ -19,7 +19,7 @@ const Grading: FC<{
     : (limits.filter(limit => limit.limit <= sumPoints).pop()?.grade as number);
 
   return (
-    <div className="flex flex-col flex-grow justify-center gap-4 text-center bg-secondary text-secondary-content rounded-md p-10 text-2xl">
+    <div className="flex flex-col w-full flex-grow items-center justify-center gap-4 text-center bg-secondary text-secondary-content rounded-md p-10 text-2xl">
       <h3 className="text-lg font-semibold">
         Calculated {SubjectName} grade: {grade ?? 1}
       </h3>

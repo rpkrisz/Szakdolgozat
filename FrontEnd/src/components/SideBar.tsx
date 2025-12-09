@@ -4,6 +4,7 @@ import {userAtom} from "@/store/atoms";
 import {useGetUser, useLogout, useGetUniversitiesNames} from "@/services";
 import navigateRoutes from "@/NavigationRoutes";
 import ApplicationLogo from "./ApplicationLogo";
+import { Award, BookCheck, Calculator, House, University, User } from "lucide-react";
 
 export default function SideBar() {
   const user = useAtomValue(userAtom);
@@ -36,24 +37,30 @@ export default function SideBar() {
           </div>
         </div>
         <div className="flex flex-col items-center justify-start">
-          <NavLink to={navigateRoutes.homePage} className="btn btn-ghost text-xl w-full">
+          <NavLink to={navigateRoutes.homePage} className="btn btn-ghost text-xl justify-start w-full">
+            <House />
             Home
           </NavLink>
-          <NavLink to={navigateRoutes.profilePage} className="btn btn-ghost text-xl w-full">
+          <NavLink to={navigateRoutes.profilePage} className="btn btn-ghost text-xl justify-start w-full">
+            <User />
             Profile
           </NavLink>
-          <NavLink to={navigateRoutes.tasksPage} className="btn btn-ghost text-xl w-full">
+          <NavLink to={navigateRoutes.tasksPage} className="btn btn-ghost text-xl justify-start w-full">
+            <BookCheck />
             Tasks
           </NavLink>
-          <NavLink to={navigateRoutes.appraisalsPage} className="btn btn-ghost text-xl w-full">
+          <NavLink to={navigateRoutes.appraisalsPage} className="btn btn-ghost text-xl justify-start w-full">
+            <Award />
             Appraisals
           </NavLink>
-          <NavLink to={navigateRoutes.gradecalculatorPage} className="btn btn-ghost text-xl w-full">
+          <NavLink to={navigateRoutes.gradecalculatorPage} className="btn btn-ghost text-xl justify-start w-full">
+            <Calculator />
             Grade calculator
           </NavLink>
           {universitiyNames.length > 0 &&
             universitiyNames?.map(({nickName, id}) => (
-              <NavLink key={id} to={`/universities/${id}`} className="btn btn-ghost text-xl w-full">
+              <NavLink key={id} to={`/universities/${id}`} className="btn btn-ghost text-xl justify-start w-full">
+                <University />
                 {nickName}
               </NavLink>
             ))}

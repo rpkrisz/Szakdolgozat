@@ -18,7 +18,10 @@ const useGetTasks = (): [data: [number[], Task[]], query: UseSuspenseQueryResult
   const query = useSuspenseQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/api/tasks", {method: "GET", headers: header});
+      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/tasks", {
+        method: "GET",
+        headers: header,
+      });
       return await response.json();
     },
   });
@@ -34,7 +37,10 @@ const useGetTask = (id: string | number): [data: Task, query: UseSuspenseQueryRe
   const query = useSuspenseQuery({
     queryKey: ["task", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8000/api/tasks/${id}`, {method: "GET", headers});
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/tasks/${id}`, {
+        method: "GET",
+        headers,
+      });
       return await response.json();
     },
   });
@@ -45,14 +51,14 @@ const useGetTask = (id: string | number): [data: Task, query: UseSuspenseQueryRe
 // ------------- CREATE ------------- //
 const useCreateTask = (): [
   mutateFn: UseMutateFunction<ResponseTypeWithData<Task>, Error, TaskForm, unknown>,
-  query: UseMutationResult<ResponseTypeWithData<Task>, Error, TaskForm, unknown>
+  query: UseMutationResult<ResponseTypeWithData<Task>, Error, TaskForm, unknown>,
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["createTask"],
     mutationFn: async (formData: TaskForm) => {
-      const response = await fetch(`http://localhost:8000/api/tasks/`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/tasks`, {
         method: "POST",
         headers,
         body: JSON.stringify(formData),
@@ -78,14 +84,14 @@ const useCreateTask = (): [
 // ------------- UPDATE ------------- //
 const useUpdateTask = (): [
   mutateFn: UseMutateFunction<ResponseTypeWithData<Task>, Error, Task, unknown>,
-  query: UseMutationResult<ResponseTypeWithData<Task>, Error, Task, unknown>
+  query: UseMutationResult<ResponseTypeWithData<Task>, Error, Task, unknown>,
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["updateTask"],
     mutationFn: async (formData: Task) => {
-      const response = await fetch(`http://localhost:8000/api/tasks/${formData.id}`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/tasks/${formData.id}`, {
         method: "PUT",
         headers,
         body: JSON.stringify(formData),
@@ -112,14 +118,14 @@ const useUpdateTask = (): [
 // ------------- DELETE ------------- //
 const useDeleteTask = (): [
   mutateFn: UseMutateFunction<ResponseType, Error, string | number, unknown>,
-  query: UseMutationResult<ResponseType, Error, string | number, unknown>
+  query: UseMutationResult<ResponseType, Error, string | number, unknown>,
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["deleteTask"],
     mutationFn: async (id: string | number) => {
-      const response = await fetch(`http://localhost:8000/api/tasks/${id}`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/tasks/${id}`, {
         method: "DELETE",
         headers,
         body: JSON.stringify(id),
@@ -150,7 +156,7 @@ const useGetTaskSubject = (
   const query = useSuspenseQuery({
     queryKey: ["taskSubject", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8000/api/tasks/${id}/subject`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/tasks/${id}/subject`, {
         method: "GET",
         headers: header,
       });
@@ -165,7 +171,7 @@ const useGetTaskNames = (): [data: TaskNames[], query: UseSuspenseQueryResult<Ta
   const query = useSuspenseQuery({
     queryKey: ["tasksNames"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/api/tasks/names", {
+      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/tasks/names", {
         method: "GET",
         headers: header,
       });
@@ -177,13 +183,16 @@ const useGetTaskNames = (): [data: TaskNames[], query: UseSuspenseQueryResult<Ta
 
 const useGetUrgentTasks = (): [
   data: [number[], Task[], Task[]] | [],
-  query: UseSuspenseQueryResult<[number[], Task[], Task[]] | [], Error>
+  query: UseSuspenseQueryResult<[number[], Task[], Task[]] | [], Error>,
 ] => {
   const header = useHeaders();
   const query = useSuspenseQuery({
     queryKey: ["urgentTasks"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/api/tasks/urgent", {method: "GET", headers: header});
+      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/tasks/urgent", {
+        method: "GET",
+        headers: header,
+      });
       return await response.json();
     },
   });
