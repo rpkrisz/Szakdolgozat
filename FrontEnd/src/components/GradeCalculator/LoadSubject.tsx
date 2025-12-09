@@ -80,7 +80,7 @@ const LoadSubject: FC<{
 
   return (
     <div className="flex flex-col justify-start text-white gap-1 bg-secondary text-secondary-content rounded-md p-2 lg:col-span-2">
-      <h3 className="font-bold text-lg">Load subject!</h3>
+      <h3 className="font-bold text-lg">Load subject tasks</h3>
       <div className="flex flex-col xl:flex-row justify-around gap-1">
         <SelectInput
           label="University"
@@ -112,10 +112,10 @@ const LoadSubject: FC<{
       </div>
       <div className="flex justify-end gap-5">
         <button className="btn btn-primary" onClick={cleare}>
-          Cleare
+          Clear data
         </button>
         <button className="btn btn-primary" onClick={loadTasks}>
-          Load
+          Load subject data
         </button>
       </div>
     </div>
