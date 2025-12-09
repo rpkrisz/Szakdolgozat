@@ -6,6 +6,7 @@ import {useGetUser, useLogout, useGetUniversitiesNames} from "@/services";
 import navigateRoutes from "@/NavigationRoutes";
 import ThemeController from "./ThemeController";
 import ApplicationLogo from "./ApplicationLogo";
+import {Award, BookCheck, Calculator, House, University, User} from "lucide-react";
 
 export default function MenuBar() {
   const user = useAtomValue(userAtom);
@@ -18,18 +19,23 @@ export default function MenuBar() {
       <div className="lg:flex flex-col lg:flex-row lg:items-center zero:hidden">
         <ApplicationLogo className="size-14 m-2" />
         <NavLink to={navigateRoutes.homePage} className="btn btn-ghost text-xl">
+          <House />
           Home
         </NavLink>
         <NavLink to={navigateRoutes.profilePage} className="btn btn-ghost text-xl">
+          <User />
           Profile
         </NavLink>
         <NavLink to={navigateRoutes.tasksPage} className="btn btn-ghost text-xl">
+          <BookCheck />
           Tasks
         </NavLink>
         <NavLink to={navigateRoutes.appraisalsPage} className="btn btn-ghost text-xl">
+          <Award />
           Appraisals
         </NavLink>
         <NavLink to={navigateRoutes.gradecalculatorPage} className="btn btn-ghost text-xl">
+          <Calculator />
           Grade calculator
         </NavLink>
         {universitiyNames.length > 0 && <Dropdown label="Universites" items={universitiyNames} />}
