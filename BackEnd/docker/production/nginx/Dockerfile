@@ -16,7 +16,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Install Node.js dependencies and build assets
-RUN cd ./BackEnd && npm install && npm run build
+# RUN cd ./BackEnd && npm install && npm run build
 
 # Stage 2: Nginx production image
 FROM nginx:alpine
