@@ -16,7 +16,7 @@ WORKDIR /var/www
 COPY . /var/www
 
 # Install Node.js dependencies and build assets
-# RUN cd ./BackEnd && npm install && npm run build
+# RUN cd npm install && npm run build
 
 # Stage 2: Nginx production image
 FROM nginx:alpine
@@ -26,7 +26,7 @@ FROM nginx:alpine
 # Replace the default Nginx configuration with our custom one
 # that is optimized for serving a Laravel application.
 # -----------------------------------------------------------
-COPY ./BackEnd/docker/production/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY /docker/production/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Copy Laravel's public assets from the builder stage
 # -----------------------------------------------------------
