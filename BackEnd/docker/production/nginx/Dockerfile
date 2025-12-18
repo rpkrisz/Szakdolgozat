@@ -32,10 +32,10 @@ COPY ./BackEnd/docker/production/nginx/nginx.conf /etc/nginx/nginx.conf
 # -----------------------------------------------------------
 # We only need the 'public' directory from our Laravel app.
 # -----------------------------------------------------------
-COPY --from=builder /var/www/public /var/www/public
+# COPY --from=builder /var/www/public /var/www/public
 
-# Set the working directory to the public folder
-WORKDIR /var/www/public
+# # Set the working directory to the public folder
+# WORKDIR /var/www/public
 
 # Expose port 80 and start Nginx
 EXPOSE 80
