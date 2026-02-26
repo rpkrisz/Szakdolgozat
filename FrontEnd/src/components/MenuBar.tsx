@@ -40,19 +40,17 @@ export default function MenuBar() {
         </NavLink>
         {universitiyNames.length > 0 && <Dropdown label="Universites" items={universitiyNames} />}
       </div>
-      <div className="flex items-center gap-2 zero:align-top zero:justify-around zero:flex-row">
-        <p className="mr-4 hidden xl:block">
-          Hello, <Link to={navigateRoutes.profilePage}>{user.user?.nickName ?? user.user?.firstName}</Link>!
-        </p>
-        <div className="avatar placeholder">
-          <div className="bg-neutral text-neutral-content w-8 rounded-full flex items-center justify-center">
-            <NavLink to={navigateRoutes.profilePage}>
+      <div className="flex items-center gap-4 zero:align-top zero:justify-around zero:flex-row">
+        <NavLink to={navigateRoutes.profilePage} className="flex flex-row items-center gap-2">
+          <p className="hidden xl:block">Hello, {user.user?.nickName ?? user.user?.firstName}!</p>
+          <div className="avatar placeholder">
+            <div className="bg-neutral text-neutral-content w-8 rounded-full flex items-center justify-center">
               <span className="text-xs ">{userAPI?.firstName[0]}</span>
-            </NavLink>
+            </div>
           </div>
-        </div>
+        </NavLink>
         <ThemeController />
-        <button onClick={() => logOut()} className="btn btn-primary lg:ml-4">
+        <button onClick={() => logOut()} className="btn btn-primary">
           Log Out
         </button>
       </div>
