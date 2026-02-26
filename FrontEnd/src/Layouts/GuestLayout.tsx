@@ -1,4 +1,4 @@
-import {Link, Outlet, useNavigate} from "react-router-dom";
+import {Link, Navigate, Outlet} from "react-router-dom";
 import Footer from "@/components/Footer";
 import ApplicationLogo from "@/components/ApplicationLogo";
 import useIsAuthenticated from "@/hooks/useIsAuthenticated";
@@ -6,9 +6,8 @@ import navigateRoutes from "@/NavigationRoutes";
 
 function GuestLayout() {
   const isAuth = useIsAuthenticated();
-  const navigate = useNavigate();
 
-  if (isAuth) return navigate(navigateRoutes.homePage);
+  if (isAuth) return <Navigate to={navigateRoutes.homePage} replace />;
 
   return (
     <>

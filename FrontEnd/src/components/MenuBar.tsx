@@ -1,4 +1,4 @@
-import {NavLink, Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Dropdown from "./DropdownUniversities";
 import {useAtomValue} from "jotai/react";
 import {userAtom} from "@/store/atoms";
@@ -6,7 +6,7 @@ import {useGetUser, useLogout, useGetUniversitiesNames} from "@/services";
 import navigateRoutes from "@/NavigationRoutes";
 import ThemeController from "./ThemeController";
 import ApplicationLogo from "./ApplicationLogo";
-import {Award, BookCheck, Calculator, House, University, User} from "lucide-react";
+import {Award, BookCheck, Calculator, House, User} from "lucide-react";
 
 export default function MenuBar() {
   const user = useAtomValue(userAtom);
