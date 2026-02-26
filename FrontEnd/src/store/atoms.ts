@@ -14,9 +14,10 @@ const defaultUser: User = {
 
 export const userAtom = withImmer(
   atomWithStorage<User>(
-    "user",
+    "task-manager-user",
     defaultUser,
-    createJSONStorage<User>(() => sessionStorage)
+    createJSONStorage<User>(() => localStorage),
+    {getOnInit: true}
   )
 );
 

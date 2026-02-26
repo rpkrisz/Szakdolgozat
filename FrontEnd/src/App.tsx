@@ -19,6 +19,12 @@ import TimeConsumptions from "./pages/TimeConsumptions";
 import NotFound from "./pages/NotFound";
 import {Suspense} from "react";
 import {GradeCalculatorSkeleton, UniversitySkeleton, SemesterSkeleton, SubjectSkeleton} from "./components/Feedbacks";
+import {getDefaultStore} from "jotai";
+import {userAtom} from "./store/atoms";
+
+// This triggers the storage read immediately upon JS execution
+const store = getDefaultStore();
+store.get(userAtom);
 
 const router = createBrowserRouter([
   {
