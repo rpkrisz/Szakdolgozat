@@ -41,8 +41,8 @@ const GradeCalculator: FC = () => {
           setIsPercentage={setIsPercentage}
           setSubjectName={setSubjectName}
         />
-        <div className="flex flex-col lg:flex-row justify-stretch items-center lg:gap-20 gap-5 max-h-fit">
-          <div className="flex flex-col lg:flex-row gap-5 bg-secondary text-secondary-content rounded-md p-5">
+        <div className="flex flex-col w-full lg:flex-row justify-stretch items-center lg:gap-20 gap-5 max-h-fit">
+          <div className="flex flex-col w-full lg:flex-row gap-5 bg-secondary text-secondary-content rounded-md p-5">
             <TaskPoints tasks={tasks} setTasks={setTasks} />
             <Limits
               limits={limits}
