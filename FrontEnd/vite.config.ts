@@ -5,7 +5,7 @@ import path from "path";
 export default defineConfig({
   // server: {
   //   proxy: {
-  //     "/api": "http://localhost:8000/",
+  //     "/api": "https://task-manager-api-gcwk.onrender.com/",
   //   },
   // },
   // base: "/TaskManager/",

@@ -14,13 +14,16 @@ import {toast} from "react-toastify";
 // ------------- GET ALL ------------- //
 const useGetSemesters = (): [
   data: Semester[] | undefined,
-  query: UseSuspenseQueryResult<Semester[] | undefined, Error>
+  query: UseSuspenseQueryResult<Semester[] | undefined, Error>,
 ] => {
   const header = useHeaders();
   const query = useSuspenseQuery({
     queryKey: ["semesters"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/api/semesters/", {method: "GET", headers: header});
+      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/semesters", {
+        method: "GET",
+        headers: header,
+      });
       return await response.json();
     },
   });
@@ -35,7 +38,10 @@ const useGetSemester = (
   const query = useSuspenseQuery({
     queryKey: ["semester", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8000/api/semesters/${id}`, {method: "GET", headers});
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/semesters/${id}`, {
+        method: "GET",
+        headers,
+      });
       return await response.json();
     },
   });
@@ -45,14 +51,14 @@ const useGetSemester = (
 // ------------- CREATE ------------- //
 const useCreateSemester = (): [
   response: ResponseType | undefined,
-  query: UseMutationResult<ResponseType | undefined, Error, {university_id: number}, unknown>
+  query: UseMutationResult<ResponseType | undefined, Error, {university_id: number}, unknown>,
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["createSemester"],
     mutationFn: async (formData: {university_id: number}) => {
-      const response = await fetch(`http://localhost:8000/api/semesters/`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/semesters`, {
         method: "POST",
         headers,
         body: JSON.stringify(formData),
@@ -72,14 +78,14 @@ const useCreateSemester = (): [
 // ------------- UPDATE ------------- //
 const useUpdateSemester = (): [
   data: Semester | undefined,
-  query: UseMutationResult<Semester | undefined, Error, string | number, unknown>
+  query: UseMutationResult<Semester | undefined, Error, string | number, unknown>,
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["updateSemester"],
     mutationFn: async (id: string | number) => {
-      const response = await fetch(`http://localhost:8000/api/semesters/${id}`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/semesters/${id}`, {
         method: "PUT",
         headers,
         body: JSON.stringify(id),
@@ -102,14 +108,14 @@ const useUpdateSemester = (): [
 // ------------- DELETE ------------- //
 const useDeleteSemester = (): [
   mutateFn: UseMutateFunction<ResponseType | undefined, Error, string | number, unknown>,
-  query: UseMutationResult<ResponseType | undefined, Error, string | number, unknown>
+  query: UseMutationResult<ResponseType | undefined, Error, string | number, unknown>,
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["deleteSemester"],
     mutationFn: async (id: string | number) => {
-      const response = await fetch(`http://localhost:8000/api/semesters/${id}`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/semesters/${id}`, {
         method: "DELETE",
         headers,
         body: JSON.stringify(id),
@@ -140,7 +146,7 @@ const useGetSemesterUniversity = (
   const query = useSuspenseQuery({
     queryKey: ["semesterUniversity", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8000/api/semesters/${id}/university`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/semesters/${id}/university`, {
         method: "GET",
         headers: header,
       });
@@ -158,7 +164,7 @@ const useGetSemesterSubjects = (
   const query = useSuspenseQuery({
     queryKey: ["semesterSubjects", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8000/api/semesters/${id}/subjects`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/semesters/${id}/subjects`, {
         method: "GET",
         headers: header,
       });
@@ -175,7 +181,7 @@ const useGetSemesterTasks = (
   const query = useSuspenseQuery({
     queryKey: ["semesterTasks", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8000/api/semesters/${id}/tasks`, {
+      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/semesters/${id}/tasks`, {
         method: "GET",
         headers: header,
       });
@@ -193,7 +199,7 @@ const useGetSemesterNames = (): [data: SemesterNames[], query: UseSuspenseQueryR
   const query = useSuspenseQuery({
     queryKey: ["semesterNames"],
     queryFn: async () => {
-      const response = await fetch("http://localhost:8000/api/semesters/names", {
+      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/semesters/names", {
         method: "GET",
         headers: header,
       });
