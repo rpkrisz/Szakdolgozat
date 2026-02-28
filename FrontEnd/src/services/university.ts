@@ -20,10 +20,7 @@ const useGetUniversities = (): [data: University[], query: UseSuspenseQueryResul
   const query = useSuspenseQuery({
     queryKey: ["universities"],
     queryFn: async () => {
-      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/universities", {
-        method: "GET",
-        headers: header,
-      });
+      const response = await fetch("http://localhost:8000/api/universities/", {method: "GET", headers: header});
       return await response.json();
     },
   });
@@ -38,10 +35,7 @@ const useGetUniversity = (
   const query = useSuspenseQuery({
     queryKey: ["university", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/universities/${id}`, {
-        method: "GET",
-        headers,
-      });
+      const response = await fetch(`http://localhost:8000/api/universities/${id}`, {method: "GET", headers});
       return await response.json();
     },
   });
@@ -52,14 +46,14 @@ const useGetUniversity = (
 // ------------- CREATE ------------- //
 const useCreateUniversity = (): [
   mutateFn: UseMutateFunction<ResponseTypeWithData<uniAndSemestersType>, Error, UniversityForm, unknown>,
-  query: UseMutationResult<ResponseTypeWithData<uniAndSemestersType> | undefined, Error, UniversityForm, unknown>,
+  query: UseMutationResult<ResponseTypeWithData<uniAndSemestersType> | undefined, Error, UniversityForm, unknown>
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["createUniversity"],
     mutationFn: async (formData: UniversityForm) => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/universities`, {
+      const response = await fetch(`http://localhost:8000/api/universities/`, {
         method: "POST",
         headers,
         body: JSON.stringify(formData),
@@ -81,14 +75,14 @@ const useCreateUniversity = (): [
 // ------------- UPDATE ------------- //
 const useUpdateUniversity = (): [
   mutateFn: UseMutateFunction<ResponseTypeWithData<University>, Error, University, unknown>,
-  query: UseMutationResult<ResponseTypeWithData<University>, Error, University, unknown>,
+  query: UseMutationResult<ResponseTypeWithData<University>, Error, University, unknown>
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["updateUniversity"],
     mutationFn: async (formData: University) => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/universities/${formData.id}`, {
+      const response = await fetch(`http://localhost:8000/api/universities/${formData.id}`, {
         method: "PUT",
         headers,
         body: JSON.stringify(formData),
@@ -112,14 +106,14 @@ const useUpdateUniversity = (): [
 // ------------- DELETE ------------- //
 const useDeleteUniversity = (): [
   mutateFn: UseMutateFunction<ResponseType, Error, string | number, unknown>,
-  query: UseMutationResult<University, Error, string | number, unknown>,
+  query: UseMutationResult<University, Error, string | number, unknown>
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["deleteUniversity"],
     mutationFn: async (id: string | number) => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/universities/${id}`, {
+      const response = await fetch(`http://localhost:8000/api/universities/${id}`, {
         method: "DELETE",
         headers,
         body: JSON.stringify(id),
@@ -149,7 +143,7 @@ const useGetUniversitySemesters = (
   const query = useSuspenseQuery({
     queryKey: ["universitySemesters", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/universities/${id}/semesters`, {
+      const response = await fetch(`http://localhost:8000/api/universities/${id}/semesters`, {
         method: "GET",
         headers: header,
       });
@@ -166,7 +160,7 @@ const useGetUniversitySubjects = (
   const query = useSuspenseQuery({
     queryKey: ["universitySubjects", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/universities/${id}/subjects`, {
+      const response = await fetch(`http://localhost:8000/api/universities/${id}/subjects`, {
         method: "GET",
         headers: header,
       });
@@ -181,7 +175,7 @@ const useGetUniversitiesNames = (): [data: uninamesType[], query: UseSuspenseQue
   const query = useSuspenseQuery({
     queryKey: ["universitiesNames"],
     queryFn: async () => {
-      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/universities/names", {
+      const response = await fetch("http://localhost:8000/api/universities/names", {
         method: "GET",
         headers: header,
       });
@@ -198,7 +192,7 @@ const useGetUniversityNames = (
   const query = useSuspenseQuery({
     queryKey: ["universityNames", Number(id)],
     queryFn: async () => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/universities/names/${id}`, {
+      const response = await fetch(`http://localhost:8000/api/universities/names/${id}`, {
         method: "GET",
         headers: header,
       });

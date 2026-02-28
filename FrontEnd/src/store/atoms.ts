@@ -7,7 +7,6 @@ import navigateRoutes from "@/NavigationRoutes";
 const defaultUser: User = {
   uid: null,
   token: null,
-  colorTheme: null,
   user: null,
   data: null,
   isLoggedIn: false,
@@ -15,10 +14,9 @@ const defaultUser: User = {
 
 export const userAtom = withImmer(
   atomWithStorage<User>(
-    "task-manager-user",
+    "user",
     defaultUser,
-    createJSONStorage<User>(() => localStorage),
-    {getOnInit: true}
+    createJSONStorage<User>(() => sessionStorage)
   )
 );
 

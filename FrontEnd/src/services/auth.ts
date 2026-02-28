@@ -21,14 +21,14 @@ const useGetAPI = () => {
   return useSuspenseQuery({
     queryKey: ["API"],
     queryFn: async () => {
-      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api");
+      const response = await fetch("http://localhost:8000/api/");
       return await response.json();
     },
   });
 };
 
 const register = async (userData: RegisterData) => {
-  const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/register", {
+  const response = await fetch("http://localhost:8000/api/register", {
     method: "POST",
     headers: authHeaders,
     body: JSON.stringify(userData),
@@ -74,7 +74,7 @@ const useRegister = () => {
 };
 
 const login = async (userData: LogInData) => {
-  const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/login", {
+  const response = await fetch("http://localhost:8000/api/login", {
     method: "POST",
     headers: authHeaders,
     body: JSON.stringify(userData),
@@ -128,7 +128,7 @@ const useLogout = () => {
   return useMutation({
     mutationKey: ["logout"],
     mutationFn: async () => {
-      const response = await fetch("https://task-manager-api-gcwk.onrender.com/api/logout", {
+      const response = await fetch("http://localhost:8000/api/logout", {
         method: "DELETE",
         headers: header,
       });
@@ -150,14 +150,14 @@ const useLogout = () => {
 
 const useGetUser = (): [
   data: [FrontendUser, UniInfoType[]],
-  query: UseSuspenseQueryResult<[FrontendUser, UniInfoType[]], Error>,
+  query: UseSuspenseQueryResult<[FrontendUser, UniInfoType[]], Error>
 ] => {
   const [{token}, setUser] = useAtom(userAtom);
   const header = useHeaders();
   const query = useSuspenseQuery({
     queryKey: ["user"],
     queryFn: async () => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/users`, {
+      const response = await fetch(`http://localhost:8000/api/users/`, {
         method: "GET",
         headers: header,
       });
@@ -171,7 +171,6 @@ const useGetUser = (): [
       setUser({
         uid: userInfo.user.id,
         token: token,
-        colorTheme: userInfo.user.colorTheme,
         user: {
           id: userInfo.user.id,
           firstName: userInfo.user.firstName,
@@ -200,14 +199,14 @@ const useGetUser = (): [
 // ------------- UPDATE ------------- //
 const useUpdateUser = (): [
   mutateFn: UseMutateFunction<ResponseTypeWithData<FrontendUser>, Error, FrontendUser, unknown>,
-  query: UseMutationResult<ResponseTypeWithData<FrontendUser>, Error, FrontendUser, unknown>,
+  query: UseMutationResult<ResponseTypeWithData<FrontendUser>, Error, FrontendUser, unknown>
 ] => {
   const headers = useHeaders();
   const queryClient = useQueryClient();
   const query = useMutation({
     mutationKey: ["updateUser"],
     mutationFn: async (formData: FrontendUser) => {
-      const response = await fetch(`https://task-manager-api-gcwk.onrender.com/api/profile/${formData.id}`, {
+      const response = await fetch(`http://localhost:8000/api/profile/${formData.id}`, {
         method: "PUT",
         headers,
         body: JSON.stringify(formData),
