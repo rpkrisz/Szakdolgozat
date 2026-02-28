@@ -27,7 +27,7 @@ class StoreTaskRequest extends FormRequest
             'name' => ['required'],
             'due_date' => ['required'],
             'weight' => ['present', 'integer'],
-            'type' => ['required', Rule::in(["midterm", "quiz", "assignment", "exam", "homework", "bonusPoint"])],
+            'type' => ['required', Rule::in(["midterm", "quiz", "assignment", "exam", "homework", "bonusPoints"])],
             'task_page' => ['present'],
             'description' => ['present', 'max:250'],
             'university_id' => ['required'],

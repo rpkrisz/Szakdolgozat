@@ -273,11 +273,12 @@ class SemesterController extends Controller
 
     public function getWAVG($semesterSubjects)
     {
-        $registered_credits = $this->sumCredits($semesterSubjects);
-        $sumOfPassedWeightedCredits = $this->sumOfWeightedCredits($this->getPassedSubjects($semesterSubjects));
-        if ($sumOfPassedWeightedCredits == 0 || $registered_credits == 0) return 0;
+        $passedSubjects = $this->getPassedSubjects($semesterSubjects);
+        $passedCredits = $this->getPassedCredits($passedSubjects);
+        $sumOfPassedWeightedCredits = $this->sumOfWeightedCredits($passedSubjects);
+        if ($sumOfPassedWeightedCredits == 0 || $passedCredits == 0) return 0;
 
-        return round($sumOfPassedWeightedCredits / $registered_credits, 2);
+        return round($sumOfPassedWeightedCredits / $passedCredits, 2);
     }
 
     public function getCI($semesterSubjects)

@@ -33,7 +33,7 @@ const taskTypes = [
   {value: "assignment", text: "Assignment"},
   {value: "exam", text: "Exam"},
   {value: "homework", text: "Homework"},
-  {value: "bonus_points", text: "Bonus Points"},
+  {value: "bonusPoints", text: "Bonus Points"},
 ];
 
 const AddTaskModal: FC<{subjectID?: number; semesterID?: number; universityID?: number}> = ({

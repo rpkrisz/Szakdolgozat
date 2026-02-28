@@ -86,7 +86,7 @@ const EditTaskModal: FC = () => {
               {value: "assignment", text: "Assignment"},
               {value: "exam", text: "Exam"},
               {value: "homework", text: "Homework"},
-              {value: "bonus_points", text: "Bonus Points"},
+              {value: "bonusPoints", text: "Bonus Points"},
             ]}
             handleChange={e => handleModalFormChange(e, form, setForm)}
             inputData={form.type}
