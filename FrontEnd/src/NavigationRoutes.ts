@@ -3,7 +3,7 @@ const navigateRoutes = {
   heroPage: "/hero",
   loginPage: "/login",
   registerPage: "/register",
-  homePage: "/home",
+  homePage: "/",
   profilePage: "/profile",
   tasksPage: "/tasks",
   appraisalsPage: "/appraisals",

@@ -171,6 +171,7 @@ const useGetUser = (): [
       setUser({
         uid: userInfo.user.id,
         token: token,
+        colorTheme: userInfo.user.colorTheme,
         user: {
           id: userInfo.user.id,
           firstName: userInfo.user.firstName,

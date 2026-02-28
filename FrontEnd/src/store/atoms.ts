@@ -7,6 +7,7 @@ import navigateRoutes from "@/NavigationRoutes";
 const defaultUser: User = {
   uid: null,
   token: null,
+  colorTheme: null,
   user: null,
   data: null,
   isLoggedIn: false,
